@@ -28,14 +28,14 @@ header {
   justify-content: flex-start;
 }
 
-.logo {
+.logoDisp__texto {
   font-family: var(--text-font-Montserrat);
   font-size: 44px;
   font-weight: 652;
   color: var(--text-color-logoDisp);
 }
 
-.logo__bzk {
+.logoDisp__bzk {
   font-size: 24px;
   font-weight: 500;
   color: var(--text-color-logobzk);
@@ -47,7 +47,7 @@ header {
   object-fit: contain;
 }
 
-.sobre {
+.header__link--sobre {
   margin-left: auto;
   font-family: var(--text-font-Inter);
   font-size: 24px;
@@ -66,7 +66,7 @@ main {
   position: relative;
 }
 
-.title {
+.main__titulo {
   margin-left: 50px;
   font-family: var(--text-font-Inter);
   font-size: 35px;
@@ -93,13 +93,13 @@ footer {
   font-family: var(--text-font-Inter);
 }
 
-.termos {
+.footer__termos {
   font-size: 22px;
   font-weight: 400;
   color: var(--text-color-logoDisp);
 }
 
-.contact {
+.footer__contato {
   font-size: 17px;
   font-weight: 400;
   color: var(--text-color-contact);
