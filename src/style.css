@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: #FFFFFF;
+  --footer-color: #F7F7F7;
+  --text-color-title: #000000;
+  --text-color-logoDisp: #1D4C4C;
+  --text-color-logobzk: #32A28C;
+  --text-color-contact: #828282;
+  --text-font-Montserrat: "Montserrat", sans-serif;
+  --text-font-Inter: "Inter", sans-serif;
+}
+
+html, body {
+  background-color: var(--background-color);
+  height: 100%;
+}
+
+header {
+  margin: 50px 50px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo {
+  font-family: var(--text-font-Montserrat);
+  font-size: 44px;
+  font-weight: 652;
+  color: var(--text-color-logoDisp);
+}
+
+.logo__bzk {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-color-logobzk);
+}
+
+.logoDisp--header {
+  max-width: 50px;
+  margin-top: 0;
+  object-fit: contain;
+}
+
+.sobre {
+  margin-left: auto;
+  font-family: var(--text-font-Inter);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-color-logoDisp);
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  position: relative;
+}
+
+.title {
+  margin-left: 50px;
+  font-family: var(--text-font-Inter);
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.logoDisp--main {
+  position: absolute;
+  margin: 30px;
+  bottom: 0;
+  right: 0;
+  opacity: 0.1;
+}
+
+footer {
+  display: flex;
+  margin-bottom: auto;
+  height: 100px;
+  background-color: var(--footer-color);
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+  font-family: var(--text-font-Inter);
+}
+
+.termos {
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-color-logoDisp);
+}
+
+.contact {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-color-contact);
+}
