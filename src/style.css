@@ -30,13 +30,13 @@ header {
 
 .logoDisp__texto {
   font-family: var(--text-font-Montserrat);
-  font-size: 44px;
+  font-size: 40px;
   font-weight: 652;
   color: var(--text-color-logoDisp);
 }
 
 .logoDisp__bzk {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--text-color-logobzk);
 }
@@ -50,7 +50,7 @@ header {
 .header__link--sobre {
   margin-left: auto;
   font-family: var(--text-font-Inter);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--text-color-logoDisp);
 }
@@ -69,8 +69,13 @@ main {
 .main__titulo {
   margin-left: 50px;
   font-family: var(--text-font-Inter);
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 700;
+}
+
+.entrada__campo--erro {
+  border: 1px solid red;
+  outline: none;
 }
 
 .logoDisp--main {
@@ -94,13 +99,13 @@ footer {
 }
 
 .footer__termos {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
   color: var(--text-color-logoDisp);
 }
 
 .footer__contato {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 400;
   color: var(--text-color-contact);
 }
