@@ -19,31 +19,39 @@
       <p class="entrada__titulo">Verificação de esbeltez</p>
       <section class="entrada entrada--h">
         <label for="h">Altura h:</label>
-        <input type="number" id="h" class="entrada__campo" />
-        <div id="aviso-h" class="entrada__aviso"></div>
+        <div class="entrada__campo-container">
+          <input type="number" id="h" class="entrada__campo" />
+          <div id="aviso-h" class="entrada__aviso"></div>
+        </div>
       </section>
       <section class="entrada entrada--d0">
         <label for="d0">Dimensão d0:</label>
-        <input type="number" id="d0" class="entrada__campo" />
-        <div id="aviso-d0" class="entrada__aviso"></div>
+        <div class="entrada__campo-container">
+          <input type="number" id="d0" class="entrada__campo" />
+          <div id="aviso-d0" class="entrada__aviso"></div>
+        </div>
       </section>
-    <div class="entrada__resultados--esbeltez"></div>
     </section>
     <section class="entradas parametros">
       <p class="entrada__titulo">Parâmetros da edificação</p>
       <section class="entrada entrada--V0">
         <label for="V0">Velocidade V0:</label>
-        <input type="number" id="V0" class="entrada__campo" />
-        <div id="aviso-V0" class="entrada__aviso"></div>
+        <div class="entrada__campo-container">
+          <input type="number" id="V0" class="entrada__campo" />
+          <div id="aviso-V0" class="entrada__aviso"></div>
+        </div>
       </section>
       <section class="entrada entrada--S1">
         <label for="S1">Fator S1:</label>
-        <input type="number" id="S1" class="entrada__campo" />
-        <div  id="aviso-S1" class="entrada__aviso"></div>
+        <div class="entrada__campo-container">
+          <input type="number" id="S1" class="entrada__campo" />
+          <div  id="aviso-S1" class="entrada__aviso"></div>
+        </div>
       </section>
-      <button class="entrada__botao">Calcular</button>
     </section>
+    <button class="entrada__botao">Calcular</button>
     <section class="saida resultados">
+      <div class="entrada__resultados--esbeltez"></div>
       <div class="entrada__resultados--calculo"></div>
     </section>
   </main>

@@ -13,8 +13,20 @@
   --text-color-logoDisp: #1D4C4C;
   --text-color-logobzk: #32A28C;
   --text-color-contact: #828282;
+  --text-color-input: #5B5959;
   --text-font-Montserrat: "Montserrat", sans-serif;
   --text-font-Inter: "Inter", sans-serif;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 html, body {
@@ -55,7 +67,6 @@ header {
   color: var(--text-color-logoDisp);
 }
 
-
 body {
   display: flex;
   flex-direction: column;
@@ -68,14 +79,105 @@ main {
 
 .main__titulo {
   margin-left: 50px;
+  margin-bottom: 50px;
   font-family: var(--text-font-Inter);
   font-size: 30px;
   font-weight: 700;
 }
 
+.entradas {
+  display: flex;
+  margin-left: 35px;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.esbeltez {
+  display: flex;
+  margin-bottom: auto;
+  width: 500px;
+  height: 100px;
+}
+
+.entrada__titulo {
+  margin-bottom: 10px;
+  font-family: var(--text-font-Inter);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.entrada {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+label {
+  flex: 1;
+  text-align: left;
+  font-family: var(--text-font-Inter);
+  font-size: 16px;
+}
+
+.entrada__campo {
+  flex: 0 0 100px;
+  min-width: 0;
+  text-align: center;
+  font-family: var(--text-font-Inter);
+  font-size: 15px;
+  color: var(--text-color-input);
+}
+
+.entrada__campo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.entrada__aviso {
+  width: 50px;
+  font-family: var(--text-font-Inter);
+  font-size: 13px;
+  color: var(--text-color-input);
+  white-space: nowrap;
+  visibility: hidden;
+}
+
+.entrada__aviso--mostrar {
+  visibility: visible;
+}
+
 .entrada__campo--erro {
   border: 1px solid red;
   outline: none;
+}
+
+.entrada__botao {
+  height: 40px;
+  width: 180px;
+  font-family: var(--text-font-Inter);
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--background-color);
+  border-radius: 8px;
+  background-color: var(--text-color-title);
+  margin-left: 60px;
+}
+
+.saida {
+  width: 300px;
+  position: absolute;
+  margin-right: 50px;
+  top: 150px;
+  left: 550px;
+  text-align: left;
+  font-family: var(--text-font-Montserrat);
 }
 
 .logoDisp--main {
@@ -85,6 +187,7 @@ main {
   right: 0;
   opacity: 0.1;
 }
+
 
 footer {
   display: flex;

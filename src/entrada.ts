@@ -20,14 +20,23 @@ export function validarParametro (idInput : string, idDiv : string) : void {
     const div = getElement<HTMLDivElement>(idDiv);
 
     input.addEventListener('blur', () => {
-        let numeroParametro = Number(input.value);
-        let mensagemErro = verificarEntrada(numeroParametro);
+        const inputVazio = input.value.trim();
+
+        if (inputVazio === '') {
+            div.innerText = '';
+            input.classList.remove('entrada__campo--erro');
+            return;
+        }
+
+        const numeroParametro = Number(input.value);
+        const mensagemErro = verificarEntrada(numeroParametro);
         if (mensagemErro) {
             div.innerText = mensagemErro;
+            div.classList.add('entrada__aviso--mostrar');
             input.classList.add('entrada__campo--erro');
         }
         else {
-            div.innerText = '' ;
+            div.innerText = '';
             input.classList.remove('entrada__campo--erro');
         }
     });
