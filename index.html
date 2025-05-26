@@ -8,56 +8,56 @@
 </head>
 <body>
   <header>
-    <img class="logoDisp--header" src="/public/images/miniLogoDisp.png" alt="Logotipo Disp">
-    <h1 class="logoDisp__texto">Disp<span class="logoDisp__bzk">.bzk</span></h1>
-    <h2 class="header__link--sobre">Sobre</h2>
+    <img class="logo__header" src="/public/images/miniLogoDisp.png" alt="Logotipo Disp">
+    <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
+    <h2 class="header__link--about">Sobre</h2>
   </header>
   <main>
-    <h3 class="main__titulo">Verificador de critério de dispensa de desprendimento de vórtices </h3>
-    <img class="logoDisp--main" src="/public/images/miniLogoDisp.png" alt="Logotipo central">
-    <section class="entradas esbeltez">
-      <p class="entrada__titulo">Verificação de esbeltez</p>
-      <section class="entrada entrada--h">
+    <h3 class="main__title">Verificador de critério de dispensa de desprendimento de vórtices </h3>
+    <img class="logo__main" src="/public/images/miniLogoDisp.png" alt="Logotipo central">
+    <section class="inputs slenderness">
+      <p class="input__title">Verificação de esbeltez</p>
+      <section class="input input--h">
         <label for="h">Altura h:</label>
-        <div class="entrada__campo-container">
-          <input type="number" id="h" class="entrada__campo" />
-          <div id="aviso-h" class="entrada__aviso"></div>
+        <div class="input__container">
+          <input type="number" id="h" class="input__field" />
+          <div id="warning-h" class="input__warning"></div>
         </div>
       </section>
-      <section class="entrada entrada--d0">
+      <section class="input input--d0">
         <label for="d0">Dimensão d0:</label>
-        <div class="entrada__campo-container">
-          <input type="number" id="d0" class="entrada__campo" />
-          <div id="aviso-d0" class="entrada__aviso"></div>
+        <div class="input__container">
+          <input type="number" id="d0" class="input__field" />
+          <div id="warning-d0" class="input__warning"></div>
         </div>
       </section>
     </section>
-    <section class="entradas parametros">
-      <p class="entrada__titulo">Parâmetros da edificação</p>
-      <section class="entrada entrada--V0">
+    <section class="inputs parameters">
+      <p class="input__title">Parâmetros da edificação</p>
+      <section class="input input--V0">
         <label for="V0">Velocidade V0:</label>
-        <div class="entrada__campo-container">
-          <input type="number" id="V0" class="entrada__campo" />
-          <div id="aviso-V0" class="entrada__aviso"></div>
+        <div class="input__container">
+          <input type="number" id="V0" class="input__field" />
+          <div id="warning-V0" class="input__warning"></div>
         </div>
       </section>
-      <section class="entrada entrada--S1">
+      <section class="input input--S1">
         <label for="S1">Fator S1:</label>
-        <div class="entrada__campo-container">
-          <input type="number" id="S1" class="entrada__campo" />
-          <div  id="aviso-S1" class="entrada__aviso"></div>
+        <div class="input__container">
+          <input type="number" id="S1" class="input__field" />
+          <div  id="warning-S1" class="input__warning"></div>
         </div>
       </section>
     </section>
-    <button class="entrada__botao">Calcular</button>
-    <section class="saida resultados">
-      <div class="entrada__resultados--esbeltez"></div>
-      <div class="entrada__resultados--calculo"></div>
+    <button class="input__button">Calcular</button>
+    <section class="output">
+      <div class="output__slenderness"></div>
+      <div class="output__result"></div>
     </section>
   </main>
   <footer>
-    <h4 class="footer__termos">Termos e condições</h4>
-    <h5 class="footer__contato">disp@bzk.dev.br</h5>
+    <h4 class="footer__terms">Termos e condições</h4>
+    <h5 class="footer__contact">disp@bzk.dev.br</h5>
   </footer>
   <script type="module" src="/src/main.ts"></script>
 </body>

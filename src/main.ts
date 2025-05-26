@@ -1,25 +1,25 @@
 import { getElement } from "./utils/dom";
-import { entrarParametro, validarParametro } from "./entrada";
-import { calcularParametros, calcularEsbeltez } from "./calculo";
-import { resultadoCalculo, resultadoEstelbez } from "./saida";
+import { getParameter, validateParameter } from "./input";
+import { calculateParameters, calculateSlenderness } from "./calculation";
+import { showCalculusResult, showSlendernessResult } from "./output";
 
-const botaoCalcular = getElement<HTMLButtonElement>('.entrada__botao');
+const buttonCalculate = getElement<HTMLButtonElement>('.input__button');
 
-validarParametro('#h', '#aviso-h');
-validarParametro('#d0', '#aviso-d0');
+validateParameter('#h', '#warning-h');
+validateParameter('#d0', '#warning-d0');
 
-validarParametro('#V0', '#aviso-V0');
-validarParametro('#S1', '#aviso-S1');
+validateParameter('#V0', '#warning-V0');
+validateParameter('#S1', '#warning-S1');
 
 
-botaoCalcular.addEventListener('click', () => {
-    let h : number = entrarParametro('#h');
-    let d0 : number = entrarParametro('#d0');
-    let esbeltezCalculada : number = calcularEsbeltez(h, d0);
-    resultadoEstelbez(esbeltezCalculada);
+buttonCalculate.addEventListener('click', () => {
+    let h : number = getParameter('#h');
+    let d0 : number = getParameter('#d0');
+    let slendernessRatio : number = calculateSlenderness(h, d0);
+    showSlendernessResult(slendernessRatio);
 
-    let V0 : number = entrarParametro('#V0');
-    let S1 : number = entrarParametro('#S1');
-    let numeroCalculado : number = calcularParametros(V0, S1);
-    resultadoCalculo(numeroCalculado);
+    let V0 : number = getParameter('#V0');
+    let S1 : number = getParameter('#S1');
+    let resultNumber : number = calculateParameters(V0, S1);
+    showCalculusResult(resultNumber);
 });
