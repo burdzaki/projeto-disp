@@ -1,16 +1,3 @@
-export function calculateParameters (V0 : number, S1: number) : number {
-    let resultCalculus : number = 1.25 * V0 * S1;
-    return resultCalculus;
-}
-
-export function calculateSlenderness (h : number, d0 : number) : number {
-    let slenderness : number = 0;
-    if (h !== 0 && d0 !== 0) {
-        slenderness = h/d0;
-        return slenderness;
-    }
-    else return 0;
-}
 class VortexParameters {
     structureHeight: number;
     dimensionD0: number;
@@ -28,13 +15,17 @@ class VortexParameters {
     roughnessFactorS2: number = 0;
 
     structureSpeed: number = 0;
-    speedVcr: number = 0;
+    VcrSpeed: number = 0;
 
     structureFrequencyFn: number;
     transversalDimensionL: number;
-    strouhalNumberSt: { [strucutureForm: string]: { [windDirection: string]:  { [structureRatio: number]:  number}}};
+    strouhalNumberSt: number = 0;
+    structureForm: string;
+    windDirection: string;
+    widthA: number;
+    lenghtB: number;
 
-    constructor(structureHeight: number, dimensionD0: number, speedV0: number, topographicFactorS1: number, statisticalFactorS3: number, elevationZ: number, structureCategory: string, structureFrequencyFn: number, transversalDimensionL: number) {
+    constructor(structureHeight: number, dimensionD0: number, speedV0: number, topographicFactorS1: number, statisticalFactorS3: number, elevationZ: number, structureCategory: string, structureFrequencyFn: number, transversalDimensionL: number, structureForm: string, windDirection: string, widthA: number, lenghtB: number) {
         this.structureHeight = structureHeight;
         this.dimensionD0 = dimensionD0;
         this.speedV0 = speedV0;
@@ -44,6 +35,10 @@ class VortexParameters {
         this.structureCategory = structureCategory;
         this.structureFrequencyFn = structureFrequencyFn;
         this.transversalDimensionL = transversalDimensionL;
+        this.structureForm = structureForm;
+        this.windDirection = windDirection;
+        this.widthA = widthA;
+        this.lenghtB = lenghtB;
 
         this.exponentP = {
             "Category I": 0.095,
@@ -60,28 +55,7 @@ class VortexParameters {
             "Category IV": 0.71,
             "Category V": 0.50,
         };
-
-        this.strouhalNumberSt = {
-            "Circle": {
-                "Any": {
-                    1: 0.20,
-                },
-            },
-            "Plate": {
-                "Horizontal": {
-                    1: 0.16,
-                },
-                "Vertical": {
-                    1: 0.15,
-                },
-            },
-            "Rectangle": {
-                "Horizontal": {
-                    1: 0.16,
-                    1: 0.16,
-                },
-            },
-    };
+        };
 
     calculateSlenderness () : string {
         this.slenderness = this.structureHeight / this.dimensionD0;
@@ -106,7 +80,73 @@ class VortexParameters {
         return this.structureSpeed;
     };
 
-    calculateStrouhalNumber () : number;
-    
+    calculateStrouhalNumber () : number {
+        if (this.structureForm === "Circle") {
+            return this.strouhalNumberSt = 0.20;
+        }
+        else if (this.structureForm === "Plate") {
+            if (this.windDirection === "Horizontal") {
+                return this.strouhalNumberSt = 0.16;
+            }
+            else if (this.windDirection === "Vertical") {
+                return this.strouhalNumberSt = 0.15;
+            }
+        }
+        else if (this.structureForm === "Rectangle") {
+            //write function here
+            return this.strouhalNumberSt = 0;
+        }
+        else if (this.structureForm === "H Form") {
+            if (this.windDirection === "Horizontal") {
+                switch (this.lenghtB / this.widthA) {
+                    case 1.0:
+                        return this.strouhalNumberSt = 0.12;
+                    case 1.5:
+                        return this.strouhalNumberSt = 0.11; 
+                    case 2.0:
+                        return this.strouhalNumberSt = 0.14;        
+                    default:
+                        return 0;
+                }
+            }
+            else if (this.windDirection === "Vertical") {
+                return this.strouhalNumberSt = 0.14;
+            }
+        }
+        else if (this.structureForm === "U Form") {
+            return this.strouhalNumberSt = 0.14;
+        }
+        else if (this.structureForm === "T Form") {
+            switch (this.lenghtB / this.widthA) {
+                case 0.5:
+                        return this.strouhalNumberSt = 0.15;
+                case 1.0:
+                        return this.strouhalNumberSt = 0.13;
+                case 2.0:
+                        return this.strouhalNumberSt = 0.08;
+                default:
+                    return 0;
+            }
+        }
+        else if (this.structureForm === "L Form") {
+            return this.strouhalNumberSt = 0.13;
+        }
+        return this.strouhalNumberSt = 0;
+    };
+
+    calculateVcrSpeed () : number {
+        if (this.strouhalNumberSt === 0) {
+            this.calculateStrouhalNumber();
+        }
+        this.VcrSpeed = (this.structureFrequencyFn * this.transversalDimensionL) / this.strouhalNumberSt;
+        return this.VcrSpeed;
+    };
+
+    calculateVortexSheddingCriteria () : boolean {
+        let criteria : boolean;
+        if (this.VcrSpeed > this.structureSpeed) {
+            return criteria = true;
+        }
+        else return criteria = false;
     }
 };
