@@ -125,7 +125,7 @@ label {
 }
 
 .input__field {
-  flex: 0 0 100px;
+  flex: 0 0 120px;
   min-width: 0;
   text-align: center;
   font-family: var(--text-font-Inter);

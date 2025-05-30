@@ -11,7 +11,6 @@ export function calculateSlenderness (h : number, d0 : number) : number {
     }
     else return 0;
 }
-
 class VortexParameters {
     structureHeight: number;
     dimensionD0: number;
@@ -19,7 +18,7 @@ class VortexParameters {
 
     speedV0: number;
     topographicFactorS1: number;
-    statisticalFactorS3: number[];
+    statisticalFactorS3: number;
     
     gustFactorFr: number = 0.69;
     elevationZ: number;
@@ -28,13 +27,14 @@ class VortexParameters {
     meteorologicalParameterBm : { [key: string]: number};
     roughnessFactorS2: number = 0;
 
-    speedVcr : number = 0;
+    structureSpeed: number = 0;
+    speedVcr: number = 0;
 
     structureFrequencyFn: number;
     transversalDimensionL: number;
-    strouhalNumberSt: { [key: string]: number};
+    strouhalNumberSt: { [strucutureForm: string]: { [windDirection: string]:  { [structureRatio: number]:  number}}};
 
-    constructor(structureHeight: number, dimensionD0: number, speedV0: number, topographicFactorS1: number, statisticalFactorS3: number[], elevationZ: number, structureCategory: string, structureFrequencyFn: number, transversalDimensionL: number) {
+    constructor(structureHeight: number, dimensionD0: number, speedV0: number, topographicFactorS1: number, statisticalFactorS3: number, elevationZ: number, structureCategory: string, structureFrequencyFn: number, transversalDimensionL: number) {
         this.structureHeight = structureHeight;
         this.dimensionD0 = dimensionD0;
         this.speedV0 = speedV0;
@@ -46,20 +46,41 @@ class VortexParameters {
         this.transversalDimensionL = transversalDimensionL;
 
         this.exponentP = {
-            "Categoria I": 0.095,
-            "Categoria II": 0.15,
-            "Categoria III": 0.185,
-            "Categoria IV": 0.23,
-            "Categoria V": 0.31,
+            "Category I": 0.095,
+            "Category II": 0.15,
+            "Category III": 0.185,
+            "Category IV": 0.23,
+            "Category V": 0.31,
         };
 
         this.meteorologicalParameterBm = {
-            "Categoria I": 1.23,
-            "Categoria II": 1,
-            "Categoria III": 0.86,
-            "Categoria IV": 0.71,
-            "Categoria V": 0.50,
+            "Category I": 1.23,
+            "Category II": 1,
+            "Category III": 0.86,
+            "Category IV": 0.71,
+            "Category V": 0.50,
         };
+
+        this.strouhalNumberSt = {
+            "Circle": {
+                "Any": {
+                    1: 0.20,
+                },
+            },
+            "Plate": {
+                "Horizontal": {
+                    1: 0.16,
+                },
+                "Vertical": {
+                    1: 0.15,
+                },
+            },
+            "Rectangle": {
+                "Horizontal": {
+                    1: 0.16,
+                    1: 0.16,
+                },
+            },
     };
 
     calculateSlenderness () : string {
@@ -77,11 +98,15 @@ class VortexParameters {
         return this.roughnessFactorS2;
     };
 
-    calculateSpeedVcr () : number {
+    calculateStructureSpeed () : number {
         if (this.roughnessFactorS2 === 0) {
             this.calculateFactorS2();
         }
-        let comparisonFunction = 1.25 * this.speedV0 * this.topographicFactorS1 * this.roughnessFactorS2 * this.statisticalFactorS3;
-        this.speedVcr
+        this.structureSpeed = 1.25 * this.speedV0 * this.topographicFactorS1 * this.roughnessFactorS2 * this.statisticalFactorS3;
+        return this.structureSpeed;
     };
+
+    calculateStrouhalNumber () : number;
+    
+    }
 };
