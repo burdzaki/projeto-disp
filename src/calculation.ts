@@ -1,4 +1,4 @@
-class VortexParameters {
+export class VortexParameters {
     structureHeight: number;
     dimensionD0: number;
     slenderness: number = 0;
@@ -68,7 +68,7 @@ class VortexParameters {
     calculateFactorS2 () : number {
         const bm = this.meteorologicalParameterBm[this.structureCategory];
         const p = this.exponentP[this.structureCategory];
-        this.roughnessFactorS2 = bm * this.gustFactorFr * (this.elevationZ / 10) ^ p;
+        this.roughnessFactorS2 = bm * this.gustFactorFr * Math.pow(this.elevationZ / 10, p);
         return this.roughnessFactorS2;
     };
 
@@ -143,10 +143,9 @@ class VortexParameters {
     };
 
     calculateVortexSheddingCriteria () : boolean {
-        let criteria : boolean;
         if (this.VcrSpeed > this.structureSpeed) {
-            return criteria = true;
+            return true;
         }
-        else return criteria = false;
+        else return false;
     }
 };
