@@ -15,29 +15,31 @@ export function getParameter (idInput : string) : number {
     }
 }
 
-export function validateParameter (idInput : string, idDiv : string) : void {
-    const input = getElement<HTMLInputElement>(idInput);
-    const div = getElement<HTMLDivElement>(idDiv);
+export function validateParameter (inputElement : HTMLInputElement) : void {
+    const container = inputElement.closest('.input__container');
+    const div = container ? container.querySelector<HTMLSpanElement>('.input__warning') : null;
 
-    input.addEventListener('blur', () => {
-        const emptyInput = input.value.trim();
+    inputElement.addEventListener('blur', () => {
+        const emptyInput = inputElement.value.trim();
 
-        if (emptyInput === '') {
-            div.innerText = '';
-            input.classList.remove('input__field--error');
-            return;
-        }
+        if (div) {
+            if (emptyInput === '') {
+                div.innerText = '';
+                inputElement.classList.remove('input__field--error');
+                return;
+            }
 
-        const parameterNumber = Number(input.value);
-        const errorMessage = validateNumber(parameterNumber);
-        if (errorMessage) {
-            div.innerText = errorMessage;
-            div.classList.add('input__warning--show');
-            input.classList.add('input__field--error');
+            const parameterNumber = Number(inputElement.value);
+            const errorMessage = validateNumber(parameterNumber);
+            if (errorMessage) {
+                div.innerText = errorMessage;
+                div.classList.add('input__warning--show');
+                inputElement.classList.add('input__field--error');
+            }
+            else {
+                div.innerText = '';
+                inputElement.classList.remove('input__field--error');
+            }
         }
-        else {
-            div.innerText = '';
-            input.classList.remove('input__field--error');
-        }
-    });
+    }); 
 }

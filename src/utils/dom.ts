@@ -5,3 +5,11 @@ export function getElement<T extends Element>(selector: string) {
     }
     return element as T;
 }
+
+export function getAllElements<T extends Element>(selector: string): NodeListOf<T> {
+    const elements = document.querySelectorAll<T>(selector);
+    if (elements.length === 0) {
+        throw new Error (`Element not found ${selector}`);
+    }
+    return elements;
+}
