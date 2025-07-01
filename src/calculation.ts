@@ -1,4 +1,4 @@
-import { interpolateNumbers } from "./utils/interpolation";
+import { calculateST } from "./utils/strouhalcalculation";
 
 export class VortexParameters {
     structureHeight: number;
@@ -57,7 +57,7 @@ export class VortexParameters {
             "Category IV": 0.71,
             "Category V": 0.50,
         };
-        };
+    };
 
     calculateSlenderness () : string {
         this.slenderness = this.structureHeight / this.dimensionD0;
@@ -83,82 +83,8 @@ export class VortexParameters {
     };
 
     calculateStrouhalNumber () : number {
-        let dimensionFactor = this.lenghtB / this.widthA;;
-        let y : number = 0;
-
-        if (this.structureForm === "Circle") {
-            return this.strouhalNumberSt = 0.20;
-        }
-        else if (this.structureForm === "Plate") {
-            if (this.windDirection === "Horizontal") {
-                return this.strouhalNumberSt = 0.16;
-            }
-            else if (this.windDirection === "Vertical") {
-                return this.strouhalNumberSt = 0.15;
-            }
-        }
-        else if (this.structureForm === "Rectangle") {
-            switch (true) {
-                case (dimensionFactor < 1):
-                    return this.strouhalNumberSt = 0.12;
-                case (1 <= dimensionFactor && dimensionFactor < 2):
-                    y = interpolateNumbers(dimensionFactor, 1, 2, 0.12, 0.06);
-                    return this.strouhalNumberSt = y;
-                case (2 <= dimensionFactor && dimensionFactor < 3):
-                    return this.strouhalNumberSt = 0.06;
-                case (3 <= dimensionFactor && dimensionFactor < 3.5):
-                    y = interpolateNumbers(dimensionFactor, 3, 3.5, 0.06, 0.15);
-                    return this.strouhalNumberSt = y;
-                case (3.5 <= dimensionFactor && dimensionFactor < 5):
-                    y = interpolateNumbers(dimensionFactor, 3.5, 5, 0.15, 0.11);
-                    return this.strouhalNumberSt = y;
-                case (5 <= dimensionFactor && dimensionFactor < 10):
-                    y = interpolateNumbers(dimensionFactor, 5, 10, 0.11, 0.09);
-                    return this.strouhalNumberSt = y;
-                case (dimensionFactor >= 10):
-                    return this.strouhalNumberSt = 0.09;
-            }
-        }
-        else if (this.structureForm === "H Form") {
-            if (this.windDirection === "Horizontal") {
-                switch (true) {
-                    case (dimensionFactor < 1):
-                        return this.strouhalNumberSt = 0.12;
-                    case (1 <= dimensionFactor && dimensionFactor < 1.5):
-                        y = interpolateNumbers(dimensionFactor, 1, 1.5, 0.12, 0.11);
-                        return this.strouhalNumberSt = y;
-                    case (1.5 <= dimensionFactor && dimensionFactor < 2):
-                        y = interpolateNumbers(dimensionFactor, 1.5, 2, 0.11, 0.14);
-                        return this.strouhalNumberSt = y; 
-                    case (dimensionFactor >= 2):
-                        return this.strouhalNumberSt = 0.14;
-                }
-            }
-            else if (this.windDirection === "Vertical") {
-                return this.strouhalNumberSt = 0.14;
-            }
-        }
-        else if (this.structureForm === "U Form") {
-            return this.strouhalNumberSt = 0.14;
-        }
-        else if (this.structureForm === "T Form") {
-            switch (true) {
-                case (dimensionFactor < 0.5):
-                    return this.strouhalNumberSt = 0.15;
-                case (0.5 <= dimensionFactor && dimensionFactor < 1):
-                    y = interpolateNumbers(dimensionFactor, 0.5, 1, 0.15, 0.13);
-                    return this.strouhalNumberSt = y;
-                case (1 <= dimensionFactor && dimensionFactor < 2):
-                    y = interpolateNumbers(dimensionFactor, 1, 2, 0.13, 0.08);
-                    return this.strouhalNumberSt = y;
-                case (dimensionFactor >= 2):
-                        return this.strouhalNumberSt = 0.08;
-            }
-        }
-        else if (this.structureForm === "L Form") {
-            return this.strouhalNumberSt = 0.13;
-        }
-        return this.strouhalNumberSt = 0;
+        this.strouhalNumberSt = calculateST(this.structureForm, this.windDirection, this.widthA, this.lenghtB);
+        return this.strouhalNumberSt;
     };
 
     calculateVcrSpeed () : number {
