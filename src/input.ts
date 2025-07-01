@@ -17,14 +17,14 @@ export function getParameter (idInput : string) : number {
 
 export function validateParameter (inputElement : HTMLInputElement) : void {
     const container = inputElement.closest('.input__container');
-    const div = container ? container.querySelector<HTMLSpanElement>('.input__warning') : null;
+    const span = container ? container.querySelector<HTMLSpanElement>('.input__warning') : null;
 
     inputElement.addEventListener('blur', () => {
         const emptyInput = inputElement.value.trim();
 
-        if (div) {
+        if (span) {
             if (emptyInput === '') {
-                div.innerText = '';
+                span.innerText = '';
                 inputElement.classList.remove('input__field--error');
                 return;
             }
@@ -32,12 +32,12 @@ export function validateParameter (inputElement : HTMLInputElement) : void {
             const parameterNumber = Number(inputElement.value);
             const errorMessage = validateNumber(parameterNumber);
             if (errorMessage) {
-                div.innerText = errorMessage;
-                div.classList.add('input__warning--show');
+                span.innerText = errorMessage;
+                span.classList.add('input__warning--show');
                 inputElement.classList.add('input__field--error');
             }
             else {
-                div.innerText = '';
+                span.innerText = '';
                 inputElement.classList.remove('input__field--error');
             }
         }
