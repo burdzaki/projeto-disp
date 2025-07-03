@@ -157,6 +157,11 @@ label {
   outline: none;
 }
 
+.div__field--error {
+  border: 1px solid red;
+  outline: none;
+}
+
 .input__button {
   height: 40px;
   width: 180px;

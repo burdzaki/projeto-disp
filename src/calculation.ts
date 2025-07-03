@@ -1,9 +1,18 @@
 import { calculateST } from "./utils/strouhalcalculation";
 
+export function calculateSlenderness (structureHeight: number, dimensionD0: number) : number {
+    let slenderdeness = structureHeight / dimensionD0;
+    if (structureHeight > 0 && dimensionD0 > 0) {
+        return slenderdeness;
+    }
+    else if ((isNaN(slenderdeness) || slenderdeness === 0)) {
+        return 0;
+    }
+    else return -1;
+};
+
 export class VortexParameters {
-    structureHeight: number;
-    dimensionD0: number;
-    slenderness: number = 0;
+
 
     speedV0: number;
     topographicFactorS1: number;
@@ -27,9 +36,7 @@ export class VortexParameters {
     widthA: number;
     lenghtB: number;
 
-    constructor(structureHeight: number, dimensionD0: number, speedV0: number, topographicFactorS1: number, statisticalFactorS3: number, elevationZ: number, structureCategory: string, structureFrequencyFn: number, transversalDimensionL: number, structureForm: string, windDirection: string, widthA: number, lenghtB: number) {
-        this.structureHeight = structureHeight;
-        this.dimensionD0 = dimensionD0;
+    constructor(speedV0: number, topographicFactorS1: number, statisticalFactorS3: number, elevationZ: number, structureCategory: string, structureFrequencyFn: number, transversalDimensionL: number, structureForm: string, windDirection: string, widthA: number, lenghtB: number) {
         this.speedV0 = speedV0;
         this.topographicFactorS1 = topographicFactorS1;
         this.statisticalFactorS3 = statisticalFactorS3;
@@ -57,14 +64,6 @@ export class VortexParameters {
             "Category IV": 0.71,
             "Category V": 0.50,
         };
-    };
-
-    calculateSlenderness () : string {
-        this.slenderness = this.structureHeight / this.dimensionD0;
-        if (this.slenderness >= 6) {
-            return (`Esbeltez de ${this.slenderness}: os efeitos de desprendimento de vórtices devem ser investigados`);
-        }
-        else return (`Esbeltez de ${this.slenderness}: os efeitos de desprendimento de vórtices não necessitam ser investigados`);
     };
 
     calculateFactorS2 () : number {

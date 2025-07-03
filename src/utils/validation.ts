@@ -5,3 +5,16 @@ export function validateNumber (parameterNumber : number) : string | null {
     if (parameterNumber === null) return null;
     return null;
 }
+
+export function debounce(func: (...args: any[]) => void){
+    let timeout: ReturnType<typeof setTimeout>;
+    let delay: number = 1500;
+
+    return(...args: any[]) => {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+            func(...args);
+        }, delay);
+    };
+}
