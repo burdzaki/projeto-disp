@@ -5,10 +5,7 @@ export function calculateSlenderness (structureHeight: number, dimensionD0: numb
     if (structureHeight > 0 && dimensionD0 > 0) {
         return slenderdeness;
     }
-    else if ((isNaN(slenderdeness) || slenderdeness === 0)) {
-        return 0;
-    }
-    else return -1;
+    else return 0;
 };
 
 export class VortexParameters {

@@ -23,15 +23,14 @@ dimensionD0.addEventListener('input', debounce(verifySlenderness));
 function verifySlenderness() {
     const h : number = getParameter('#structure-height');
     const d0 : number = getParameter('#dimension-d0');
-    const slenderdeness = calculateSlenderness(h, d0);
-    
+    let slenderdeness : number = 0;
+
     if (h > 0 && d0 > 0) {
-        //const slenderdeness = calculateSlenderness(h, d0);
+        slenderdeness = calculateSlenderness(h, d0);
         elevationZ.value = h.toString();
         transversalDimensionL.value = d0.toString();
     }
     showSlendernessResult(slenderdeness);
-
 }
 
 buttonCalculate.addEventListener('click', () => {

@@ -8,7 +8,7 @@ export function validateNumber (parameterNumber : number) : string | null {
 
 export function debounce(func: (...args: any[]) => void){
     let timeout: ReturnType<typeof setTimeout>;
-    let delay: number = 1500;
+    let delay: number = 1000;
 
     return(...args: any[]) => {
         clearTimeout(timeout);
