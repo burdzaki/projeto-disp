@@ -35,7 +35,7 @@ html, body {
 }
 
 header {
-  margin: 50px 50px;
+  margin: 30px 50px;
   display: flex;
   justify-content: flex-start;
 }
@@ -106,6 +106,13 @@ main {
   font-weight: 500;
 }
 
+.input__subtitle {
+  margin-bottom: 10px;
+  font-family: var(--text-font-Inter);
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .input {
   display: flex;
   flex-direction: row;
@@ -114,7 +121,7 @@ main {
   gap: 16px;
   margin-bottom: 10px;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
 }
 
 label {
@@ -138,6 +145,31 @@ label {
   align-items: center;
   gap: 8px;
 }
+
+.input__field-list {
+  flex: 0 0 120px;
+  min-width: 0;
+  text-align: center;
+  font-family: var(--text-font-Inter);
+  font-size: 15px;
+  color: var(--text-color-input);
+}
+
+.input__container-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input__container-list::after {
+  content: '';
+  display: inline-block;
+  width: 50px; /* igual ao warning span */
+  height: 1px;
+  visibility: hidden;
+
+}
+
 
 .input__warning {
   width: 50px;
@@ -168,6 +200,17 @@ label {
   border-radius: 8px;
   background-color: var(--text-color-title);
   margin-left: 60px;
+}
+
+/* .input__image{
+  display: flex;
+  gap: 8px;
+} */
+
+.input__format-image {
+  max-width: 150px;
+  margin: 0;
+  margin-left: 250px;
 }
 
 .output {

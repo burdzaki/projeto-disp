@@ -3,7 +3,8 @@ import { getElement } from "./utils/dom";
 const divResults = getElement<HTMLDivElement>('.output__result');
 const divSlenderness = getElement<HTMLDivElement>('.output__slenderness');
 
-export function showSlendernessResult (slendernessRatio : number) : void {
+export function showSlendernessResult (slenderness : number) : void {
+    const slendernessRatio = Number(slenderness.toFixed(2));
     divSlenderness.innerText = ''; //remover no final
     if (isNaN(slendernessRatio) || slendernessRatio === 0) {
         divSlenderness.innerText = '';

@@ -37,7 +37,7 @@ export function calculateST (structureForm : string, windDirection : string, len
                 return 0.09;
         }
     }
-    else if (structureForm === "H Form") {
+    else if (structureForm === "HFormat") {
         if (windDirection === "Horizontal") {
             switch (true) {
                 case (dimensionFactor < 1):
@@ -56,10 +56,10 @@ export function calculateST (structureForm : string, windDirection : string, len
             return 0.14;
         }
     }
-    else if (structureForm === "U Form") {
+    else if (structureForm === "UFormat") {
         return 0.14;
     }
-    else if (structureForm === "T Form") {
+    else if (structureForm === "TFormat") {
         switch (true) {
             case (dimensionFactor < 0.5):
                 return 0.15;
@@ -73,7 +73,7 @@ export function calculateST (structureForm : string, windDirection : string, len
                     return 0.08;
         }
     }
-    else if (structureForm === "L Form") {
+    else if (structureForm === "LFormat") {
         return 0.13;
     }
     return 0;
