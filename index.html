@@ -98,58 +98,70 @@
           </div>
         </section>
         <p class="input__subtitle">Número de Strouhal (St)</p>
-          <section class="input input--structure-format">
-            <label for="structure-format">Forma da Seção da Estrutura:</label>
+          <section class="input input--selection-strouhal-calculation">
+          <label for="strouhal-input">Entrada do valor: </label>
             <div class="input__container-list">
-              <select id="structure-format" class="input__field-list">
+              <select id="strouhal-input" class="input__field-list">
                 <option value="" disabled selected hidden></option>
-                <option value="Circle">Círculo</option>
-                <option value="Plate">Placa</option>
-                <option value="Rectangle">Retângulo</option>
-                <option value="HFormat">Forma H</option>
-                <option value="UFormat">Forma U</U></option>
-                <option value="TFormat">Forma T</option>
-                <option value="LFormat">Forma L</option>
+                <option value="UserInput">Input numérico</option>
+                <option value="StandardValue">NBR 6123 (2023)</option>
               </select>
             </div>
           </section>
-          <section class="input input--structure-image">
-            <div class="input__image">
-              <img class="input__format-image" id="format-image" src="" alt="" style="display: none;" > <!--style="display: none;"-->
-            </div>
-          </section>
-          <section class="input input--wind-direction" style="display: none;" > <!--style="display: none;"-->
-            <label for="wind-direction">Direção do Vento:</label>
-            <div class="input__container-list">
-              <select id="wind-direction" class="input__field-list">
-                <option value="" disabled selected hidden></option>
-                <option value="Horizontal">Horizontal</option>
-                <option value="Vertical">Vertical</option>
-              </select>
-            </div>
-          </section>
-          <section class="input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
-            <section class="input input--structure-width-A">
-              <label for="width-A">Dimensão a (m):</label>
-              <div class="input__container">
-                <input type="number" id="width-A" class="input__field" />
-                <span id="warning-width-A" class="input__warning"></span>
-              </div>
-            </section>
-            <section class="input input--structure-lenght-B">
-              <label for="lenght-B">Dimensão b (m):</label>
-              <div class="input__container">
-                <input type="number" id="lenght-B" class="input__field" />
-                <span id="warning-lenght-B" class="input__warning"></span>
-              </div>
-            </section>
-          </section>
-          <section class="input input--strouhal-number"> <!--style="display: none;"-->
-            <label for="strouhal-number-ST">Número de Strouhal:</label>
+          <section class="input input--selection-strouhal-user-input" style="display: none;" > <!--style="display: none;"-->
+            <label for="strouhal-user-input">Digite o número St:</label>
             <div class="input__container">
-              <input type="number" id="strouhal-number-ST" class="input__field" />
-              <span id="warning-strouhal-number-ST" class="input__warning"></span>
+              <input type="number" id="strouhal-user-input" class="input__field" />
+              <span id="warning-strouhal-user-input" class="input__warning"></span>
             </div>
+          </section>
+          <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
+            <section class="input input--structure-format">
+              <label for="structure-format">Forma da Seção da Estrutura:</label>
+              <div class="input__container-list">
+                <select id="structure-format" class="input__field-list">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Circle">Círculo</option>
+                  <option value="Plate">Placa</option>
+                  <option value="Rectangle">Retângulo</option>
+                  <option value="HFormat">Forma H</option>
+                  <option value="UFormat">Forma U</U></option>
+                  <option value="TFormat">Forma T</option>
+                  <option value="LFormat">Forma L</option>
+                </select>
+              </div>
+            </section>
+            <section class="input input--structure-image">
+              <div class="input__image">
+                <img class="input__format-image" id="format-image" src="" alt="" style="display: none;" > <!--style="display: none;"-->
+              </div>
+            </section>
+            <section class="input input--wind-direction" style="display: none;" > <!--style="display: none;"-->
+              <label for="wind-direction">Direção do Vento:</label>
+              <div class="input__container-list">
+                <select id="wind-direction" class="input__field-list">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Horizontal">Horizontal</option>
+                  <option value="Vertical">Vertical</option>
+                </select>
+              </div>
+            </section>
+            <section class="input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
+              <section class="input input--structure-width-A">
+                <label for="width-A">Dimensão a (m):</label>
+                <div class="input__container">
+                  <input type="number" id="width-A" class="input__field" />
+                  <span id="warning-width-A" class="input__warning"></span>
+                </div>
+              </section>
+              <section class="input input--structure-lenght-B">
+                <label for="lenght-B">Dimensão b (m):</label>
+                <div class="input__container">
+                  <input type="number" id="lenght-B" class="input__field" />
+                  <span id="warning-lenght-B" class="input__warning"></span>
+                </div>
+              </section>
+            </section>
           </section>
     </section>
     <button class="input__button">Calcular</button>

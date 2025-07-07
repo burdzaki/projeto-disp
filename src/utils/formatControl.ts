@@ -1,4 +1,20 @@
+export function setStrouhalCalculus (strouhalSelection: HTMLSelectElement, strouhalUserInput: HTMLElement, strouhalStandardValue: HTMLElement) {
+    strouhalSelection.addEventListener('change', () => {
+        const selectedStrouhalInput = strouhalSelection.value;
+        if (selectedStrouhalInput === 'UserInput') {
+            strouhalUserInput.style.display = 'flex';
+            strouhalStandardValue.style.display = 'none';
+        }
+        else if (selectedStrouhalInput === 'StandardValue') {
+            strouhalStandardValue.style.display = 'block';
+            strouhalUserInput.style.display = 'none';
+        }
+    });
+}
+
 export function setFormatImage (structureForm: HTMLSelectElement, windSection: HTMLElement, dimensionsSection: HTMLElement, formatImage: HTMLImageElement) {
+
+
     const formatMap: { [key: string]: string } = {
         Circle: '/public/images//st/Circle.png',
         Plate: '/public/images//st/Plate.png'    ,

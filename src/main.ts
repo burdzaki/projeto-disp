@@ -2,7 +2,7 @@ import { getElement, getAllElements } from "./utils/dom";
 import { debounce } from "./utils/validation";
 import { getParameter, validateParameter } from "./input";
 import { calculateSlenderness , VortexParameters} from "./calculation";
-import { setFormatImage } from "./utils/formatControl";
+import { setFormatImage, setStrouhalCalculus } from "./utils/formatControl";
 import { showSlendernessResult, showCalculusResult } from "./output";
 
 const buttonCalculate = getElement<HTMLButtonElement>('.input__button');
@@ -18,6 +18,10 @@ const structureForm = getElement<HTMLSelectElement>('#structure-format');
 const windSection = getElement<HTMLElement>('.input--wind-direction');
 const formatImage = getElement<HTMLImageElement>('#format-image');
 const dimensionsSection = getElement<HTMLElement>('.input--structure-dimensions-AB');
+
+const strouhalSelection = getElement<HTMLSelectElement>('#strouhal-input');
+const strouhalUserInput = getElement<HTMLElement>('.input--selection-strouhal-user-input');
+const strouhalStandardValue = getElement<HTMLElement>('.input--selection-strouhal-standard-value');
 
 console.log("Main loaded!");
 
@@ -41,11 +45,12 @@ function verifySlenderness() {
     showSlendernessResult(slenderdeness);
 }
 
+setStrouhalCalculus(strouhalSelection, strouhalUserInput, strouhalStandardValue);
 setFormatImage(structureForm, windSection, dimensionsSection, formatImage);
 
 buttonCalculate.addEventListener('click', () => {
 
-    let V0 : number = getParameter('#speed-V0');
-    let S1 : number = getParameter('#topographic-factor-S1');
+    const V0 : number = getParameter('#speed-V0');
+    const S1 : number = getParameter('#topographic-factor-S1');
 
 });
