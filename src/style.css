@@ -132,7 +132,7 @@ label {
 }
 
 .input__field {
-  flex: 0 0 135px;
+  flex: 0 0 145px;
   min-width: 0;
   text-align: center;
   font-family: var(--text-font-Inter);
@@ -147,7 +147,7 @@ label {
 }
 
 .input__field-list {
-  flex: 0 0 135px;
+  flex: 0 0 145px;
   min-width: 0;
   text-align: center;
   font-family: var(--text-font-Inter);

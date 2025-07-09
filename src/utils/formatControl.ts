@@ -1,18 +1,29 @@
-export function setStrouhalCalculus (strouhalSelection: HTMLSelectElement, strouhalUserInput: HTMLElement, strouhalStandardValue: HTMLElement) {
+let strouhalMode : boolean = false;
+
+export function setStrouhalCalculus (strouhalSelection: HTMLSelectElement, strouhalUserInput: HTMLElement, strouhalStandardValue: HTMLElement){
+        
     strouhalSelection.addEventListener('change', () => {
         const selectedStrouhalInput = strouhalSelection.value;
         if (selectedStrouhalInput === 'UserInput') {
             strouhalUserInput.style.display = 'flex';
             strouhalStandardValue.style.display = 'none';
+            console.log(`ST FALSE1`);
+            strouhalMode = false;
         }
         else if (selectedStrouhalInput === 'StandardValue') {
             strouhalStandardValue.style.display = 'block';
             strouhalUserInput.style.display = 'none';
+            console.log(`ST TRUE1`);
+            strouhalMode = true;
         }
     });
 }
 
-export function setFormatImage (structureForm: HTMLSelectElement, windSection: HTMLElement, dimensionsSection: HTMLElement, formatImage: HTMLImageElement) {
+export function getStrouhalMode() : boolean {
+    return strouhalMode;
+}
+
+export function setFormatImage (structureForm: HTMLSelectElement, windSection: HTMLElement, dimensionsSection: HTMLElement, formatImage: HTMLImageElement) : void {
 
 
     const formatMap: { [key: string]: string } = {

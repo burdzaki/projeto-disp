@@ -19,10 +19,14 @@ export function showSlendernessResult (slenderness : number) : void {
 }
 
 
-export function showCalculusResult (resultNumber : number) : void {
+export function showCalculusResult (resultCriteria : boolean, vCriticalSpeed: number, vStructureSpeed: number) : void {
     divResults.innerText = ''; //remover no final
-    if (isNaN(resultNumber) || resultNumber === 0) {
-        divResults.innerText = '';
+    const CriticalSpeed = Number(vCriticalSpeed.toFixed(2));
+    const StructureSpeed = Number(vStructureSpeed.toFixed(2));
+    if (resultCriteria === false) {
+        divResults.innerText = (`A velocidade crítica é de ${CriticalSpeed} m/s, menor que a velocidade atuante na estrutura ${StructureSpeed} m/s. Os efeitos não precisam ser verificados.`);
     }
-    else divResults.innerText = (`O resultado do cálculo é: ${resultNumber}`);
+    else if (resultCriteria === true) {
+        divResults.innerText = (`A velocidade crítica é de ${CriticalSpeed} m/s, menor que a velocidade atuante na estrutura ${StructureSpeed} m/s. Os efeitos devem ser verificados.`);
+    }
 }

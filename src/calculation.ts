@@ -10,7 +10,6 @@ export function calculateSlenderness (structureHeight: number, dimensionD0: numb
 
 export class VortexParameters {
 
-
     speedV0: number;
     topographicFactorS1: number;
     statisticalFactorS3: number;
@@ -33,7 +32,10 @@ export class VortexParameters {
     widthA: number;
     lenghtB: number;
 
-    constructor(speedV0: number, topographicFactorS1: number, statisticalFactorS3: number, elevationZ: number, structureCategory: string, structureFrequencyFn: number, transversalDimensionL: number, structureForm: string, windDirection: string, widthA: number, lenghtB: number) {
+    strouhalMode : boolean;
+    strouhalUserInput: number;
+
+    constructor(speedV0: number, topographicFactorS1: number, statisticalFactorS3: number, elevationZ: number, structureCategory: string, structureFrequencyFn: number, transversalDimensionL: number, structureForm: string, windDirection: string, widthA: number, lenghtB: number, strouhalMode: boolean, strouhalUserInput: number) {
         this.speedV0 = speedV0;
         this.topographicFactorS1 = topographicFactorS1;
         this.statisticalFactorS3 = statisticalFactorS3;
@@ -45,6 +47,10 @@ export class VortexParameters {
         this.windDirection = windDirection;
         this.widthA = widthA;
         this.lenghtB = lenghtB;
+
+        this.strouhalMode = strouhalMode;
+
+        this.strouhalUserInput = strouhalUserInput;
 
         this.exponentP = {
             "Category I": 0.095,
@@ -79,13 +85,22 @@ export class VortexParameters {
     };
 
     calculateStrouhalNumber () : number {
-        this.strouhalNumberSt = calculateST(this.structureForm, this.windDirection, this.widthA, this.lenghtB);
-        return this.strouhalNumberSt;
+        if (this.strouhalMode === true) {
+            this.strouhalNumberSt = calculateST(this.structureForm, this.windDirection, this.widthA, this.lenghtB);
+            console.log(`ST TRUE2`);
+            return this.strouhalNumberSt;
+        }
+        else if (this.strouhalMode === false) {
+            this.strouhalNumberSt = this.strouhalUserInput;
+            console.log(`ST FALSE2`);
+            return this.strouhalNumberSt;
+        }
+        else return -1;
     };
 
     calculateVcrSpeed () : number {
         if (this.strouhalNumberSt === 0) {
-            this.calculateStrouhalNumber();
+            this.strouhalNumberSt = this.calculateStrouhalNumber();
         }
         this.VcrSpeed = (this.structureFrequencyFn * this.transversalDimensionL) / this.strouhalNumberSt;
         return this.VcrSpeed;
@@ -96,5 +111,12 @@ export class VortexParameters {
             return true;
         }
         else return false;
+    }
+
+    showAllParameters () : void {
+        console.log(`NOVO CÁLCULO`);
+        Object.entries(this).forEach(([key, value]) => {
+            console.log(`${key}: ${value}`);
+        });
     }
 };
