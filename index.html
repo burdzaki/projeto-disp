@@ -117,19 +117,43 @@
           </section>
           <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
             <section class="input input--structure-format">
-              <label for="structure-format">Forma da Seção da Estrutura:</label>
-              <div class="input__container-list">
-                <select id="structure-format" class="input__field-list">
-                  <option value="" disabled selected hidden></option>
-                  <option value="Circle">Círculo</option>
-                  <option value="Plate">Placa</option>
-                  <option value="Rectangle">Retângulo</option>
-                  <option value="HFormat">Forma H</option>
-                  <option value="UFormat">Forma U</U></option>
-                  <option value="TFormat">Forma T</option>
-                  <option value="LFormat">Forma L</option>
-                </select>
+              <div class="dropdown">
+                <label for="structure-format">Forma da Seção da Estrutura:</label>
+                <div class="dropdown__options" id="dropdown-options">
+                  <div class="dropdown__container-option" data-value="Circle">
+                    <img src="/images/st/Circle.png" alt="Círculo"/>
+                    Círculo
+                  </div>
+                  <div class="dropdown__container-option" data-value="Plate">
+                    <img src="/images/st/Plate.png" alt="Placa"/>
+                    Placa
+                  </div>
+                  <div class="dropdown__container-option" data-value="Rectangle">
+                    <img src="/images/st/Rectangle.png" alt="Retângulo"/>
+                    Retângulo
+                  </div>
+                  <div class="dropdown__container-option" data-value="HFormat">
+                    <img src="/images/st/HFormat.png" alt="Forma H"/>
+                    Forma H
+                  </div>
+                  <div class="dropdown__container-option" data-value="UFormat">
+                    <img src="/images/st/UFormat.png" alt="Forma U"/>
+                    Forma U
+                  </div>
+                  <div class="dropdown__container-option" data-value="TFormat">
+                    <img src="/images/st/TFormat.png" alt="Forma T"/>
+                    Forma T
+                  </div>
+                  <div class="dropdown__container-option" data-value="LFormat">
+                    <img src="/images/st/LFormat.png" alt="Forma L"/>
+                    Forma L
+                  </div>
+                </div>
+                <div class="dropdown__toggle" id="dropdown-toggle" tabindex="0">
+                  <span>Selecione</span>
+                </div> 
               </div>
+              <input type="hidden" id="structure-format"/>
             </section>
             <section class="input input--structure-image">
               <div class="input__image">

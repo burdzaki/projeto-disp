@@ -170,7 +170,6 @@ label {
 
 }
 
-
 .input__warning {
   width: 50px;
   font-family: var(--text-font-Inter);
@@ -202,15 +201,68 @@ label {
   margin-left: 60px;
 }
 
-/* .input__image{
+.input__format-image {
+  display: none;
+}
+
+.dropdown {
   display: flex;
-  gap: 8px;
-} */
+  position: relative;
+  flex-direction: row;
+  z-index: 20; /* Novo */
+}
+
+.dropdown__toggle {
+  margin-left: 25px;
+  width: 145px;
+  height: 25px;
+  padding: 2.5px;
+  text-align: center;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-family: var(--text-font-Inter);
+  font-size: 14px;
+}
+
+.dropdown__options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 190px;
+  background: white;
+  border: 1px solid #ccc;
+  z-index: 20;
+  max-height: 100px;
+  overflow-y: auto;
+  width: 200px;
+}
+
+.dropdown.open .dropdown__options {
+  display: block;
+}
+
+.dropdown__container-option {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  width: 100xp;
+  align-items: center;
+  font-family: var(--text-font-Inter);
+  font-size: 14px;
+}
+
+.dropdown__container-option img {
+  width: 100px !important;
+  height: auto !important;
+}
 
 .input__format-image {
-  max-width: 150px;
-  margin: 0;
+  width: 120px !important;
+  height: auto !important;
   margin-left: 250px;
+  margin-top: 0;
 }
 
 .output {
@@ -230,7 +282,6 @@ label {
   right: 0;
   opacity: 0.1;
 }
-
 
 footer {
   display: flex;

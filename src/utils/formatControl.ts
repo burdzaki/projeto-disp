@@ -23,22 +23,39 @@ export function getStrouhalMode() : boolean {
     return strouhalMode;
 }
 
-export function setFormatImage (structureForm: HTMLSelectElement, windSection: HTMLElement, dimensionsSection: HTMLElement, formatImage: HTMLImageElement) : void {
+export function setFormatImage (dropdownContainer: HTMLElement, hiddenInput: HTMLInputElement, windSection: HTMLElement, dimensionsSection: HTMLElement, formatImage: HTMLImageElement) : void {
 
+    const toggleDropdown = dropdownContainer.querySelector('.dropdown__toggle') as HTMLElement;
+    const dropdownOptions = dropdownContainer.querySelectorAll('.dropdown__container-option');
 
     const formatMap: { [key: string]: string } = {
-        Circle: '/public/images//st/Circle.png',
-        Plate: '/public/images//st/Plate.png'    ,
-        Rectangle: '/public/images//st/Rectangle.png',
-        HFormat: '/public/images//st/HFormat.png',
-        UFormat: '/public/images//st/UFormat.png',
-        TFormat: '/public/images//st/TFormat.png',
-        LFormat: '/public/images//st/LFormat.png',
+        Circle: '/images/st/Circle.png',
+        Plate: '/images/st/Plate.png'    ,
+        Rectangle: '/images/st/Rectangle.png',
+        HFormat: '/images/st/HFormat.png',
+        UFormat: '/images/st/UFormat.png',
+        TFormat: '/images/st/TFormat.png',
+        LFormat: '/images/st/LFormat.png',
     };
 
     //update image
-    structureForm.addEventListener('change', () => {
-        const selectedFormat = structureForm.value;
+
+    toggleDropdown.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdownContainer.classList.toggle('open');
+    });
+
+    dropdownOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const selectedFormat = option.getAttribute('data-value') || '';
+            hiddenInput.value = selectedFormat;
+
+            //atualiza texto do toggle
+            const selectedText = option.querySelector('img')?.nextSibling?.textContent?.trim() || '';
+            toggleDropdown.innerText = selectedText;
+
+            //fecha o dropwdown
+            dropdownContainer.classList.remove('open');
 
         if (formatMap[selectedFormat]) {
             formatImage.src = formatMap[selectedFormat];
@@ -46,6 +63,7 @@ export function setFormatImage (structureForm: HTMLSelectElement, windSection: H
             formatImage.style.display = 'flex';
         }
         else formatImage.style.display = 'none';
+
 
         if (selectedFormat === 'Plate' || selectedFormat === 'HFormat') {
             windSection.style.display = 'flex';
@@ -56,6 +74,12 @@ export function setFormatImage (structureForm: HTMLSelectElement, windSection: H
             dimensionsSection.style.display = 'block';
         }
         else dimensionsSection.style.display = 'none'; 
+
+    });
+
+    document.addEventListener('click', () => {
+        dropdownContainer.classList.remove('open');
+    });
 
     });
 }

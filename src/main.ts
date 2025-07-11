@@ -14,7 +14,8 @@ const dimensionD0 = getElement<HTMLInputElement>('#dimension-d0');
 const elevationZInput = getElement<HTMLInputElement>('#elevation-Z');
 const transversalDimensionLInput = getElement<HTMLInputElement>('#transversal-dimension-L');
 
-const structureForm = getElement<HTMLSelectElement>('#structure-format');
+const dropdownContainer = getElement<HTMLElement>('.dropdown');
+const hiddenInputForm = getElement<HTMLInputElement>('#structure-format');
 const windSection = getElement<HTMLElement>('.input--wind-direction');
 const formatImage = getElement<HTMLImageElement>('#format-image');
 const dimensionsSection = getElement<HTMLElement>('.input--structure-dimensions-AB');
@@ -46,7 +47,7 @@ function verifySlenderness() {
 }
 
 setStrouhalCalculus(strouhalSelection, strouhalUserInputSection, strouhalStandardValueSection);
-setFormatImage(structureForm, windSection, dimensionsSection, formatImage);
+setFormatImage(dropdownContainer, hiddenInputForm, windSection, dimensionsSection, formatImage);
 
 buttonCalculate.addEventListener('click', () => {
 
@@ -55,6 +56,8 @@ buttonCalculate.addEventListener('click', () => {
     const statisticalFactorS3 : number = getParameter('#statistical-factor-S3');
 
     const structureFrequencyFn : number = getParameter('#structure-frequency-Fn');
+
+    const selectedFormat = hiddenInputForm.value;
 
     const widthA : number = getParameter('#width-A');
     const lenghtB : number = getParameter('#lenght-B');
@@ -69,7 +72,7 @@ buttonCalculate.addEventListener('click', () => {
     const strouhalMode = getStrouhalMode();
     const strouhalUserInput = getParameter('#strouhal-user-input');
 
-    const vortexCalculus = new VortexParameters(speedV0, topographicFactorS1, statisticalFactorS3, elevationZ, structureCategory.value, structureFrequencyFn, transversalDimensionL, structureForm.value, windDirection.value, widthA, lenghtB, strouhalMode, strouhalUserInput);
+    const vortexCalculus = new VortexParameters(speedV0, topographicFactorS1, statisticalFactorS3, elevationZ, structureCategory.value, structureFrequencyFn, transversalDimensionL, selectedFormat, windDirection.value, widthA, lenghtB, strouhalMode, strouhalUserInput);
 
     vortexCalculus.calculateFactorS2();
     const vStructureSpeed = vortexCalculus.calculateStructureSpeed();
