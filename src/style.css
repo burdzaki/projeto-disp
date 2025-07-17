@@ -133,6 +133,7 @@ label {
 
 .input__field {
   flex: 0 0 145px;
+  max-width: 145px;
   min-width: 0;
   text-align: center;
   font-family: var(--text-font-Inter);
@@ -161,13 +162,20 @@ label {
   gap: 8px;
 }
 
+.input__container-select {
+  margin-right: 58px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .input__container-list::after {
   content: '';
   display: inline-block;
   width: 50px; /* igual ao warning span */
   height: 1px;
   visibility: hidden;
-
 }
 
 .input__warning {

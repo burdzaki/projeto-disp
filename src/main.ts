@@ -2,8 +2,9 @@ import { getElement, getAllElements } from "./utils/dom";
 import { debounce } from "./utils/validation";
 import { getParameter, validateParameter } from "./input";
 import { calculateSlenderness , VortexParameters} from "./calculation";
-import { setFormatImage, setStrouhalCalculus , getStrouhalMode } from "./utils/formatControl";
+import { setFormatImage, setStrouhalCalculus , getStrouhalMode } from "./utils/strouhalControl";
 import { showSlendernessResult, showCalculusResult } from "./output";
+import { setWindCalculus, getWindMode, setWindLookup } from "./utils/windControl";
 
 const buttonCalculate = getElement<HTMLButtonElement>('.input__button');
 const numberInputs = getAllElements<HTMLInputElement>('.input__field');
@@ -11,18 +12,26 @@ const numberInputs = getAllElements<HTMLInputElement>('.input__field');
 const structureHeight = getElement<HTMLInputElement>('#structure-height');
 const dimensionD0 = getElement<HTMLInputElement>('#dimension-d0');
 
+const windSelection = getElement<HTMLSelectElement>('#speed-V0');
+const windUserInput = getElement<HTMLElement>('.input--selection-speed-V0-user-input');
+const windStandardValue = getElement<HTMLElement>('.input--selection-speed-V0-standard-value');
+
 const elevationZInput = getElement<HTMLInputElement>('#elevation-Z');
 const transversalDimensionLInput = getElement<HTMLInputElement>('#transversal-dimension-L');
 
 const dropdownContainer = getElement<HTMLElement>('.dropdown');
 const hiddenInputForm = getElement<HTMLInputElement>('#structure-format');
-const windSection = getElement<HTMLElement>('.input--wind-direction');
+const windDirectionSection = getElement<HTMLElement>('.input--wind-direction');
 const formatImage = getElement<HTMLImageElement>('#format-image');
 const dimensionsSection = getElement<HTMLElement>('.input--structure-dimensions-AB');
 
 const strouhalSelection = getElement<HTMLSelectElement>('#strouhal-input');
 const strouhalUserInputSection = getElement<HTMLElement>('.input--selection-strouhal-user-input');
 const strouhalStandardValueSection = getElement<HTMLElement>('.input--selection-strouhal-standard-value');
+
+const stateSelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__stateSelect');
+const citySelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__citySelect');
+const standardV0 = getElement<HTMLInputElement>('#speed-V0-standard-value');
 
 console.log("Main loaded!");
 
@@ -46,12 +55,25 @@ function verifySlenderness() {
     showSlendernessResult(slenderdeness);
 }
 
+setWindCalculus(windSelection, windUserInput, windStandardValue);
+setWindLookup(stateSelect, citySelect, standardV0);
+
 setStrouhalCalculus(strouhalSelection, strouhalUserInputSection, strouhalStandardValueSection);
-setFormatImage(dropdownContainer, hiddenInputForm, windSection, dimensionsSection, formatImage);
+setFormatImage(dropdownContainer, hiddenInputForm, windDirectionSection, dimensionsSection, formatImage);
 
 buttonCalculate.addEventListener('click', () => {
 
-    const speedV0 : number = getParameter('#speed-V0');
+    let speedV0 : number = 0;
+
+    const windMode = getWindMode();
+
+    if (windMode === true) {
+        speedV0 = getParameter('#speed-V0-standard-value');
+    }
+    else {
+        speedV0 = getParameter('#speed-V0-user-input');
+    }
+
     const topographicFactorS1 : number = getParameter('#topographic-factor-S1');
     const statisticalFactorS3 : number = getParameter('#statistical-factor-S3');
 

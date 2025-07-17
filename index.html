@@ -34,13 +34,51 @@
     </section>
     <section class="inputs parameters">
         <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade da Estrutura</p>
-        <section class="input input--speed-V0">
-          <label for="speed-V0">Velocidade básica V0 (m/s):</label>
-          <div class="input__container">
-            <input type="number" id="speed-V0" class="input__field" />
-            <span id="warning-speed-V0" class="input__warning"></span>
+        <section class="input input--selection-speed-V0">
+          <label for="speed-V0">Velocidade básica V0:</label>
+          <div class="input__container-list">
+            <select id="speed-V0" class="input__field">
+              <option value="" disabled selected hidden></option>
+              <option value="WindUserInput">Digite um valor</option>
+              <option value="WindStandardValue">Pesquise a cidade</option>
+            </select>
           </div>
         </section>
+
+        <section class="input input--selection-speed-V0-user-input" style="display: none;">
+          <label for="speed-V0-user-input">Digite o valor da velocidade (m/s):</label>
+          <div class="input__container">
+            <input type="number" id="speed-V0-user-input" class="input__field" />
+            <span id="warning-speed-V0" class="input__warning">
+          </div>
+        </section>
+
+        <section class="input input--selection-speed-V0-standard-value" style="display: none;">
+          <div class="input__container-select">
+            
+            <div id="stateWrapper" class="input__row">
+              <label for="speed-V0-standard-value__stateSelect">Estado:</label>
+              <select id="speed-V0-standard-value__stateSelect" class="input__field">
+                <option value="" disabled selected hidden></option>
+              </select>
+            </div>
+
+            <div id="cityWrapper" class="input__row" style="display: none;">
+              <label for="speed-V0-standard-value__citySelect">Cidade:</label>
+              <select id="speed-V0-standard-value__citySelect" class="input__field">
+                <option value="" disabled selected hidden></option>
+              </select>
+            </div>
+
+
+            <div id="speedV0Wrapper" class="input__row" style="display: none;">
+              <label for="speed-V0-standard-value">Velocidade (m/s):</label>
+              <input type="number" id="speed-V0-standard-value" class="input__field"/>
+            </div>
+          </div>
+
+        </section>
+
         <section class="input input--topographic-factor-S1">
           <label for="topographic-factor-S1">Fator topográfico S1:</label>
           <div class="input__container">
@@ -103,13 +141,13 @@
             <div class="input__container-list">
               <select id="strouhal-input" class="input__field-list">
                 <option value="" disabled selected hidden></option>
-                <option value="UserInput">Input numérico</option>
-                <option value="StandardValue">NBR 6123 (2023)</option>
+                <option value="StrouhalUserInput">Digite um valor</option>
+                <option value="StrouhalStandardValue">Valor tabelado NBR 6123 (2023)</option>
               </select>
             </div>
           </section>
           <section class="input input--selection-strouhal-user-input" style="display: none;" > <!--style="display: none;"-->
-            <label for="strouhal-user-input">Digite o número St:</label>
+            <label for="strouhal-user-input">Digite o número de Strouhal:</label>
             <div class="input__container">
               <input type="number" id="strouhal-user-input" class="input__field" />
               <span id="warning-strouhal-user-input" class="input__warning"></span>
@@ -118,7 +156,7 @@
           <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
             <section class="input input--structure-format">
               <div class="dropdown">
-                <label for="structure-format">Forma da Seção da Estrutura:</label>
+                <label for="dropdown-options">Forma da Seção da Estrutura:</label>
                 <div class="dropdown__options" id="dropdown-options">
                   <div class="dropdown__container-option" data-value="Circle">
                     <img src="/images/st/Circle.png" alt="Círculo"/>
