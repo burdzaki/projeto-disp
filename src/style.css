@@ -170,6 +170,10 @@ label {
   align-items: flex-end;
 }
 
+.input__row label {
+  margin-right: 77px;
+}
+
 .input__container-list::after {
   content: '';
   display: inline-block;
