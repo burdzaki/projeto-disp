@@ -1,7 +1,8 @@
 import { interpolateNumbers } from "./interpolation";
 
-export function calculateST (structureForm : string, windDirection : string, lenghtB : number, widthA : number) : number {
+export function calculateST (structureForm : string, windDirection : string, widthA : number, lenghtB : number) : number {
     let dimensionFactor = lenghtB / widthA;
+    console.log(`dimension factor = ${dimensionFactor}`);
     let y : number = 0;
 
     if (structureForm === "Circle") {
