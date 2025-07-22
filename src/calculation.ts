@@ -1,4 +1,4 @@
-import { calculateST } from "./utils/strouhalcalculation";
+import { calculateST } from "./utils/strouhalCalculation";
 
 export function calculateSlenderness (structureHeight: number, dimensionD0: number) : number {
     let slenderdeness = structureHeight / dimensionD0;

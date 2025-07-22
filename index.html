@@ -15,222 +15,231 @@
   <main>
     <h3 class="main__title">Verificador de critério de dispensa de desprendimento de vórtices </h3>
     <img class="logo__main" src="/public/images/miniLogoDisp.png" alt="Logotipo central">
-    <section class="inputs slenderness">
-      <p class="input__title">Verificação de esbeltez</p>
-        <section class="input input--structure-height">
-          <label for="structure-height">Altura h (m):</label>
-          <div class="input__container">
-            <input type="number" id="structure-height" class="input__field" />
-            <span id="warning-structure-height" class="input__warning"></span>
-          </div>
-        </section>
-        <section class="input input--dimension-d0">
-          <label for="dimension-d0">Dimensão d0 (m):</label>
-          <div class="input__container">
-            <input type="number" id="dimension-d0" class="input__field" />
-            <span id="warning-dimension-d0" class="input__warning"></span>
-          </div>
-        </section>
-    </section>
-    <section class="inputs parameters">
-        <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade da Estrutura</p>
-        <section class="input input--selection-speed-V0">
-          <label for="speed-V0">Velocidade básica V0:</label>
-          <div class="input__container-list">
-            <select id="speed-V0" class="input__field">
-              <option value="" disabled selected hidden></option>
-              <option value="WindUserInput">Digite um valor</option>
-              <option value="WindStandardValue">Pesquise a cidade</option>
-            </select>
-          </div>
-        </section>
-
-        <section class="input input--selection-speed-V0-user-input" style="display: none;">
-          <label for="speed-V0-user-input">Digite o valor da velocidade (m/s):</label>
-          <div class="input__container">
-            <input type="number" id="speed-V0-user-input" class="input__field" />
-            <span id="warning-speed-V0" class="input__warning">
-          </div>
-        </section>
-
-        <section class="input input--selection-speed-V0-standard-value" style="display: none;">
-          <div class="input__container-select">
-            
-            <div id="stateWrapper" class="input__row">
-              <label for="speed-V0-standard-value__stateSelect">Estado:</label>
-              <select id="speed-V0-standard-value__stateSelect" class="input__field">
-                <option value="" disabled selected hidden></option>
-              </select>
-            </div>
-
-            <div id="cityWrapper" class="input__row" style="display: none;">
-              <label for="speed-V0-standard-value__citySelect">Cidade:</label>
-              <select id="speed-V0-standard-value__citySelect" class="input__field">
-                <option value="" disabled selected hidden></option>
-              </select>
-            </div>
-
-
-            <div id="speedV0Wrapper" class="input__row" style="display: none;">
-              <label for="speed-V0-standard-value">Velocidade (m/s):</label>
-              <input type="number" id="speed-V0-standard-value" class="input__field"/>
-            </div>
-          </div>
-
-        </section>
-
-        <section class="input input--topographic-factor-S1">
-          <label for="topographic-factor-S1">Fator topográfico S1:</label>
-          <div class="input__container">
-            <input type="number" id="topographic-factor-S1" class="input__field" />
-            <span  id="warning-topographic-factor-S1" class="input__warning"></span>
-          </div>
-        </section>
-        <section class="input input--structure-category">
-          <label for="structure-category">Rugosidade do terreno:</label>
-          <div class="input__container-list">
-            <select id="structure-category" class="input__field-list">
-              <option value="" disabled selected hidden></option>
-              <option value="Category I">Categoria I</option>
-              <option value="Category II">Categoria II</option>
-              <option value="Category III">Categoria III</option>
-              <option value="Category IV">Categoria IV</option>
-              <option value="Category V">Categoria V</option>
-            </select>
-          </div>
-        </section>
-        <section class="input input--elevation-Z">
-          <label for="elevation-Z">Elevação Z (m):</label>
-          <div class="input__container">
-            <input type="number" id="elevation-Z" class="input__field" />
-            <span id="warning-elevation-Z" class="input__warning"></span>
-          </div>
-        </section>
-        <section class="input input--statistical-factor-S3">
-          <label for="statistical-factor-S3">Fator estatístico S3:</label>
-          <div class="input__container">
-            <input type="number" id="statistical-factor-S3" name="statistical-factor-S3" list="S3-values" step="0.01" class="input__field" />
-            <datalist id="S3-values">
-              <option value="1.11"></option>
-              <option value="1.06"></option>
-              <option value="1.00"></option>
-              <option value="0.95"></option>
-              <option value="1.83"></option>
-            </datalist>
-            <span  id="warning-statistical-factor-S3" class="input__warning"></span>
-          </div>
-        </section>
-        <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade Crítica</p>
-        <section class="input input--transversal-dimension-L">
-          <label for="transversal-dimension-L">Dimensão L (m):</label>
-          <div class="input__container">
-            <input type="number" id="transversal-dimension-L" class="input__field" />
-            <span id="warning-transversal-dimension-L" class="input__warning"></span>
-          </div>
-        </section>
-              <section class="input input--structure-frequency-Fn">
-          <label for="structure-frequency-Fn">Frequência Natural da Estrutura Fn (Hz):</label>
-          <div class="input__container">
-            <input type="number" id="structure-frequency-Fn" class="input__field" />
-            <span id="warning-structure-frequency-Fn" class="input__warning"></span>
-          </div>
-        </section>
-        <p class="input__subtitle">Número de Strouhal (St)</p>
-          <section class="input input--selection-strouhal-calculation">
-          <label for="strouhal-input">Entrada do valor: </label>
-            <div class="input__container-list">
-              <select id="strouhal-input" class="input__field-list">
-                <option value="" disabled selected hidden></option>
-                <option value="StrouhalUserInput">Digite um valor</option>
-                <option value="StrouhalStandardValue">Valor tabelado NBR 6123 (2023)</option>
-              </select>
-            </div>
-          </section>
-          <section class="input input--selection-strouhal-user-input" style="display: none;" > <!--style="display: none;"-->
-            <label for="strouhal-user-input">Digite o número de Strouhal:</label>
-            <div class="input__container">
-              <input type="number" id="strouhal-user-input" class="input__field" />
-              <span id="warning-strouhal-user-input" class="input__warning"></span>
-            </div>
-          </section>
-          <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
-            <section class="input input--structure-format">
-              <div class="dropdown">
-                <label for="dropdown-options">Forma da Seção da Estrutura:</label>
-                <div class="dropdown__options" id="dropdown-options">
-                  <div class="dropdown__container-option" data-value="Circle">
-                    <img src="/images/st/Circle.png" alt="Círculo"/>
-                    Círculo
-                  </div>
-                  <div class="dropdown__container-option" data-value="Plate">
-                    <img src="/images/st/Plate.png" alt="Placa"/>
-                    Placa
-                  </div>
-                  <div class="dropdown__container-option" data-value="Rectangle">
-                    <img src="/images/st/Rectangle.png" alt="Retângulo"/>
-                    Retângulo
-                  </div>
-                  <div class="dropdown__container-option" data-value="HFormat">
-                    <img src="/images/st/HFormat.png" alt="Forma H"/>
-                    Forma H
-                  </div>
-                  <div class="dropdown__container-option" data-value="UFormat">
-                    <img src="/images/st/UFormat.png" alt="Forma U"/>
-                    Forma U
-                  </div>
-                  <div class="dropdown__container-option" data-value="TFormat">
-                    <img src="/images/st/TFormat.png" alt="Forma T"/>
-                    Forma T
-                  </div>
-                  <div class="dropdown__container-option" data-value="LFormat">
-                    <img src="/images/st/LFormat.png" alt="Forma L"/>
-                    Forma L
-                  </div>
-                </div>
-                <div class="dropdown__toggle" id="dropdown-toggle" tabindex="0">
-                  <span>Selecione</span>
-                </div> 
-              </div>
-              <input type="hidden" id="structure-format"/>
-            </section>
-            <section class="input input--structure-image">
-              <div class="input__image">
-                <img class="input__format-image" id="format-image" src="" alt="" style="display: none;" > <!--style="display: none;"-->
+    <div class="main__wrapper">
+      <section class="inputs">
+        <section class="inputs slenderness">
+          <p class="input__title">Verificação de esbeltez</p>
+            <section class="input input--structure-height">
+              <label for="structure-height">Altura h (m):</label>
+              <div class="input__container">
+                <input type="number" id="structure-height" class="input__field" />
+                <span id="warning-structure-height" class="input__warning"></span>
               </div>
             </section>
-            <section class="input input--wind-direction" style="display: none;" > <!--style="display: none;"-->
-              <label for="wind-direction">Direção do Vento:</label>
+            <section class="input input--dimension-d0">
+              <label for="dimension-d0">Dimensão d0 (m):</label>
+              <div class="input__container">
+                <input type="number" id="dimension-d0" class="input__field" />
+                <span id="warning-dimension-d0" class="input__warning"></span>
+              </div>
+            </section>
+        </section>
+        <section class="inputs parameters">
+            <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade da Estrutura</p>
+            <section class="input input--selection-speed-V0">
+              <label for="speed-V0">Velocidade básica V0:</label>
               <div class="input__container-list">
-                <select id="wind-direction" class="input__field-list">
+                <select id="speed-V0" class="input__field">
                   <option value="" disabled selected hidden></option>
-                  <option value="Horizontal">Horizontal</option>
-                  <option value="Vertical">Vertical</option>
+                  <option value="WindUserInput">Digite um valor</option>
+                  <option value="WindStandardValue">Pesquise a cidade</option>
                 </select>
               </div>
             </section>
-            <section class="input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
-              <section class="input input--structure-width-A">
-                <label for="width-A">Dimensão a (m):</label>
-                <div class="input__container">
-                  <input type="number" id="width-A" class="input__field" />
-                  <span id="warning-width-A" class="input__warning"></span>
-                </div>
-              </section>
-              <section class="input input--structure-lenght-B">
-                <label for="lenght-B">Dimensão b (m):</label>
-                <div class="input__container">
-                  <input type="number" id="lenght-B" class="input__field" />
-                  <span id="warning-lenght-B" class="input__warning"></span>
-                </div>
-              </section>
+
+            <section class="input input--selection-speed-V0-user-input" style="display: none;">
+              <label for="speed-V0-user-input">Digite o valor da velocidade (m/s):</label>
+              <div class="input__container">
+                <input type="number" id="speed-V0-user-input" class="input__field" />
+                <span id="warning-speed-V0" class="input__warning">
+              </div>
             </section>
-          </section>
-    </section>
-    <button class="input__button">Calcular</button>
-    <section class="output">
-      <div class="output__slenderness"></div>
-      <div class="output__result"></div>
-    </section>
+
+            <section class="input input--selection-speed-V0-standard-value" style="display: none;">
+              <div class="input__container-select">
+                
+                <div id="stateWrapper" class="input__row">
+                  <label for="speed-V0-standard-value__stateSelect">Estado:</label>
+                  <select id="speed-V0-standard-value__stateSelect" class="input__field">
+                    <option value="" disabled selected hidden></option>
+                  </select>
+                </div>
+
+                <div id="cityWrapper" class="input__row" style="display: none;">
+                  <label for="speed-V0-standard-value__citySelect">Cidade:</label>
+                  <select id="speed-V0-standard-value__citySelect" class="input__field">
+                    <option value="" disabled selected hidden></option>
+                  </select>
+                </div>
+
+
+                <div id="speedV0Wrapper" class="input__row" style="display: none;">
+                  <label for="speed-V0-standard-value">Velocidade (m/s):</label>
+                  <input type="number" id="speed-V0-standard-value" class="input__field"/>
+                </div>
+              </div>
+
+            </section>
+
+            <section class="input input--topographic-factor-S1">
+              <label for="topographic-factor-S1">Fator topográfico S1:</label>
+              <div class="input__container">
+                <input type="number" id="topographic-factor-S1" class="input__field" />
+                <span  id="warning-topographic-factor-S1" class="input__warning"></span>
+              </div>
+            </section>
+            <section class="input input--structure-category">
+              <label for="structure-category">Rugosidade do terreno:</label>
+              <div class="input__container-list">
+                <select id="structure-category" class="input__field-list">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Category I">Categoria I</option>
+                  <option value="Category II">Categoria II</option>
+                  <option value="Category III">Categoria III</option>
+                  <option value="Category IV">Categoria IV</option>
+                  <option value="Category V">Categoria V</option>
+                </select>
+              </div>
+            </section>
+            <section class="input input--elevation-Z">
+              <label for="elevation-Z">Elevação Z (m):</label>
+              <div class="input__container">
+                <input type="number" id="elevation-Z" class="input__field" />
+                <span id="warning-elevation-Z" class="input__warning"></span>
+              </div>
+            </section>
+            <section class="input input--statistical-factor-S3">
+              <label for="statistical-factor-S3">Fator estatístico S3:</label>
+              <div class="input__container">
+                <input type="number" id="statistical-factor-S3" name="statistical-factor-S3" list="S3-values" step="0.01" class="input__field" />
+                <datalist id="S3-values">
+                  <option value="1.11"></option>
+                  <option value="1.06"></option>
+                  <option value="1.00"></option>
+                  <option value="0.95"></option>
+                  <option value="1.83"></option>
+                </datalist>
+                <span  id="warning-statistical-factor-S3" class="input__warning"></span>
+              </div>
+            </section>
+            <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade Crítica</p>
+            <section class="input input--transversal-dimension-L">
+              <label for="transversal-dimension-L">Dimensão L (m):</label>
+              <div class="input__container">
+                <input type="number" id="transversal-dimension-L" class="input__field" />
+                <span id="warning-transversal-dimension-L" class="input__warning"></span>
+              </div>
+            </section>
+                  <section class="input input--structure-frequency-Fn">
+              <label for="structure-frequency-Fn">Frequência Natural da Estrutura Fn (Hz):</label>
+              <div class="input__container">
+                <input type="number" id="structure-frequency-Fn" class="input__field" />
+                <span id="warning-structure-frequency-Fn" class="input__warning"></span>
+              </div>
+            </section>
+            <p class="input__subtitle">Número de Strouhal (St)</p>
+              <section class="input input--selection-strouhal-calculation">
+              <label for="strouhal-input">Entrada do valor: </label>
+                <div class="input__container-list">
+                  <select id="strouhal-input" class="input__field-list">
+                    <option value="" disabled selected hidden></option>
+                    <option value="StrouhalUserInput">Digite um valor</option>
+                    <option value="StrouhalStandardValue">Valor tabelado NBR 6123 (2023)</option>
+                  </select>
+                </div>
+              </section>
+              <section class="input input--selection-strouhal-user-input" style="display: none;" > <!--style="display: none;"-->
+                <label for="strouhal-user-input">Digite o número de Strouhal:</label>
+                <div class="input__container">
+                  <input type="number" id="strouhal-user-input" class="input__field" />
+                  <span id="warning-strouhal-user-input" class="input__warning"></span>
+                </div>
+              </section>
+              <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
+                <section class="input input--structure-format">
+                  <div class="dropdown">
+                    <label for="dropdown-options">Forma da Seção da Estrutura:</label>
+                    <div class="dropdown__options" id="dropdown-options">
+                      <div class="dropdown__container-option" data-value="Circle">
+                        <img src="/images/st/Circle.png" alt="Círculo"/>
+                        Círculo
+                      </div>
+                      <div class="dropdown__container-option" data-value="Plate">
+                        <img src="/images/st/Plate.png" alt="Placa"/>
+                        Placa
+                      </div>
+                      <div class="dropdown__container-option" data-value="Rectangle">
+                        <img src="/images/st/Rectangle.png" alt="Retângulo"/>
+                        Retângulo
+                      </div>
+                      <div class="dropdown__container-option" data-value="HFormat">
+                        <img src="/images/st/HFormat.png" alt="Forma H"/>
+                        Forma H
+                      </div>
+                      <div class="dropdown__container-option" data-value="UFormat">
+                        <img src="/images/st/UFormat.png" alt="Forma U"/>
+                        Forma U
+                      </div>
+                      <div class="dropdown__container-option" data-value="TFormat">
+                        <img src="/images/st/TFormat.png" alt="Forma T"/>
+                        Forma T
+                      </div>
+                      <div class="dropdown__container-option" data-value="LFormat">
+                        <img src="/images/st/LFormat.png" alt="Forma L"/>
+                        Forma L
+                      </div>
+                    </div>
+                    <div class="dropdown__toggle" id="dropdown-toggle" tabindex="0">
+                      <span>Selecione</span>
+                    </div> 
+                  </div>
+                  <input type="hidden" id="structure-format"/>
+                </section>
+                <section class="input input--structure-image">
+                  <div class="input__image">
+                    <img class="input__format-image" id="format-image" src="" alt="" style="display: none;" > <!--style="display: none;"-->
+                  </div>
+                </section>
+                <section class="input input--wind-direction" style="display: none;" > <!--style="display: none;"-->
+                  <label for="wind-direction">Direção do Vento:</label>
+                  <div class="input__container-list">
+                    <select id="wind-direction" class="input__field-list">
+                      <option value="" disabled selected hidden></option>
+                      <option value="Horizontal">Horizontal</option>
+                      <option value="Vertical">Vertical</option>
+                    </select>
+                  </div>
+                </section>
+                <section class="input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
+                  <section class="input input--structure-width-A">
+                    <label for="width-A">Dimensão a (m):</label>
+                    <div class="input__container">
+                      <input type="number" id="width-A" class="input__field" />
+                      <span id="warning-width-A" class="input__warning"></span>
+                    </div>
+                  </section>
+                  <section class="input input--structure-lenght-B">
+                    <label for="lenght-B">Dimensão b (m):</label>
+                    <div class="input__container">
+                      <input type="number" id="lenght-B" class="input__field" />
+                      <span id="warning-lenght-B" class="input__warning"></span>
+                    </div>
+                  </section>
+                </section>
+              </section>
+        </section>
+        <button class="input__button">Calcular</button>
+      </section>
+      <section class="result">
+        <section class="result__output">
+          <div class="result__output__slenderness"></div>
+          <div class="result__output__criteria"></div>
+        </section>
+        <section class="result__output__graphic" style="display: none;">
+          <canvas id="resultChart" width="100" height="100"></canvas>
+        </section>
+      </section>
+    </div>
   </main>
   <footer>
     <h4 class="footer__terms">Termos e condições</h4>

@@ -5,6 +5,7 @@ import { calculateSlenderness , VortexParameters} from "./calculation";
 import { setFormatImage, setStrouhalCalculus , getStrouhalMode } from "./utils/strouhalControl";
 import { showSlendernessResult, showCalculusResult } from "./output";
 import { setWindCalculus, getWindMode, setWindLookup } from "./utils/windControl";
+import { addChartPoint } from "./utils/graphicControl";
 
 const buttonCalculate = getElement<HTMLButtonElement>('.input__button');
 const numberInputs = getAllElements<HTMLInputElement>('.input__field');
@@ -105,5 +106,7 @@ buttonCalculate.addEventListener('click', () => {
 
     showCalculusResult(criteriaResult, vCriticalSpeed, vStructureSpeed);
     console.log(`criteriaResult = ${criteriaResult}, vCriticalSpeed = ${vCriticalSpeed}, vStructureSpeed = ${vStructureSpeed}`)
+
+    addChartPoint(elevationZ, vCriticalSpeed);
 
 });

@@ -1,7 +1,7 @@
 import { getElement } from "./utils/dom";
 
-const divResults = getElement<HTMLDivElement>('.output__result');
-const divSlenderness = getElement<HTMLDivElement>('.output__slenderness');
+const divResults = getElement<HTMLDivElement>('.result__output__criteria');
+const divSlenderness = getElement<HTMLDivElement>('.result__output__slenderness');
 
 export function showSlendernessResult (slenderness : number) : void {
     const slendernessRatio = Number(slenderness.toFixed(2));
@@ -26,10 +26,10 @@ export function showCalculusResult (resultCriteria : boolean, vCriticalSpeed: nu
     if (isNaN(CriticalSpeed) || isNaN(StructureSpeed)) {
         divResults.innerText = '';
     }
-    else if (resultCriteria === true) {
+    else if (resultCriteria === false) {
         divResults.innerText = (`A velocidade crítica calculada é de ${CriticalSpeed} m/s, menor que a velocidade atuante na estrutura ${StructureSpeed} m/s. Os efeitos não precisam ser verificados.`);
     }
-    else if (resultCriteria === false) {
-        divResults.innerText = (`A velocidade crítica é de ${CriticalSpeed} m/s, maior que a velocidade atuante na estrutura ${StructureSpeed} m/s. Os efeitos devem ser verificados.`);
+    else if (resultCriteria === true) {
+        divResults.innerText = (`A velocidade crítica é de ${CriticalSpeed} m/s, maior que a velocidade atuante na estrutura ${StructureSpeed} m/s. Os efeitos devem ser verificados.\n\n\n\n\n\n\n\n\n`);
     }
 }
