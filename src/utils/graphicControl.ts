@@ -19,6 +19,9 @@ const data = {
     }]
 };
 
+let mainStock: {x: number, y: number }[] = [];
+let redoStock: {x: number, y: number }[] = [];
+
 const graphicChart = new Chart (ctx, {
     type: 'line',
     data: data,
@@ -63,9 +66,45 @@ const graphicChart = new Chart (ctx, {
     }
 });
 
+export function initializeChart() : void {
+    mainStock = [ { x: 0, y: 0 }];
+    redoStock = [...mainStock];
+    updateChart();
+}
+
 export function addChartPoint(x: number, y: number): void {
-    console.log('/////PONTO ADICIONADO');
     displayGraphic.style.display = 'block';
-    data.datasets[0].data.push({ x, y });
+    mainStock.push({ x, y });
+    redoStock = [...mainStock];
+    updateChart();
+    updateChart();
+}
+
+export function cleanChartPoints() : void {
+    mainStock = [];
+    updateChart();
+}
+
+export function resetChartPoints() : void {
+    if (mainStock.length < redoStock.length) mainStock = [...redoStock];
+    updateChart();
+}
+
+export function undoChartPoints() : void {
+    if (mainStock.length === 0) return;
+    const pointRemoved = mainStock.pop()!;
+    redoStock.push(pointRemoved);
+    updateChart();
+}
+
+export function redoChartPoints() : void {
+    if (mainStock.length === 0) return;
+    const pointRestored = redoStock.pop()!;
+    mainStock.push(pointRestored);
+    updateChart();
+}
+
+function updateChart() : void {
+    data.datasets[0].data = mainStock;
     graphicChart.update();
-};
+}

@@ -297,6 +297,25 @@ label {
   max-width: 750px;
 }
 
+.result__output__graphic__button__wrap {
+  height: 22px;
+  margin-left: 30px;
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.result__output__graphic__button {
+  width: 90px;
+  font-family: var(--text-font-Inter);
+  font-size: 12.5px;
+  text-decoration: none;
+  color: var(--text-color-logoDisp);
+  border-radius: 3px;
+  border-color: var(--background-color);
+}
+
 #resultChart {
   max-width: 750px;
   max-height: 750px;

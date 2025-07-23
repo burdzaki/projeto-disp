@@ -26,10 +26,13 @@ export function showCalculusResult (resultCriteria : boolean, vCriticalSpeed: nu
     if (isNaN(CriticalSpeed) || isNaN(StructureSpeed)) {
         divResults.innerText = '';
     }
-    else if (resultCriteria === false) {
-        divResults.innerText = (`A velocidade crítica calculada é de ${CriticalSpeed} m/s, menor que a velocidade atuante na estrutura ${StructureSpeed} m/s. Os efeitos não precisam ser verificados.`);
+    else if (resultCriteria === false && CriticalSpeed < StructureSpeed) {
+        divResults.innerText = (`A velocidade crítica calculada é de ${CriticalSpeed} m/s, menor que a velocidade atuante na estrutura de ${StructureSpeed} m/s. Os efeitos devem ser verificados.`);
+    }
+    else if (resultCriteria === false && CriticalSpeed === StructureSpeed) {
+        divResults.innerText = (`A velocidade crítica calculada é de ${CriticalSpeed} m/s, igual a velocidade atuante na estrutura de ${StructureSpeed} m/s. Os efeitos devem ser verificados.`);
     }
     else if (resultCriteria === true) {
-        divResults.innerText = (`A velocidade crítica é de ${CriticalSpeed} m/s, maior que a velocidade atuante na estrutura ${StructureSpeed} m/s. Os efeitos devem ser verificados.\n\n\n\n\n\n\n\n\n`);
+        divResults.innerText = (`A velocidade crítica é de ${CriticalSpeed} m/s, maior que a velocidade atuante na estrutura de ${StructureSpeed} m/s. Os efeitos não precisam ser verificados.\n\n\n\n\n\n\n\n\n`);
     }
 }
