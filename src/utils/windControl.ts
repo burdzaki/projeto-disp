@@ -6,12 +6,12 @@ export function setWindCalculus(windSelection: HTMLSelectElement, windUserInput:
 
     windSelection.addEventListener('change', () => {
         const selectedWindInput = windSelection.value;
-        if (selectedWindInput === 'WindUserInput') {
+        if (selectedWindInput === 'wind-user-input') {
             windUserInput.style.display = 'flex';
             windStandardValue.style.display = 'none';
             windMode = false;
         }
-        else if (selectedWindInput === 'WindStandardValue') {
+        else if (selectedWindInput === 'wind-standard-value') {
             windStandardValue.style.display = 'block';
             windUserInput.style.display = 'none';
             windMode = true;
@@ -34,11 +34,11 @@ export function setWindLookup (stateSelect: HTMLSelectElement, citySelect: HTMLS
         stateSelect.appendChild(option);
     });
 
-    const cityWrapper = document.getElementById("cityWrapper");
-    const speedv0Wrapper = document.getElementById("speedV0Wrapper");
+    const cityWrapper = document.getElementById("city-wrapper");
+    const speedv0Wrapper = document.getElementById("speed-V0-wrapper");
 
     if (!cityWrapper || !speedv0Wrapper) {
-        console.error("cityWrapper ou speedV0Wrapper não encontrados no DOM!");
+        console.error("city-wrapper ou speed-V0-wrapper não encontrados no DOM!");
         return; // cancela execução
     }
 

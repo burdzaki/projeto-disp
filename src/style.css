@@ -44,7 +44,7 @@ header {
   margin-bottom: 30px;
 }
 
-.header__title {
+.header__logo {
   display: flex;
   flex-direction: row;
 }
@@ -308,12 +308,12 @@ label {
   font-family: var(--text-font-Montserrat);
 }
 
-.result__output__graphic {
+.result__graphic {
   flex-shrink: 0;
   max-width: 750px;
 }
 
-.result__output__graphic__button__wrap {
+.result__graphic__button__wrap {
   height: 22px;
   margin-left: 30px;
   width: 450px;
@@ -322,7 +322,7 @@ label {
   justify-content: space-between;
 }
 
-.result__output__graphic__button {
+.result__graphic__button {
   width: 90px;
   font-family: var(--text-font-Inter);
   font-size: 12.5px;

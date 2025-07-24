@@ -7,22 +7,26 @@
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
+
   <header>
-    <div class="header__title">
+    <div class="header__logo">
       <img class="logo__header" src="/public/images/miniLogoDisp.png" alt="Logotipo Disp">
       <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
     </div>
     <div class="header__links">
-      <span class="header__link" id="header__link--help">Ajuda</span>
-      <span class="header__link" id="header__link--about">Sobre</span>
+      <span class="header__link" id="header-link-help">Ajuda</span>
+      <span class="header__link" id="header-link-about">Sobre</span>
     </div>
   </header>
+
   <main>
     <h3 class="main__title">Verificador de critério de dispensa de desprendimento de vórtices </h3>
     <img class="logo__main" src="/public/images/miniLogoDisp.png" alt="Logotipo central">
+
     <div class="main__wrapper">
       <section class="inputs">
-        <section class="inputs slenderness">
+
+        <section class="inputs inputs--slenderness">
           <p class="input__title">Verificação de esbeltez</p>
             <section class="input input--structure-height">
               <label for="structure-height">Altura h (m):</label>
@@ -39,15 +43,16 @@
               </div>
             </section>
         </section>
-        <section class="inputs parameters">
+
+        <section class="inputs inputs--parameters">
             <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade da Estrutura</p>
             <section class="input input--selection-speed-V0">
               <label for="speed-V0">Velocidade básica V0:</label>
               <div class="input__container-list">
                 <select id="speed-V0" class="input__field">
                   <option value="" disabled selected hidden></option>
-                  <option value="WindUserInput">Digite um valor</option>
-                  <option value="WindStandardValue">Pesquise a cidade</option>
+                  <option value="wind-user-input">Digite um valor</option>
+                  <option value="wind-standard-value">Pesquise a cidade</option>
                 </select>
               </div>
             </section>
@@ -63,22 +68,22 @@
             <section class="input input--selection-speed-V0-standard-value" style="display: none;">
               <div class="input__container-select">
                 
-                <div id="stateWrapper" class="input__row">
-                  <label for="speed-V0-standard-value__stateSelect">Estado:</label>
-                  <select id="speed-V0-standard-value__stateSelect" class="input__field">
+                <div id="state-wrapper" class="input__row">
+                  <label for="speed-V0-standard-value__state-select">Estado:</label>
+                  <select id="speed-V0-standard-value__state-select" class="input__field">
                     <option value="" disabled selected hidden></option>
                   </select>
                 </div>
 
-                <div id="cityWrapper" class="input__row" style="display: none;">
-                  <label for="speed-V0-standard-value__citySelect">Cidade:</label>
-                  <select id="speed-V0-standard-value__citySelect" class="input__field">
+                <div id="city-wrapper" class="input__row" style="display: none;">
+                  <label for="speed-V0-standard-value__city-select">Cidade:</label>
+                  <select id="speed-V0-standard-value__city-select" class="input__field">
                     <option value="" disabled selected hidden></option>
                   </select>
                 </div>
 
 
-                <div id="speedV0Wrapper" class="input__row" style="display: none;">
+                <div id="speed-V0-wrapper" class="input__row" style="display: none;">
                   <label for="speed-V0-standard-value">Velocidade (m/s):</label>
                   <input type="number" id="speed-V0-standard-value" class="input__field"/>
                 </div>
@@ -93,6 +98,7 @@
                 <span  id="warning-topographic-factor-S1" class="input__warning"></span>
               </div>
             </section>
+
             <section class="input input--structure-category">
               <label for="structure-category">Rugosidade do terreno:</label>
               <div class="input__container-list">
@@ -106,6 +112,7 @@
                 </select>
               </div>
             </section>
+
             <section class="input input--elevation-Z">
               <label for="elevation-Z">Elevação Z (m):</label>
               <div class="input__container">
@@ -113,6 +120,7 @@
                 <span id="warning-elevation-Z" class="input__warning"></span>
               </div>
             </section>
+
             <section class="input input--statistical-factor-S3">
               <label for="statistical-factor-S3">Fator estatístico S3:</label>
               <div class="input__container">
@@ -127,6 +135,7 @@
                 <span  id="warning-statistical-factor-S3" class="input__warning"></span>
               </div>
             </section>
+
             <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade Crítica</p>
             <section class="input input--transversal-dimension-L">
               <label for="transversal-dimension-L">Dimensão L (m):</label>
@@ -135,13 +144,15 @@
                 <span id="warning-transversal-dimension-L" class="input__warning"></span>
               </div>
             </section>
-                  <section class="input input--structure-frequency-Fn">
+
+            <section class="input input--structure-frequency-Fn">
               <label for="structure-frequency-Fn">Frequência Natural da Estrutura Fn (Hz):</label>
               <div class="input__container">
                 <input type="number" id="structure-frequency-Fn" class="input__field" />
                 <span id="warning-structure-frequency-Fn" class="input__warning"></span>
               </div>
             </section>
+
             <p class="input__subtitle">Número de Strouhal (St)</p>
               <section class="input input--selection-strouhal-calculation">
               <label for="strouhal-input">Entrada do valor: </label>
@@ -153,6 +164,7 @@
                   </select>
                 </div>
               </section>
+
               <section class="input input--selection-strouhal-user-input" style="display: none;" > <!--style="display: none;"-->
                 <label for="strouhal-user-input">Digite o número de Strouhal:</label>
                 <div class="input__container">
@@ -160,6 +172,7 @@
                   <span id="warning-strouhal-user-input" class="input__warning"></span>
                 </div>
               </section>
+
               <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
                 <section class="input input--structure-format">
                   <div class="dropdown">
@@ -200,11 +213,13 @@
                   </div>
                   <input type="hidden" id="structure-format"/>
                 </section>
+
                 <section class="input input--structure-image">
                   <div class="input__image">
                     <img class="input__format-image" id="format-image" src="" alt="" style="display: none;" > <!--style="display: none;"-->
                   </div>
                 </section>
+
                 <section class="input input--wind-direction" style="display: none;" > <!--style="display: none;"-->
                   <label for="wind-direction">Direção do Vento:</label>
                   <div class="input__container-list">
@@ -215,7 +230,8 @@
                     </select>
                   </div>
                 </section>
-                <section class="input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
+
+                <section class="input input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
                   <section class="input input--structure-width-A">
                     <label for="width-A">Dimensão a (m):</label>
                     <div class="input__container">
@@ -223,6 +239,7 @@
                       <span id="warning-width-A" class="input__warning"></span>
                     </div>
                   </section>
+
                   <section class="input input--structure-lenght-B">
                     <label for="lenght-B">Dimensão b (m):</label>
                     <div class="input__container">
@@ -233,29 +250,37 @@
                 </section>
               </section>
         </section>
+
         <button class="input__button">Calcular</button>
       </section>
+
       <section class="result">
+
         <section class="result__output">
           <div class="result__output__slenderness"></div>
           <div class="result__output__criteria"></div>
         </section>
-        <section class="result__output__graphic" style="display: none;">
+
+        <section class="result__graphic" style="display: none;">
           <canvas id="resultChart" width="100" height="100"></canvas>
-          <div class="result__output__graphic__button__wrap">
-            <button class="result__output__graphic__button" id="result__output__graphic__button--undo">Voltar</button>
-            <button class="result__output__graphic__button" id="result__output__graphic__button--redo">Avançar</button>
-            <button class="result__output__graphic__button" id="result__output__graphic__button--clean">Limpar</button>
-            <button class="result__output__graphic__button" id="result__output__graphic__button--reset">Resetar</button>
+          <div class="result__graphic-button-wrap">
+            <button class="result__graphic__button" id="result__graphic__button--undo">Voltar</button>
+            <button class="result__graphic__button" id="result__graphic__button--redo">Avançar</button>
+            <button class="result__graphic__button" id="result__graphic__button--clean">Limpar</button>
+            <button class="result__graphic__button" id="result__graphic__button--reset">Resetar</button>
           </div>
         </section>
       </section>
     </div>
   </main>
+
   <footer>
     <span class="footer__terms">Termos e condições</span>
     <h5 class="footer__contact">disp@bzk.dev.br</h5>
   </footer>
+
+
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

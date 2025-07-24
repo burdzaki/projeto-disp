@@ -3,11 +3,11 @@ import { Chart, LineController, LineElement, PointElement, LinearScale, Category
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip);
 
-const undoChart = getElement<HTMLButtonElement>('#result__output__graphic__button--undo');
-const redoChart = getElement<HTMLButtonElement>('#result__output__graphic__button--redo');
-const cleanChart = getElement<HTMLButtonElement>('#result__output__graphic__button--clean');
-const resetChart = getElement<HTMLButtonElement>('#result__output__graphic__button--reset');
-const displayGraphic = getElement<HTMLElement>('.result__output__graphic');
+const undoChart = getElement<HTMLButtonElement>('#result__graphic__button--undo');
+const redoChart = getElement<HTMLButtonElement>('#result__graphic__button--redo');
+const cleanChart = getElement<HTMLButtonElement>('#result__graphic__button--clean');
+const resetChart = getElement<HTMLButtonElement>('#result__graphic__button--reset');
+const displayGraphic = getElement<HTMLElement>('.result__graphic');
 const ctx = getElement<HTMLCanvasElement>('#resultChart');
 
 

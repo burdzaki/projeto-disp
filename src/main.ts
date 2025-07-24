@@ -32,8 +32,8 @@ const strouhalSelection = getElement<HTMLSelectElement>('#strouhal-input');
 const strouhalUserInputSection = getElement<HTMLElement>('.input--selection-strouhal-user-input');
 const strouhalStandardValueSection = getElement<HTMLElement>('.input--selection-strouhal-standard-value');
 
-const stateSelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__stateSelect');
-const citySelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__citySelect');
+const stateSelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__state-select');
+const citySelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__city-select');
 const standardV0 = getElement<HTMLInputElement>('#speed-V0-standard-value');
 
 console.log('Main loaded!');
