@@ -5,7 +5,7 @@ import { calculateSlenderness , VortexParameters} from "./calculation";
 import { setFormatImage, setStrouhalCalculus , getStrouhalMode } from "./utils/strouhalControl";
 import { showSlendernessResult, showCalculusResult } from "./output";
 import { setWindCalculus, getWindMode, setWindLookup } from "./utils/windControl";
-import { initializeChart, addChartPoint, cleanChartPoints, resetChartPoints, undoChartPoints, redoChartPoints } from "./utils/graphicControl";
+import { initializeChart, addChartPoint } from "./utils/graphicControl";
 
 initializeChart();
 
@@ -36,12 +36,7 @@ const stateSelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__sta
 const citySelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__citySelect');
 const standardV0 = getElement<HTMLInputElement>('#speed-V0-standard-value');
 
-const undoChart = getElement<HTMLButtonElement>('#result__output__graphic__button--undo');
-const redoChart = getElement<HTMLButtonElement>('#result__output__graphic__button--redo');
-const cleanChart = getElement<HTMLButtonElement>('#result__output__graphic__button--clean');
-const resetChart = getElement<HTMLButtonElement>('#result__output__graphic__button--reset');
-
-console.log("Main loaded!");
+console.log('Main loaded!');
 
 numberInputs.forEach((input => {
     validateParameter(input);
@@ -115,20 +110,4 @@ buttonCalculate.addEventListener('click', () => {
     console.log(`criteriaResult = ${criteriaResult}, vCriticalSpeed = ${vCriticalSpeed}, vStructureSpeed = ${vStructureSpeed}`)
 
     addChartPoint(elevationZ, transversalDimensionL);
-});
-
-cleanChart.addEventListener('click', () => {
-    cleanChartPoints();
-});
-
-resetChart.addEventListener('click', () => {
-    resetChartPoints();
-});
-
-undoChart.addEventListener('click', () => {
-    undoChartPoints();
-});
-
-redoChart.addEventListener('click', () => {
-    redoChartPoints();
 });

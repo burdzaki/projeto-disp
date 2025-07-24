@@ -3,8 +3,29 @@ import { Chart, LineController, LineElement, PointElement, LinearScale, Category
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip);
 
+const undoChart = getElement<HTMLButtonElement>('#result__output__graphic__button--undo');
+const redoChart = getElement<HTMLButtonElement>('#result__output__graphic__button--redo');
+const cleanChart = getElement<HTMLButtonElement>('#result__output__graphic__button--clean');
+const resetChart = getElement<HTMLButtonElement>('#result__output__graphic__button--reset');
 const displayGraphic = getElement<HTMLElement>('.result__output__graphic');
 const ctx = getElement<HTMLCanvasElement>('#resultChart');
+
+
+cleanChart.addEventListener('click', () => {
+    cleanChartPoints();
+});
+
+resetChart.addEventListener('click', () => {
+    resetChartPoints();
+});
+
+undoChart.addEventListener('click', () => {
+    undoChartPoints();
+});
+
+redoChart.addEventListener('click', () => {
+    redoChartPoints();
+});
 
 const data = {
     datasets: [{
@@ -80,24 +101,24 @@ export function addChartPoint(x: number, y: number): void {
     updateChart();
 }
 
-export function cleanChartPoints() : void {
+function cleanChartPoints() : void {
     mainStock = [];
     updateChart();
 }
 
-export function resetChartPoints() : void {
+function resetChartPoints() : void {
     if (mainStock.length < redoStock.length) mainStock = [...redoStock];
     updateChart();
 }
 
-export function undoChartPoints() : void {
+function undoChartPoints() : void {
     if (mainStock.length === 0) return;
     const pointRemoved = mainStock.pop()!;
     redoStock.push(pointRemoved);
     updateChart();
 }
 
-export function redoChartPoints() : void {
+function redoChartPoints() : void {
     if (mainStock.length === 0) return;
     const pointRestored = redoStock.pop()!;
     mainStock.push(pointRestored);
