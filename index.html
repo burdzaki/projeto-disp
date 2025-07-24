@@ -8,9 +8,14 @@
 </head>
 <body>
   <header>
-    <img class="logo__header" src="/public/images/miniLogoDisp.png" alt="Logotipo Disp">
-    <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
-    <h2 class="header__link--about">Sobre</h2>
+    <div class="header__title">
+      <img class="logo__header" src="/public/images/miniLogoDisp.png" alt="Logotipo Disp">
+      <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
+    </div>
+    <div class="header__links">
+      <span class="header__link" id="header__link--help">Ajuda</span>
+      <span class="header__link" id="header__link--about">Sobre</span>
+    </div>
   </header>
   <main>
     <h3 class="main__title">Verificador de critério de dispensa de desprendimento de vórtices </h3>
@@ -248,7 +253,7 @@
     </div>
   </main>
   <footer>
-    <h4 class="footer__terms">Termos e condições</h4>
+    <span class="footer__terms">Termos e condições</span>
     <h5 class="footer__contact">disp@bzk.dev.br</h5>
   </footer>
   <script type="module" src="/src/main.ts"></script>

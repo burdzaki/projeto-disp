@@ -35,9 +35,18 @@ html, body {
 }
 
 header {
-  margin: 30px 50px;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+
+.header__title {
+  display: flex;
+  flex-direction: row;
 }
 
 .logo__text {
@@ -57,10 +66,17 @@ header {
   max-width: 50px;
   margin-top: 0;
   object-fit: contain;
+  pointer-events: none;
 }
 
-.header__link--about {
-  margin-left: auto;
+.header__links {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 120px;
+  gap: 30px;
+}
+
+.header__link {
   font-family: var(--text-font-Inter);
   font-size: 20px;
   font-weight: 500;
