@@ -1,13 +1,15 @@
-import { getElement, getAllElements } from "./utils/dom";
-import { debounce } from "./utils/validation";
-import { getParameter, validateParameter } from "./input";
-import { calculateSlenderness , VortexParameters} from "./calculation";
-import { setFormatImage, setStrouhalCalculus , getStrouhalMode } from "./utils/strouhalControl";
-import { showSlendernessResult, showCalculusResult } from "./output";
-import { setWindCalculus, getWindMode, setWindLookup } from "./utils/windControl";
-import { initializeChart, addChartPoint } from "./utils/graphicControl";
+import { getElement, getAllElements } from './utils/dom';
+import { debounce } from './utils/validation';
+import { getParameter, validateParameter } from './input';
+import { calculateSlenderness , VortexParameters} from './calculation';
+import { setFormatImage, setStrouhalCalculus , getStrouhalMode } from './utils/strouhalControl';
+import { showSlendernessResult, showCalculusResult } from './output';
+import { setWindCalculus, getWindMode, setWindLookup } from './utils/windControl';
+import { initializeChart, addChartPoint } from './utils/graphicControl';
+import { setupWizard } from './wizard';
 
 initializeChart();
+setupWizard();
 
 const buttonCalculate = getElement<HTMLButtonElement>('.input__button');
 const numberInputs = getAllElements<HTMLInputElement>('.input__field');

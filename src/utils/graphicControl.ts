@@ -1,5 +1,5 @@
-import { getElement } from "./dom";
-import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip } from "chart.js";
+import { getElement } from './dom';
+import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip } from 'chart.js';
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip);
 

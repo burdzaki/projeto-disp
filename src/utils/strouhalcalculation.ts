@@ -1,22 +1,22 @@
-import { interpolateNumbers } from "./interpolation";
+import { interpolateNumbers } from './interpolation';
 
 export function calculateST (structureForm : string, windDirection : string, widthA : number, lenghtB : number) : number {
     let dimensionFactor = lenghtB / widthA;
     console.log(`dimension factor = ${dimensionFactor}`);
     let y : number = 0;
 
-    if (structureForm === "Circle") {
+    if (structureForm === 'Circle') {
         return 0.20;
     }
-    else if (structureForm === "Plate") {
-        if (windDirection === "Horizontal") {
+    else if (structureForm === 'Plate') {
+        if (windDirection === 'Horizontal') {
             return 0.16;
         }
-        else if (windDirection === "Vertical") {
+        else if (windDirection === 'Vertical') {
             return 0.15;
         }
     }
-    else if (structureForm === "Rectangle") {
+    else if (structureForm === 'Rectangle') {
         switch (true) {
             case (dimensionFactor < 1):
                 return  0.12;
@@ -38,8 +38,8 @@ export function calculateST (structureForm : string, windDirection : string, wid
                 return 0.09;
         }
     }
-    else if (structureForm === "HFormat") {
-        if (windDirection === "Horizontal") {
+    else if (structureForm === 'HFormat') {
+        if (windDirection === 'Horizontal') {
             switch (true) {
                 case (dimensionFactor < 1):
                     return 0.12;
@@ -53,14 +53,14 @@ export function calculateST (structureForm : string, windDirection : string, wid
                     return 0.14;
             }
         }
-        else if (windDirection === "Vertical") {
+        else if (windDirection === 'Vertical') {
             return 0.14;
         }
     }
-    else if (structureForm === "UFormat") {
+    else if (structureForm === 'UFormat') {
         return 0.14;
     }
-    else if (structureForm === "TFormat") {
+    else if (structureForm === 'TFormat') {
         switch (true) {
             case (dimensionFactor < 0.5):
                 return 0.15;
@@ -74,7 +74,7 @@ export function calculateST (structureForm : string, windDirection : string, wid
                     return 0.08;
         }
     }
-    else if (structureForm === "LFormat") {
+    else if (structureForm === 'LFormat') {
         return 0.13;
     }
     return 0;

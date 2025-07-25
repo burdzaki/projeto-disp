@@ -1,4 +1,4 @@
-import { getElement } from "./utils/dom";
+import { getElement } from './utils/dom';
 
 const divResults = getElement<HTMLDivElement>('.result__output__criteria');
 const divSlenderness = getElement<HTMLDivElement>('.result__output__slenderness');

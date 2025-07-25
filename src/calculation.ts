@@ -1,4 +1,4 @@
-import { calculateST } from "./utils/strouhalCalculation";
+import { calculateST } from './utils/strouhalCalculation';
 
 export function calculateSlenderness (structureHeight: number, dimensionD0: number) : number {
     let slenderdeness = structureHeight / dimensionD0;
@@ -53,19 +53,19 @@ export class VortexParameters {
         this.strouhalUserInput = strouhalUserInput;
 
         this.exponentP = {
-            "Category I": 0.095,
-            "Category II": 0.15,
-            "Category III": 0.185,
-            "Category IV": 0.23,
-            "Category V": 0.31,
+            'Category I': 0.095,
+            'Category II': 0.15,
+            'Category III': 0.185,
+            'Category IV': 0.23,
+            'Category V': 0.31,
         };
 
         this.meteorologicalParameterBm = {
-            "Category I": 1.23,
-            "Category II": 1,
-            "Category III": 0.86,
-            "Category IV": 0.71,
-            "Category V": 0.50,
+            'Category I': 1.23,
+            'Category II': 1,
+            'Category III': 0.86,
+            'Category IV': 0.71,
+            'Category V': 0.50,
         };
     };
 

@@ -8,6 +8,8 @@
 
 :root {
   --background-color: #FFFFFF;
+  --wizard-color: rgba(0, 0, 0, 0.5);
+  --wizard-border: rgba(0, 0, 0, 0.2);
   --footer-color: #F7F7F7;
   --text-color-title: #000000;
   --text-color-logoDisp: #1D4C4C;
@@ -74,6 +76,7 @@ header {
   justify-content: flex-end;
   margin-right: 120px;
   gap: 30px;
+  cursor: pointer;
 }
 
 .header__link {
@@ -267,7 +270,7 @@ label {
   position: absolute;
   top: 100%;
   left: 190px;
-  background: white;
+  background: var(--background-color);
   border: 1px solid #ccc;
   z-index: 20;
   max-height: 100px;
@@ -367,10 +370,82 @@ footer {
   font-size: 20px;
   font-weight: 400;
   color: var(--text-color-logoDisp);
+  cursor: pointer;
 }
 
 .footer__contact {
   font-size: 15px;
   font-weight: 400;
   color: var(--text-color-contact);
+}
+
+.wizard {
+  position: fixed; /*fixa o wizard na tela toda mesmo com rolagem*/
+  top: 0; left: 0;right: 0;bottom: 0; /*ocupa 100% da tela*/
+  background-color: var(--wizard-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.wizard--hidden {
+  display: none;
+}
+
+.wizard__title {
+  margin-top: 20px;
+  font-family: var(--text-font-Montserrat);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-color-logoDisp)
+}
+
+.wizard__text {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-family: var(--text-font-Inter);
+  font-size: 1.1rem;
+}
+
+.wizard__container {
+  position: relative;
+  background: var(--background-color);
+  padding: 40px 30px;
+  max-width: 700px;
+  width: 90%;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 20px var(--wizard-border);
+}
+
+.wizard__navigation {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wizard__button--close {
+  color: var(--text-color-input);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.wizard__button {
+  font-size: 20px;
+  color: var(--text-color-logoDisp);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+.wizard__button:hover {
+  opacity: 0.9;
 }

@@ -1,5 +1,5 @@
-import { getElement } from "./utils/dom";
-import { validateNumber } from "./utils/validation";
+import { getElement } from './utils/dom';
+import { validateNumber } from './utils/validation';
 
 export function getParameter (idInput : string) : number {
     const input = getElement<HTMLInputElement>(idInput);
