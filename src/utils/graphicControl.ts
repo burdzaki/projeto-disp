@@ -52,7 +52,7 @@ const graphicChart = new Chart (ctx, {
             title: {
                 display: true,
                 align: 'center',
-                text: 'GRÁFICO DE SAÍDA',
+                text: 'Relação Fn x Vcr/Vest',
                 font: {
                     family: 'Montserrat',
                     size: 20,
@@ -65,7 +65,7 @@ const graphicChart = new Chart (ctx, {
                 min: 0,
                 title: {
                     display: true,
-                    text: 'EIXO X',
+                    text: 'Frequência Natural (Hz)',
                     font: {
                         family: 'Inter',
                         size: 15,
@@ -76,7 +76,7 @@ const graphicChart = new Chart (ctx, {
                 min: 0,
                 title: {
                     display: true,
-                    text: 'EIXO Y',
+                    text: 'Velocidade Crítica / Velocidade na Edificação',
                     font: {
                         family: 'Inter',
                         size: 15,

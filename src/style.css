@@ -315,21 +315,22 @@ label {
 }
 
 .result__graphic__button__wrap {
-  height: 22px;
   margin-left: 30px;
-  width: 450px;
+  width: 750px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .result__graphic__button {
-  width: 90px;
+  width: 120px;
+  height: 23px;
   font-family: var(--text-font-Inter);
-  font-size: 12.5px;
+  font-size: 13.5px;
+  font-weight: 500;
   text-decoration: none;
   color: var(--text-color-logoDisp);
-  border-radius: 3px;
+  border-radius: 5px;
   border-color: var(--background-color);
 }
 
@@ -394,23 +395,23 @@ footer {
 .wizard__title {
   margin-top: 10px;
   font-family: var(--text-font-Montserrat);
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 600;
   color: var(--text-color-logoDisp)
 }
 
 .wizard__text {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   font-family: var(--text-font-Inter);
-  font-size: 1.1rem;
+  font-size: 17px;
 }
 
 .wizard__container {
   position: relative;
   background: var(--background-color);
-  padding: 10px 10px;
-  max-width: 700px;
+  padding: 15px 15px;
+  max-width: 650px;
   width: 90%;
   border-radius: 10px;
   box-shadow: 0 5px 20px var(--wizard-border);

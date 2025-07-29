@@ -108,8 +108,10 @@ buttonCalculate.addEventListener('click', () => {
     const criteriaResult = vortexCalculus.calculateVortexSheddingCriteria();
     vortexCalculus.showAllParameters();
 
+    const speedRatio = vCriticalSpeed / vStructureSpeed;
+
     showCalculusResult(criteriaResult, vCriticalSpeed, vStructureSpeed);
     console.log(`criteriaResult = ${criteriaResult}, vCriticalSpeed = ${vCriticalSpeed}, vStructureSpeed = ${vStructureSpeed}`)
 
-    addChartPoint(elevationZ, transversalDimensionL);
+    addChartPoint(structureFrequencyFn, speedRatio);
 });
