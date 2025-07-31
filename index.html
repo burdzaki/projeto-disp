@@ -27,16 +27,25 @@
       <section class="inputs">
 
         <section class="inputs inputs--slenderness">
-          <p class="input__title">Verificação de esbeltez</p>
+          <div class="wizard__help-wrap">
+            <p class="input__title">Verificação de esbeltez</p>
+            <!-- <button data-step="1" class="wizard__help-button">?</button> -->
+          </div>
             <section class="input input--structure-height">
+            <div class="wizard__help-wrap">
               <label for="structure-height">Altura h (m):</label>
+              <button data-step="2" class="wizard__help-button">?</button>
+            </div>
               <div class="input__container">
                 <input type="number" id="structure-height" class="input__field" />
                 <span id="warning-structure-height" class="input__warning"></span>
               </div>
             </section>
             <section class="input input--dimension-d0">
-              <label for="dimension-d0">Dimensão d0 (m):</label>
+              <div class="wizard__help-wrap">
+                <label for="dimension-d0">Dimensão d0 (m):</label>
+                <button data-step="3" class="wizard__help-button">?</button>
+              </div>
               <div class="input__container">
                 <input type="number" id="dimension-d0" class="input__field" />
                 <span id="warning-dimension-d0" class="input__warning"></span>
@@ -47,8 +56,11 @@
         <section class="inputs inputs--parameters">
             <p class="input__title">Parâmetros da Estrutura: Cálculo do Vento na Estrutura</p>
             <section class="input input--selection-speed-V0">
-              <label for="speed-V0">Velocidade básica V0:</label>
-              <div class="input__container-list">
+              <div class="wizard__help-wrap">
+                <label for="speed-V0">Velocidade básica V0:</label>
+                <button data-step="5" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container-list" id="input__speed-V0">
                 <select id="speed-V0" class="input__field">
                   <option value="" disabled selected hidden></option>
                   <option value="wind-user-input">Digite um valor</option>
@@ -92,7 +104,10 @@
             </section>
 
             <section class="input input--topographic-factor-S1">
-              <label for="topographic-factor-S1">Fator topográfico S1:</label>
+              <div class="wizard__help-wrap">
+                <label for="topographic-factor-S1">Fator topográfico S1:</label>  
+                <button data-step="6" class="wizard__help-button">?</button>
+              </div>
               <div class="input__container">
                 <input type="number" id="topographic-factor-S1" class="input__field" />
                 <span  id="warning-topographic-factor-S1" class="input__warning"></span>
@@ -100,21 +115,27 @@
             </section>
 
             <section class="input input--structure-category">
-              <label for="structure-category">Rugosidade do terreno:</label>
-              <div class="input__container-list">
+              <div class="wizard__help-wrap">
+                <label for="structure-category">Rugosidade do terreno:</label>
+                <button data-step="7" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container-list" id="input__structure-category">
                 <select id="structure-category" class="input__field-list">
                   <option value="" disabled selected hidden></option>
-                  <option value="Category I">Categoria I</option>
-                  <option value="Category II">Categoria II</option>
-                  <option value="Category III">Categoria III</option>
-                  <option value="Category IV">Categoria IV</option>
-                  <option value="Category V">Categoria V</option>
+                  <option value="I">Categoria I</option>
+                  <option value="II">Categoria II</option>
+                  <option value="III">Categoria III</option>
+                  <option value="IV">Categoria IV</option>
+                  <option value="V">Categoria V</option>
                 </select>
               </div>
             </section>
 
             <section class="input input--elevation-Z">
-              <label for="elevation-Z">Elevação Z (m):</label>
+              <div class="wizard__help-wrap">
+                <label for="elevation-Z">Elevação Z (m):</label>
+                <button data-step="8" class="wizard__help-button">?</button>
+              </div>
               <div class="input__container">
                 <input type="number" id="elevation-Z" class="input__field" />
                 <span id="warning-elevation-Z" class="input__warning"></span>
@@ -122,7 +143,10 @@
             </section>
 
             <section class="input input--statistical-factor-S3">
-              <label for="statistical-factor-S3">Fator estatístico S3:</label>
+              <div class="wizard__help-wrap">
+                <label for="statistical-factor-S3">Fator estatístico S3:</label>
+                <button data-step="9" class="wizard__help-button">?</button>
+              </div>
               <div class="input__container">
                 <input type="number" id="statistical-factor-S3" name="statistical-factor-S3" list="S3-values" step="0.01" class="input__field" />
                 <datalist id="S3-values">
@@ -138,7 +162,10 @@
 
             <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade Crítica</p>
             <section class="input input--transversal-dimension-L">
-              <label for="transversal-dimension-L">Dimensão L (m):</label>
+              <div class="wizard__help-wrap">
+                <label for="transversal-dimension-L">Dimensão L (m):</label>
+                <button data-step="10" class="wizard__help-button">?</button>
+              </div>
               <div class="input__container">
                 <input type="number" id="transversal-dimension-L" class="input__field" />
                 <span id="warning-transversal-dimension-L" class="input__warning"></span>
@@ -146,7 +173,10 @@
             </section>
 
             <section class="input input--structure-frequency-Fn">
-              <label for="structure-frequency-Fn">Frequência Natural da Estrutura Fn (Hz):</label>
+              <div class="wizard__help-wrap">
+                <label for="structure-frequency-Fn">Frequência Natural<br> da Estrutura Fn (Hz):</label>
+                <button data-step="11" class="wizard__help-button">?</button>
+              </div>
               <div class="input__container">
                 <input type="number" id="structure-frequency-Fn" class="input__field" />
                 <span id="warning-structure-frequency-Fn" class="input__warning"></span>
@@ -155,7 +185,10 @@
 
             <p class="input__subtitle">Número de Strouhal (St)</p>
               <section class="input input--selection-strouhal-calculation">
-              <label for="strouhal-input">Entrada do valor: </label>
+              <div class="wizard__help-wrap">
+                <label for="strouhal-input">Entrada do valor: </label>
+                <button data-step="12" class="wizard__help-button">?</button>
+              </div>
                 <div class="input__container-list">
                   <select id="strouhal-input" class="input__field-list">
                     <option value="" disabled selected hidden></option>
@@ -251,7 +284,7 @@
               </section>
         </section>
 
-        <button class="input__button">Calcular</button>
+        <button class="input__calculate--button">Calcular</button>
       </section>
 
       <section class="result">

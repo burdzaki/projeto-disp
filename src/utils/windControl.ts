@@ -11,7 +11,7 @@ export function setWindCalculus(windSelection: HTMLSelectElement, windUserInput:
             windStandardValue.style.display = 'none';
             windMode = false;
         }
-        else if (selectedWindInput === 'WindStandardValue') {
+        else if (selectedWindInput === 'wind-standard-value') {
             windStandardValue.style.display = 'block';
             windUserInput.style.display = 'none';
             windMode = true;

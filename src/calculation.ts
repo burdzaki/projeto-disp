@@ -53,27 +53,29 @@ export class VortexParameters {
         this.strouhalUserInput = strouhalUserInput;
 
         this.exponentP = {
-            'Category I': 0.095,
-            'Category II': 0.15,
-            'Category III': 0.185,
-            'Category IV': 0.23,
-            'Category V': 0.31,
+            'I': 0.095,
+            'II': 0.15,
+            'III': 0.185,
+            'IV': 0.23,
+            'V': 0.31,
         };
 
         this.meteorologicalParameterBm = {
-            'Category I': 1.23,
-            'Category II': 1,
-            'Category III': 0.86,
-            'Category IV': 0.71,
-            'Category V': 0.50,
+            'I': 1.23,
+            'II': 1.00,
+            'III': 0.86,
+            'IV': 0.71,
+            ' V': 0.50,
         };
     };
 
-    calculateFactorS2 () : number {
+    calculateFactorS2 () : { bm: number; p: number; s2: number } {
         const bm = this.meteorologicalParameterBm[this.structureCategory];
         const p = this.exponentP[this.structureCategory];
-        this.roughnessFactorS2 = bm * this.gustFactorFr * Math.pow(this.elevationZ / 10, p);
-        return this.roughnessFactorS2;
+        let s2 = this.roughnessFactorS2;
+        s2 = bm * this.gustFactorFr * Math.pow(this.elevationZ / 10, p);
+        this.roughnessFactorS2 = s2;
+        return { bm, p, s2 };
     };
 
     calculateStructureSpeed () : number {
@@ -81,6 +83,11 @@ export class VortexParameters {
             this.calculateFactorS2();
         }
         this.structureSpeed = 1.25 * this.speedV0 * this.topographicFactorS1 * this.roughnessFactorS2 * this.statisticalFactorS3;
+        console.log(`V0 = ${this.speedV0}`)
+        console.log(`FATOR S1 = ${this.topographicFactorS1}`)
+        console.log(`FATOR S2 = ${this.roughnessFactorS2}`)
+        console.log(`FATOR S3 = ${this.statisticalFactorS3}`)
+        console.log(`VELOCIDADE DA ESTRUTURA = ${this.structureSpeed}`)
         return this.structureSpeed;
     };
 
@@ -113,10 +120,10 @@ export class VortexParameters {
         else return false;
     }
 
-    showAllParameters () : void {
-        console.log(`NOVO CÁLCULO`);
-        Object.entries(this).forEach(([key, value]) => {
-            console.log(`${key}: ${value}`);
-        });
-    }
+    // showAllParameters () : void {
+    //     console.log(`NOVO CÁLCULO`);
+    //     Object.entries(this).forEach(([key, value]) => {
+    //         console.log(`${key}: ${value}`);
+    //     });
+    // }
 };
