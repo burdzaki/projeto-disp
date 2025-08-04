@@ -7,6 +7,8 @@ import { showSlendernessResult, showCalculusResult } from './output';
 import { setWindCalculus, getWindMode, setWindLookup } from './utils/windControl';
 import { initializeChart, initializeStrouhalChart, highlightStrouhalPoint } from './utils/graphicControl';
 import { setupWizard, showWizardHelpStep } from './wizard';
+import { showLicense } from './utils/license';
+import { showInfo } from './utils/info';
 
 const buttonCalculate = getElement<HTMLButtonElement>('.input__calculate--button');
 const numberInputs = getAllElements<HTMLInputElement>('.input__field');
@@ -36,6 +38,8 @@ const citySelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__city
 const standardV0 = getElement<HTMLInputElement>('#speed-V0-standard-value');
 
 const printButton = getElement<HTMLButtonElement>('.result__output-print');
+const termsButton = getElement<HTMLElement>('.footer__terms__trigger');
+const infoButton = getElement<HTMLElement>('.header__link-about');
 
 const divResults = getElement<HTMLDivElement>('.result__output__criteria');
 const divGraphic = getElement<HTMLElement>('.result__graphic');
@@ -54,6 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
         showWizardHelpStep(step);
       }
     });
+  });
+
+  termsButton.addEventListener('click', () => {
+    showLicense();
+  });
+
+  infoButton.addEventListener('click', () => {
+    showInfo();
   });
 });
 
@@ -94,6 +106,8 @@ setFormatImage(dropdownContainer, hiddenInputForm, windDirectionSection, dimensi
 printButton.addEventListener('click', () => {
   window.print();
 })
+
+
 
 buttonCalculate.addEventListener('click', () => {
   let allValidInputs = true;

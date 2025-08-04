@@ -29,6 +29,14 @@ p {
   margin: 1px;
 }
 
+a {
+  color: var(--text-color-title);
+  font-family: var(--text-font-Inter);
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
 /* HEADER */
 header {
   display: flex;
@@ -73,7 +81,7 @@ header {
   cursor: pointer;
 }
 
-.header__link {
+.header__link-help, .header__link-about {
   font-family: var(--text-font-Inter);
   font-size: 20px;
   font-weight: 500;
@@ -398,12 +406,37 @@ body {
     font-family: var(--text-font-Inter);
   }
 
-  .footer__terms {
-    font-size: 20px;
+  .footer__terms__trigger {
+    font-size: 18px;
     font-weight: 400;
     color: var(--text-color-logoDisp);
     cursor: pointer;
   }
+
+  .footer__terms, .about-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--wizard-color); /* mesma cor escura do wizard */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .footer__terms--hidden, .about-modal--hidden {
+    display: none;
+  }
+
+  .footer__terms__container, .about-modal__container {
+    position: relative;
+    background: var(--background-color); /* fundo claro, como o wizard__container */
+    padding: 15px;
+    max-width: 1050px;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px var(--wizard-border);
+  }
+
 
   .footer__contact {
     font-size: 15px;
@@ -426,7 +459,7 @@ body {
     display: none;
   }
 
-  .wizard__title {
+  .wizard__title, .footer__terms__title, .about-modal__title {
     margin-top: 10px;
     font-family: var(--text-font-Montserrat);
     font-size: 21px;
@@ -434,7 +467,7 @@ body {
     color: var(--text-color-logoDisp)
   }
 
-  .wizard__text {
+  .wizard__text, .footer__terms__text, .about-modal__text {
     margin-top: 8px;
     margin-bottom: 8px;
     font-family: var(--text-font-Inter);
@@ -458,7 +491,7 @@ body {
     align-items: center;
   }
 
-  .wizard__button--close {
+  .wizard__button--close, .footer__terms--close, .about-modal__close {
     color: var(--text-color-input);
     position: absolute;
     top: 1rem;

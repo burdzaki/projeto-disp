@@ -14,11 +14,19 @@
       <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
     </div>
     <div class="header__links" data-print="no">
-      <span class="header__link" id="header-link-help">Ajuda</span>
-      <span class="header__link" id="header-link-about">Sobre</span>
+      <span class="header__link-help" id="header-link-help">Ajuda</span>
+      <span class="header__link-about" id="header-link-about-trigger">Sobre</span>
+
+      <div class="about-modal about-modal--hidden" id="about-modal">
+        <div class="about-modal__container">
+          <button class="about-modal__close" id="about-modal-close" aria-label="Fechar Sobre">✖</button>
+          <h2 class="about-modal__title">Sobre o DISP</h2>
+          <p class="about-modal__text" id="about-modal-text"></p>
+        </div>
+      </div>
     </div>
   </header>
-
+  
   <main>
     <h3 class="main__title" data-print="no">Verificador de critério de dispensa de desprendimento de vórtices </h3>
     <img class="logo__main" src="/public/images/miniLogoDisp.png" alt="Logotipo central">
@@ -310,7 +318,14 @@
   </main>
 
   <footer data-print="no">
-    <span class="footer__terms">Termos e condições</span>
+    <span class="footer__terms__trigger">Termos e Condições</span>
+    <div class="footer__terms footer__terms--hidden" id="footer-terms">
+      <div class="footer__terms__container">
+        <button class="footer__terms--close" id="footer__terms--close" aria-label="Fechar Termos e Condições">✖</button>
+        <h2 class="footer__terms__title" id="footer__terms__title">Termos e Condições de Uso</h2>
+        <p class="footer__terms__text" id="footer__terms__text"></p>
+      </div>
+    </div>
     <h5 class="footer__contact">disp@bzk.dev.br</h5>
   </footer>
 

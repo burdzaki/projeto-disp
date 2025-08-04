@@ -44,7 +44,7 @@ const wizardSteps: WizardStep[] = [
     },
     {   //step 5
         title: 'Velocidade básica V0 (m/s)',
-        text:  '<p>Escolha entrar com um valor estimado por você (em metros/segundo) ou pesquisar estado e cidade de acordo com a lista de isopletas disponibilizada pela <strong>elgin</strong>. <br>Obs.: A fonte desse índice pode ser verificada na aba Sobre.</p>',
+        text:  '<p>Escolha entrar com um valor estimado por você (em metros/segundo) ou pesquisar estado e cidade de acordo com a lista de isopletas disponibilizada pela <strong>Elgin</strong>. <br>Obs.: A fonte desse índice pode ser verificada na aba Sobre.</p>',
         selector: '#input__speed-V0'
     },
     {   //step 6
