@@ -333,7 +333,7 @@ body {
   .result__graphic {
     margin-top: 40px;
     flex-shrink: 0;
-    max-width: 750px;
+    max-width: 650px;
   }
 
   #result__graphic-strouhal {
@@ -370,6 +370,8 @@ body {
   #resultChart {
     max-width: 650px;
     max-height: 650px;
+    width: 100%;
+    height: auto;
   }
 
   .result__output__criteria {

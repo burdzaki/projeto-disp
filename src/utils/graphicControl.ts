@@ -74,7 +74,7 @@ const graphicChart = new Chart (ctx, {
             title: {
                 display: true,
                 align: 'center',
-                text: 'Relação Fn x Vcr/Vest',
+                text: 'Frequência Natural x Velocidade Crítica/Velocidade na Estrutura',
                 font: {
                     family: 'Montserrat',
                     size: 20,
@@ -87,7 +87,7 @@ const graphicChart = new Chart (ctx, {
                 min: 0,
                 title: {
                     display: true,
-                    text: 'Frequência Natural (Hz)',
+                    text: 'Fn (Hz)',
                     font: {
                         family: 'Inter',
                         size: 15,
@@ -98,7 +98,7 @@ const graphicChart = new Chart (ctx, {
                 min: 0,
                 title: {
                     display: true,
-                    text: 'Velocidade Crítica / Velocidade na Edificação',
+                    text: 'Vcr / Vest',
                     font: {
                         family: 'Inter',
                         size: 15,
