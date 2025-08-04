@@ -7,13 +7,11 @@ export function setStrouhalCalculus (strouhalSelection: HTMLSelectElement, strou
         if (selectedStrouhalInput === 'StrouhalUserInput') {
             strouhalUserInput.style.display = 'flex';
             strouhalStandardValue.style.display = 'none';
-            console.log(`ST FALSE1`);
             strouhalMode = false;
         }
         else if (selectedStrouhalInput === 'StrouhalStandardValue') {
             strouhalStandardValue.style.display = 'block';
             strouhalUserInput.style.display = 'none';
-            console.log(`ST TRUE1`);
             strouhalMode = true;
         }
     });

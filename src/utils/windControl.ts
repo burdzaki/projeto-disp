@@ -57,9 +57,6 @@ export function setWindLookup (stateSelect: HTMLSelectElement, citySelect: HTMLS
             option.textContent = city;
             citySelect.appendChild(option);
         });
-        console.log('Estado selecionado:', stateSelect.value);
-        console.log('Cidades encontradas:', windSpeeds[stateSelect.value]);
-
     });
 
     citySelect.addEventListener('change', () => {

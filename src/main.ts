@@ -1,11 +1,11 @@
 import { getElement, getAllElements } from './utils/dom';
 import { debounce } from './utils/validation';
-import { getParameter, validateParameter } from './input';
+import { getParameter, validateParameter, validateInput } from './input';
 import { calculateSlenderness , VortexParameters} from './calculation';
 import { setFormatImage, setStrouhalCalculus , getStrouhalMode } from './utils/strouhalControl';
 import { showSlendernessResult, showCalculusResult } from './output';
 import { setWindCalculus, getWindMode, setWindLookup } from './utils/windControl';
-import { initializeChart } from './utils/graphicControl';
+import { initializeChart, initializeStrouhalChart, highlightStrouhalPoint } from './utils/graphicControl';
 import { setupWizard, showWizardHelpStep } from './wizard';
 
 const buttonCalculate = getElement<HTMLButtonElement>('.input__calculate--button');
@@ -35,6 +35,11 @@ const stateSelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__sta
 const citySelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__city-select');
 const standardV0 = getElement<HTMLInputElement>('#speed-V0-standard-value');
 
+const printButton = getElement<HTMLButtonElement>('.result__output-print');
+
+const divResults = getElement<HTMLDivElement>('.result__output__criteria');
+const divGraphic = getElement<HTMLElement>('.result__graphic');
+const displayStrouhal = getElement<HTMLElement>('#result__graphic-strouhal');
 
 initializeChart();
 setupWizard();
@@ -86,8 +91,38 @@ setWindLookup(stateSelect, citySelect, standardV0);
 setStrouhalCalculus(strouhalSelection, strouhalUserInputSection, strouhalStandardValueSection);
 setFormatImage(dropdownContainer, hiddenInputForm, windDirectionSection, dimensionsSection, formatImage);
 
+printButton.addEventListener('click', () => {
+  window.print();
+})
+
 buttonCalculate.addEventListener('click', () => {
-  
+  let allValidInputs = true;
+
+  numberInputs.forEach(input => {
+    const isVisible = input.offsetParent !== null;
+    if (!isVisible) return;
+
+    const container = input.closest('.input__container');
+    const span = container ? container.querySelector<HTMLSpanElement>('.input__warning') : null;
+
+    const validatedInput = validateInput(input, span);
+    // console.log(`Input ${input.id} válido?`, validatedInput);
+    if (!validatedInput) allValidInputs = false;
+    });
+
+  if (!allValidInputs)
+  {
+    console.log('Existem parâmetros não preenchidos corretamente!');
+    divGraphic.style.display = 'none';
+    divResults.style.display = 'none';
+    printButton.style.display = 'none';
+    return;
+  }
+
+  divResults.style.display = 'block';
+  divGraphic.style.display = 'block';
+  printButton.style.display = 'block';
+
   let speedV0 : number = 0;
 
   const windMode = getWindMode();
@@ -130,7 +165,15 @@ buttonCalculate.addEventListener('click', () => {
 
   const resultSlenderness = verifySlenderness();
 
-  showCalculusResult(resultSlenderness.h, resultSlenderness.d0, resultSlenderness.slenderness, structureCategory.value, elevationZ, speedV0, topographicFactorS1, parametersS2.bm, parametersS2.p, parametersS2.s2, statisticalFactorS3, structureFrequencyFn, vStructureSpeed, vCriticalSpeed, transversalDimensionL, strouhalNumber, criteriaResult);
-  console.log(`criteriaResult = ${criteriaResult}, vCriticalSpeed = ${vCriticalSpeed}, vStructureSpeed = ${vStructureSpeed}`)
-
+  showCalculusResult(resultSlenderness.h, resultSlenderness.d0, resultSlenderness.slenderness, structureCategory.value, elevationZ, speedV0, topographicFactorS1, parametersS2.bm, parametersS2.p, parametersS2.s2, statisticalFactorS3, structureFrequencyFn, vStructureSpeed, vCriticalSpeed, transversalDimensionL, strouhalNumber, criteriaResult, widthA, lenghtB);
+  
+  
+  if (selectedFormat === 'Rectangle' && widthA !== 0 && lenghtB !==0 ) {
+    const strouhalRatio = lenghtB / widthA;
+    displayStrouhal.style.display = 'block';
+    initializeStrouhalChart();
+    highlightStrouhalPoint(strouhalRatio, strouhalNumber);
+  }
+  else displayStrouhal.style.display = 'none';
+  
 });

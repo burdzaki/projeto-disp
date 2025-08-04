@@ -83,23 +83,16 @@ export class VortexParameters {
             this.calculateFactorS2();
         }
         this.structureSpeed = 1.25 * this.speedV0 * this.topographicFactorS1 * this.roughnessFactorS2 * this.statisticalFactorS3;
-        console.log(`V0 = ${this.speedV0}`)
-        console.log(`FATOR S1 = ${this.topographicFactorS1}`)
-        console.log(`FATOR S2 = ${this.roughnessFactorS2}`)
-        console.log(`FATOR S3 = ${this.statisticalFactorS3}`)
-        console.log(`VELOCIDADE DA ESTRUTURA = ${this.structureSpeed}`)
         return this.structureSpeed;
     };
 
     calculateStrouhalNumber () : number {
         if (this.strouhalMode === true) {
             this.strouhalNumberSt = calculateST(this.structureForm, this.windDirection, this.widthA, this.lenghtB);
-            console.log(`ST TRUE2`);
             return this.strouhalNumberSt;
         }
         else if (this.strouhalMode === false) {
             this.strouhalNumberSt = this.strouhalUserInput;
-            console.log(`ST FALSE2`);
             return this.strouhalNumberSt;
         }
         else return -1;

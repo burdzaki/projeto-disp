@@ -13,18 +13,18 @@
       <img class="logo__header" src="/public/images/miniLogoDisp.png" alt="Logotipo Disp">
       <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
     </div>
-    <div class="header__links">
+    <div class="header__links" data-print="no">
       <span class="header__link" id="header-link-help">Ajuda</span>
       <span class="header__link" id="header-link-about">Sobre</span>
     </div>
   </header>
 
   <main>
-    <h3 class="main__title">Verificador de critério de dispensa de desprendimento de vórtices </h3>
+    <h3 class="main__title" data-print="no">Verificador de critério de dispensa de desprendimento de vórtices </h3>
     <img class="logo__main" src="/public/images/miniLogoDisp.png" alt="Logotipo central">
 
     <div class="main__wrapper">
-      <section class="inputs">
+      <section class="inputs" data-print="no">
 
         <section class="inputs inputs--slenderness">
           <div class="wizard__help-wrap">
@@ -290,24 +290,26 @@
       <section class="result">
 
         <section class="result__output">
-          <div class="result__output__slenderness"></div>
+          <div class="result__output__slenderness" data-print="no"></div>
           <div class="result__output__criteria"></div>
+          <button class="result__output-print" data-print="no">Imprimir</button>
         </section>
 
         <section class="result__graphic" style="display: none;">
-          <canvas id="resultChart" width="100" height="100"></canvas>
-          <div class="result__graphic-button-wrap">
+          <canvas id="result__graphic-chart" width="100" height="100"></canvas>
+          <div class="result__graphic-button-wrap" data-print="no">
             <button class="result__graphic__button" id="result__graphic__button--undo">Voltar</button>
             <button class="result__graphic__button" id="result__graphic__button--redo">Avançar</button>
             <button class="result__graphic__button" id="result__graphic__button--clean">Limpar</button>
             <button class="result__graphic__button" id="result__graphic__button--reset">Resetar</button>
           </div>
+          <canvas id="result__graphic-strouhal" width="100" height="100"></canvas>
         </section>
       </section>
     </div>
   </main>
 
-  <footer>
+  <footer data-print="no">
     <span class="footer__terms">Termos e condições</span>
     <h5 class="footer__contact">disp@bzk.dev.br</h5>
   </footer>
@@ -327,6 +329,7 @@
       </div>
   </div>
 
+  <link href="/path/to/print.css" media="print" rel="stylesheet" />
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

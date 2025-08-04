@@ -99,8 +99,6 @@ const wizardMaxIndex = wizardSteps.length - 1;
 const resultGraphicSection = getElement<HTMLElement>('.result__graphic');
 
 export function showWizardStep(index: number, hideNavigation : boolean = false) : void {
-    console.log('WizardStep chamado com index:', index);
-
     const step = wizardSteps[index];
     const target = getElement<HTMLElement>(step.selector);
     
@@ -179,22 +177,18 @@ export function setupWizard(): void {
     helpButton.addEventListener('click', () => {
         wizard.classList.remove('wizard--hidden');
         showWizardStep(0);
-        console.log(`currentStep = ${currentStep}`);
     });
 
     closeButton.addEventListener('click', () => {
         closeWizard();
-        console.log(`currentStep = ${currentStep}`);
     });
 
     nextButton.addEventListener('click', () => {
         nextStep();
-        console.log(`currentStep = ${currentStep}`);
     });
 
     backButton.addEventListener('click', () => {
         backStep();
-        console.log(`currentStep = ${currentStep}`);
     });
 
     document.addEventListener('keydown', (event) => {

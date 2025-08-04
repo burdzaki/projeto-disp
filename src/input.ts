@@ -7,7 +7,7 @@ export function getParameter (idInput : string) : number {
     let parameterNumber = Number(input.value);
     let errorMessage = validateNumber(parameterNumber);
     if (!errorMessage) {
-        console.log(`${idInput} = ${parameterNumber}`);
+        // console.log(`${idInput} = ${parameterNumber}`);
         return parameterNumber;
     }
     else {
@@ -15,31 +15,39 @@ export function getParameter (idInput : string) : number {
     }
 }
 
-export function validateParameter (inputElement : HTMLInputElement) : void {
+export function validateParameter (inputElement: HTMLInputElement): void {
     const container = inputElement.closest('.input__container');
     const span = container ? container.querySelector<HTMLSpanElement>('.input__warning') : null;
-
     inputElement.addEventListener('blur', () => {
-        const emptyInput = inputElement.value.trim();
+        validateInput(inputElement, span)
+    });
 
-        if (span) {
-            if (emptyInput === '') {
-                span.innerText = '';
-                inputElement.classList.remove('input__field--error');
-                return;
-            }
+}
 
-            const parameterNumber = Number(inputElement.value);
-            const errorMessage = validateNumber(parameterNumber);
-            if (errorMessage) {
-                span.innerText = errorMessage;
-                span.classList.add('input__warning--show');
-                inputElement.classList.add('input__field--error');
-            }
-            else {
-                span.innerText = '';
-                inputElement.classList.remove('input__field--error');
-            }
+export function validateInput (inputElement: HTMLInputElement, span: HTMLSpanElement | null): boolean {   
+    const emptyInput = inputElement.value.trim();
+
+    if (span) {
+        if (emptyInput === '') {
+            span.innerText = '';
+            inputElement.classList.remove('input__field--error');
+            return false;
         }
-    }); 
+
+        const parameterNumber = Number(inputElement.value);
+        const errorMessage = validateNumber(parameterNumber);
+        if (errorMessage) {
+            span.innerText = errorMessage;
+            span.classList.add('input__warning--show');
+            inputElement.classList.add('input__field--error');
+            return false;
+        }
+        else {
+            span.innerText = '';
+            inputElement.classList.remove('input__field--error');
+            return true;
+        }
+    }
+
+    return true; 
 }
