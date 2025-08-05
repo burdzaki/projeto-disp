@@ -268,6 +268,21 @@ body {
     margin-top: 0;
   }
 
+  .input__calculate-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input__calculate__warning {
+    width: 0px;
+    font-family: var(--text-font-Inter);
+    margin-top: 8px;
+    font-size: 15px;
+    color: var(--text-color-input);
+    white-space: nowrap;
+
+  }
+
 
   /* DROPDOWN CONFIGURATIONS */
     .dropdown {
@@ -393,6 +408,7 @@ body {
     display: none;
   }
 
+
 /* FOOTER */
   footer {
     display: flex;
@@ -436,7 +452,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 5px 20px var(--wizard-border);
   }
-
 
   .footer__contact {
     font-size: 15px;

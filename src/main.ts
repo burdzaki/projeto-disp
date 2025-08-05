@@ -11,6 +11,7 @@ import { showLicense } from './utils/license';
 import { showInfo } from './utils/info';
 
 const buttonCalculate = getElement<HTMLButtonElement>('.input__calculate--button');
+const warningCalculate = getElement<HTMLElement>('#warning-calculate--button');
 const numberInputs = getAllElements<HTMLInputElement>('.input__field');
 
 const structureHeight = getElement<HTMLInputElement>('#structure-height');
@@ -126,13 +127,15 @@ buttonCalculate.addEventListener('click', () => {
 
   if (!allValidInputs)
   {
-    console.log('Existem parâmetros não preenchidos corretamente!');
+    warningCalculate.innerText = 'Aviso: Existem parâmetros não preenchidos corretamente';
+    warningCalculate.style.display = 'flex';
     divGraphic.style.display = 'none';
     divResults.style.display = 'none';
     printButton.style.display = 'none';
     return;
   }
 
+  warningCalculate.style.display = 'none';
   divResults.style.display = 'block';
   divGraphic.style.display = 'block';
   printButton.style.display = 'block';

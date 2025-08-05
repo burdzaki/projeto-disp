@@ -7,6 +7,7 @@ export function calculateST (structureForm : string, windDirection : string, wid
     if (structureForm === 'Circle') {
         return 0.20;
     }
+
     else if (structureForm === 'Plate') {
         if (windDirection === 'Horizontal') {
             return 0.16;
@@ -15,6 +16,7 @@ export function calculateST (structureForm : string, windDirection : string, wid
             return 0.15;
         }
     }
+
     else if (structureForm === 'Rectangle') {
         switch (true) {
             case (dimensionFactor < 1):
@@ -37,6 +39,7 @@ export function calculateST (structureForm : string, windDirection : string, wid
                 return 0.09;
         }
     }
+
     else if (structureForm === 'HFormat') {
         if (windDirection === 'Horizontal') {
             switch (true) {
@@ -56,9 +59,11 @@ export function calculateST (structureForm : string, windDirection : string, wid
             return 0.14;
         }
     }
+
     else if (structureForm === 'UFormat') {
         return 0.14;
     }
+
     else if (structureForm === 'TFormat') {
         switch (true) {
             case (dimensionFactor < 0.5):
@@ -73,8 +78,10 @@ export function calculateST (structureForm : string, windDirection : string, wid
                     return 0.08;
         }
     }
+
     else if (structureForm === 'LFormat') {
         return 0.13;
     }
+    
     return 0;
 };
