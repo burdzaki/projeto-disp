@@ -27,7 +27,7 @@ export function showLicense(): void {
     DECORRENTE DE, FORA DE OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES
     NO SOFTWARE.</p>
     
-    <br><p>Obs.: Tradução não oficial da Licença MIT, apresentada para fins informativos.</p>
+    <br><p>Tradução não oficial da Licença MIT, apresentada para fins informativos.</p>
 
     <br><hr><hr>
 

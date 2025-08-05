@@ -64,7 +64,7 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
         <br><hr>
 
         <br><h4>3. Verificação Final</h4>
-        <br><p>&emsp;Critério: Vcr > Vest → ${formatNumber(vCriticalSpeed, 2)} > ${formatNumber(vStructureSpeed, 2)} → ${resultCriteria ? '<strong>Atendido</strong>' : '<strong>Não atendido</strong>'}</p>
+        <br><p>&emsp;Critério: <strong>Vcr > Vest</strong> → ${formatNumber(vCriticalSpeed, 2)} > ${formatNumber(vStructureSpeed, 2)} → ${resultCriteria ? '<strong>Atendido</strong>' : '<strong>Não atendido</strong>'}</p>
         <br>
         <br><h4>4. Conclusão</h4>
         <br><p>&emsp;A estrutura analisada ${resultCriteria ? '<strong>está dispensada</strong>' : '<strong>não está dispensada</strong>'} da verificação dos efeitos de desprendimento de vórtices.</p>
@@ -81,7 +81,7 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
         <br><hr>
 
         <br><h4>3. Verificação Final</h4>
-        <br><p>&emsp;Critério: Vcr > Vest → ${formatNumber(vCriticalSpeed, 2)} > ${formatNumber(vStructureSpeed, 2)} → ${resultCriteria ? '<strong>Atendido</strong>' : '<strong>Não atendido</strong>'}</p>
+        <br><p>&emsp;Critério: <strong>Vcr > Vest</strong> → ${formatNumber(vCriticalSpeed, 2)} > ${formatNumber(vStructureSpeed, 2)} → ${resultCriteria ? '<strong>Atendido</strong>' : '<strong>Não atendido</strong>'}</p>
         <br>
         <br><h4>4. Conclusão</h4>
         <br><p>&emsp;A estrutura analisada ${resultCriteria ? '<strong>está dispensada</strong>' : '<strong>não está dispensada</strong>'} da verificação dos efeitos de desprendimento de vórtices.</p>

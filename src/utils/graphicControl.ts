@@ -1,3 +1,4 @@
+import { showWizardHelpStep } from '../wizard';
 import { getElement } from './dom';
 import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip } from 'chart.js';
 
@@ -9,7 +10,7 @@ const cleanChart = getElement<HTMLButtonElement>('#result__graphic__button--clea
 const resetChart = getElement<HTMLButtonElement>('#result__graphic__button--reset');
 const displayGraphic = getElement<HTMLElement>('.result__graphic');
 const ctx = getElement<HTMLCanvasElement>('#result__graphic-chart');
-
+const helpButton = getElement<HTMLButtonElement>('#result__graphic__button--help');
 
 cleanChart.addEventListener('click', () => {
     cleanChartPoints();
@@ -25,6 +26,10 @@ undoChart.addEventListener('click', () => {
 
 redoChart.addEventListener('click', () => {
     redoChartPoints();
+});
+
+helpButton.addEventListener('click', () => {
+    wizardGraphic()
 });
 
 const dataChart = {
@@ -208,6 +213,10 @@ function resetChartPoints() : void {
     updateChart();
 }
 
+function wizardGraphic() : void {
+    showWizardHelpStep(13);
+}
+
 function undoChartPoints() : void {
     if (mainStock.length === 0) return;
     const pointRemoved = mainStock.pop()!;
@@ -222,7 +231,14 @@ function redoChartPoints() : void {
     updateChart();
 }
 
-function updateChart() : void {
-    dataChart.datasets[0].data = mainStock;
-    graphicChart.update();
+function updateChart(): void {
+  const validPoints = mainStock.filter(point =>
+    point && typeof point.x === 'number' && typeof point.y === 'number'
+  );
+
+  undoChart.disabled = mainStock.length <= 1;
+  redoChart.disabled = redoStock.length <= 1;
+
+  dataChart.datasets[0].data = validPoints;
+  graphicChart.update();
 }

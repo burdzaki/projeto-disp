@@ -29,12 +29,12 @@ const wizardSteps: WizardStep[] = [
     },
     {   //step 2
         title: 'Altura h (m)',
-        text: 'Informe aqui, em metros, a altura total da edificação a ser analisada.</p>',
+        text: 'Informe, em metros, a altura total da edificação a ser analisada.</p>',
         selector: '#structure-height'
     },
     {   //step 3
         title: 'Dimensão d0 (m)',
-        text: '<p>Informe, em metros, a menor dimensão transversal da estrutura em relação à direção do vento. Ela compõe o cálculo da esbeltez.</p>',
+        text: '<p>Informe, em metros, a menor dimensão transversal da estrutura (perpendicular à direção do vento).</p>',
         selector: '#dimension-d0'
     },
     {   //step 4
@@ -64,12 +64,12 @@ const wizardSteps: WizardStep[] = [
     },
     {   //step 9
         title: 'Fator estatístico S3',
-        text:  '<p>Esse fator considera o grau de segurança e vida útil requeridos pela edificação. Você pode digitar um valor já calculado ou escolher entre os fornecidos de acordo com os grupos de estruturas da NBR 6123:2023:<br><br><strong>• Grupo 1:</strong> Estruturas (e suas vedações) que, em caso de ruína, podem afetar a segurança ou possibilidade de socorro após desastres naturais, que abrigam substâncias inflamáveis/tóxicas/explosivas ou pontes (1,11)<br><strong>• Grupo 2:</strong> Estruturas (e suas vedações) que, em caso de ruína, representam risco substancial à vida humana devido a aglomeração de pessoas (1,06)<br><strong>• Grupo 3:</strong> Edificações (e suas vedações) para residências, hotéis, comércio e indústrias ou desmontáveis para reutilização (1,00)<br><strong>• Grupo 4:</strong> Edificações (e suas vedações) não destinadas à ocupação humana e sem circulação de pessoas no seu entorno (0,95)<br><strong>• Grupo 5:</strong> Edificações temporárias não reutilizáveis (0,83)</p>',
+        text:  '<p>Esse fator considera o grau de segurança e vida útil requeridos pela edificação. Você pode digitar um valor já calculado ou escolher entre os fornecidos de acordo com os grupos de estruturas da NBR 6123:2023:<br><br><strong>• 1,11 - Grupo 1:</strong> Estruturas (e suas vedações) que, em caso de ruína, podem afetar a segurança ou possibilidade de socorro após desastres naturais, que abrigam substâncias inflamáveis/tóxicas/explosivas ou pontes <br><strong>• 1,06 - Grupo 2:</strong> Estruturas (e suas vedações) que, em caso de ruína, representam risco substancial à vida humana devido a aglomeração de pessoas <br><strong>• 1,00 - Grupo 3:</strong> Edificações (e suas vedações) para residências, hotéis, comércio e indústrias ou desmontáveis para reutilização <br><strong>• 0,95 - Grupo 4:</strong> Edificações (e suas vedações) não destinadas à ocupação humana e sem circulação de pessoas no seu entorno <br><strong>• 0,83 - Grupo 5:</strong> Edificações temporárias não reutilizáveis </p>',
         selector: '#statistical-factor-S3'
     },
     {   //step 10
         title: 'Dimensão L (m)',
-        text:  '<p>Aqui, informe o valor da dimensão característica da seção transversal da sua edificação em metros.<br><br>Obs.:Para estruturas alteadas de seção circular, adotar o diâmetro médio do terço superior da estrutura.</p>',
+        text:  '<p>Aqui, informe o valor da dimensão característica da seção transversal da sua edificação em metros.<br>Para estruturas alteadas de seção circular, adotar o diâmetro médio do terço superior da estrutura.<br><br>Obs.: Essa seção possui preenchimento automático da menor dimensão transversal da estrutura em metros, <strong>mas você deve avaliar se essa dimensão corresponde a sua verificação.</strong></p>',
         selector: '#transversal-dimension-L'
     },
     {   //step 11
@@ -84,7 +84,7 @@ const wizardSteps: WizardStep[] = [
     },
     {   //step 13
         title: 'Gráfico Relação Fn x Vcr/Vest',
-        text:  '<p>O gráfico abaixo do resultado e memória de cálculo relaciona a Frequência Natural do Edifício com a razão Velocidade Crítica calculada / Velocidade atuante na estrutura. Essa variação do Fn em função da razão adimensional das velocidades permite avaliar a proximidade da velocidade crítica em relação à estimada de vento na edificação.<br>Você possui como botões de comando: <br><br><strong>• Voltar/Avançar:</strong> permitem você navegar pelos pontos já inseridos, possibilitando eventuais correções<br><strong>• Limpar:</strong> Limpa os pontos inseridos, zerando o gráfico <br><strong>• Resetar:</strong> Restaura os últimos pontos presentes no gráfico</p>',
+        text:  '<p>O gráfico relaciona a Frequência Natural do Edifício com a razão Velocidade Crítica calculada / Velocidade atuante na estrutura. Essa variação do Fn em função da razão adimensional das velocidades permite avaliar a proximidade da velocidade crítica em relação à estimada de vento na edificação.<br>Você possui como botões de comando: <br><br><strong>• Voltar/Avançar:</strong> permitem você navegar pelos pontos já inseridos, possibilitando eventuais correções<br><strong>• Limpar:</strong> Limpa os pontos inseridos, zerando o gráfico <br><strong>• Resetar:</strong> Restaura os últimos pontos presentes no gráfico</p>',
         selector: '.result__graphic'
     },
     {   //step 14
@@ -137,11 +137,32 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
     }
 
     else {
-        wizardContainer.style.top = `${rect.top + window.scrollY + 40}px`;
-        wizardContainer.style.left = `${rect.left + window.scrollX + 0}px`;
-        if (step.selector === '.result__graphic') {
-            wizardContainer.style.top = `${rect.top + window.scrollY + 40}px`;
-            wizardContainer.style.left = `${rect.left + window.scrollX + 400}px`;
+        const isSmallScreen = window.innerWidth < 768;
+        const targetTop = rect.top + window.scrollY;
+        const targetLeft = rect.left + window.scrollX;
+
+        // Reset styles
+        wizardContainer.style.top = '';
+        wizardContainer.style.left = '';
+        wizardContainer.style.right = '';
+        wizardContainer.style.bottom = '';
+        wizardContainer.style.transform = '';
+        wizardContainer.style.position = '';
+
+        // Se tela for pequena OU o elemento estiver muito fora da tela visível, centraliza o wizard
+        if (isSmallScreen || targetTop > window.innerHeight * 0.7) {
+            wizardContainer.style.position = 'fixed';
+            wizardContainer.style.bottom = '20px';
+            wizardContainer.style.left = '50%';
+            wizardContainer.style.transform = 'translateX(-50%)';
+        } else {
+            wizardContainer.style.position = 'absolute';
+            wizardContainer.style.top = `${targetTop + 40}px`;
+            wizardContainer.style.left = `${targetLeft}px`;
+
+            if (step.selector === '.result__graphic') {
+                wizardContainer.style.left = `${targetLeft + 400}px`;
+            }
         }
     }
 
@@ -150,15 +171,14 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
 
     if (hideNavigation) {
         backButton.style.display = 'none';
-        backButton.disabled = true;
 
         nextButton.style.display = 'none';
-        nextButton.disabled = true;
     }
     else {
         if (index === 0) {
             backButton.disabled = index === 0;
             backButton.style.display = 'none';
+            nextButton.style.display = 'flex';
         }
         else if (index === wizardMaxIndex) {
             nextButton.disabled = index === wizardMaxIndex;
@@ -213,7 +233,7 @@ function backStep(): void {
     if (currentStep > 0) {
     currentStep--;
     showWizardStep(currentStep);
-    }   
+    }
 }
 
 function nextStep(): void {

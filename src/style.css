@@ -475,13 +475,17 @@ body {
   }
 
   .wizard__container {
-    position: relative;
+    position: relative; /* permanece relativo, pois é importante para os steps */
     background: var(--background-color);
-    padding: 15px 15px;
+    padding: 15px;
+    width: 100%;
     max-width: 650px;
-    width: 90%;
+    margin: 0 16px; /* margem lateral de segurança */
     border-radius: 10px;
     box-shadow: 0 5px 20px var(--wizard-border);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
   }
 
   .wizard__navigation {
