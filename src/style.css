@@ -569,14 +569,21 @@ body {
     transition: background-color 0.3s ease-in-out;
   }
 
-  @media (max-width: 480px) {
+/* SMALL SCREEN */
+  @media (max-width: 900px) {
     .wizard__container {
-      max-width: 90vw !important;
-      width: auto !important;
-      left: 5% !important;
-      right: 5% !important;
-      transform: none !important;
+      max-width: 95vw;
+      width: auto;
+      margin: 0 16px;
       box-sizing: border-box;
+    }
+
+    .wizard__text {
+      font-size: 16px;
+    }
+
+    .wizard__title {
+      font-size: 19px;
     }
   }
 

@@ -171,7 +171,6 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
 
     if (hideNavigation) {
         backButton.style.display = 'none';
-
         nextButton.style.display = 'none';
     }
     else {
@@ -181,10 +180,14 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
             nextButton.style.display = 'flex';
         }
         else if (index === wizardMaxIndex) {
-            nextButton.disabled = index === wizardMaxIndex;
+            nextButton.disabled = true;
+            backButton.disabled = false;
+            backButton.style.display = 'flex';
             nextButton.style.display = 'none';
         }
         else {
+            backButton.disabled = false;
+            nextButton.disabled = false;
             backButton.style.display = 'flex';
             nextButton.style.display = 'flex';
         }
@@ -231,8 +234,8 @@ function clearHighlight(): void {
 
 function backStep(): void {
     if (currentStep > 0) {
-    currentStep--;
-    showWizardStep(currentStep);
+        currentStep--;
+        showWizardStep(currentStep);
     }
 }
 
