@@ -182,7 +182,7 @@ buttonCalculate.addEventListener('click', () => {
 
   const resultSlenderness = verifySlenderness();
 
-  showCalculusResult(resultSlenderness.h, resultSlenderness.d0, resultSlenderness.slenderness, structureCategory.value, elevationZ, speedV0, topographicFactorS1, parametersS2.bm, parametersS2.p, parametersS2.s2, statisticalFactorS3, structureFrequencyFn, vStructureSpeed, vCriticalSpeed, transversalDimensionL, strouhalNumber, criteriaResult, widthA, lenghtB);
+  showCalculusResult(resultSlenderness.h, resultSlenderness.d0, resultSlenderness.slenderness, structureCategory.value, elevationZ, speedV0, topographicFactorS1, parametersS2.bm, parametersS2.p, parametersS2.s2, statisticalFactorS3, structureFrequencyFn, vStructureSpeed, vCriticalSpeed, transversalDimensionL, strouhalNumber, criteriaResult, widthA, lenghtB, windMode);
   
   
   if (selectedFormat === 'Rectangle' && widthA !== 0 && lenghtB !==0 ) {

@@ -44,7 +44,7 @@ const wizardSteps: WizardStep[] = [
     },
     {   //step 5
         title: 'Velocidade básica V0 (m/s)',
-        text:  '<p>Escolha entrar com um valor estimado por você (em metros/segundo) ou pesquisar estado e cidade de acordo com a lista de isopletas disponibilizada pela <strong>Elgin</strong>. <br>Obs.: A fonte desse índice pode ser verificada na aba Sobre.</p>',
+        text:  '<p>A velocidade básica de vento adotada pela NBR 6123:2023 é a velocidade de uma rajada de 3 segundos, a 10 m acima do terreno em campo aberto e pleno, excedida em média uma vez em 50 anos. Escolha entrar com um valor estimado por você (em metros/segundo) ou pesquisar estado e cidade de acordo com a lista de isopletas disponibilizada pela <strong>Elgin</strong>. <br>Obs.: A fonte desse índice pode ser verificada na aba Sobre.</p>',
         selector: '#input__speed-V0'
     },
     {   //step 6
@@ -73,7 +73,7 @@ const wizardSteps: WizardStep[] = [
         selector: '#transversal-dimension-L'
     },
     {   //step 11
-        title: 'Frequência Natural da Estrutura Fn (Hz)',
+        title: 'Frequência Natural da Estrutura fn (Hz)',
         text:  '<p>Nesse campo deve ser preenchida a frequência natural da estrutura associada ao modo de vibração. Você pode obter esse valor por meio de softwares de análise modal estrutural ou por métodos de estimativa baseados em literatura técnica. A NBR 6123:2023 recomenda que a frequência considerada seja compatível com o modo de vibração predominante na direção do vento analisada.</p>',
         selector: '#structure-frequency-Fn'
     },
@@ -83,8 +83,8 @@ const wizardSteps: WizardStep[] = [
         selector: '#strouhal-input'
     },
     {   //step 13
-        title: 'Gráfico Relação Fn x Vcr/Vest',
-        text:  '<p>O gráfico relaciona a Frequência Natural do Edifício com a razão Velocidade Crítica calculada / Velocidade atuante na estrutura. Essa variação do Fn em função da razão adimensional das velocidades permite avaliar a proximidade da velocidade crítica em relação à estimada de vento na edificação.<br>Você possui como botões de comando: <br><br><strong>• Voltar/Avançar:</strong> permitem você navegar pelos pontos já inseridos, possibilitando eventuais correções<br><strong>• Limpar:</strong> Limpa os pontos inseridos, zerando o gráfico <br><strong>• Resetar:</strong> Restaura os últimos pontos presentes no gráfico</p>',
+        title: 'Gráfico Relação Vest (m/s) x Elevação Z (m)',
+        text:  '<p>Este gráfico auxilia na visualização de como a <strong>velocidade atuante na estrutura (Vest)</strong> cresce com a <strong>elevação Z</strong>, formando um perfil de vento ao longo da altura. A curva mostra os valores calculados de Vest para as cotas analisadas. A linha vertical <strong>0,8.Vcr</strong> marca a velocidade crítica da sua estrutura, e a faixa à direita indica a zona onde <strong>Vest ≥ Vcr</strong>. <br><br>Para montar a curva do gradiente da velocidade: inicie com elevação Z próxima a 0 metros e efetue o cálculo da verificação, repetindo esse processo para elevações cada vez maiores (a cada 5 m, 10 m, ou o valor do pé-direito do seu edifício) — se a curva estiver à esquerda de Vcr, a dispensa é atendida; se encostar ou ultrapassar Vcr, a verificação dinâmica não pode ser dispensada. <br><br>Você possui como botões de comando: <br><strong>• Voltar/Avançar:</strong> permitem você navegar pelos pontos já inseridos, possibilitando eventuais correções<br><strong>• Limpar:</strong> Limpa os pontos inseridos, zerando o gráfico <br><strong>• Resetar:</strong> Restaura os últimos pontos presentes no gráfico</p>',
         selector: '.result__graphic'
     },
     {   //step 14
@@ -92,23 +92,32 @@ const wizardSteps: WizardStep[] = [
         text:  '<p>Esperamos que essa ferramenta o(a) auxilie no cálculo da sua estrutura. <br><br><strong>Bom trabalho!</strong></p>',
         selector: '.input__calculate--button'
     },
+    {   //step 15 -- out of wizard
+        title: 'Sobre as Velocidades Fornecidas',
+        text:  '<p>A lista de velocidades fornecida pela <strong>Elgin</strong> não interpola os valores das isopletas. Caso deseje valor mais preciso ao da localização da edificação, recomendamos a análise do mapa de isopletas fornecido pela NBR 6123:2023.</p>',
+        selector: '#speed-V0-wrapper'
+    },
 ];
 
 let currentStep = 0;
-const wizardMaxIndex = wizardSteps.length - 1;
+const wizardMaxIndex = wizardSteps.length - 2;
 const resultGraphicSection = getElement<HTMLElement>('.result__graphic');
 
-export function showWizardStep(index: number, hideNavigation : boolean = false) : void {
-    const step = wizardSteps[index];
-    const target = getElement<HTMLElement>(step.selector);
-    
+function showResultGraphicSection (target: string) : void {
     if (resultGraphicSection) {
-        if (step.selector === '.result__graphic') {
+        if (target === '.result__graphic') {
             resultGraphicSection.style.display = 'block';
         } else {
             resultGraphicSection.style.display = wasResultAlreadyShown() ? 'block' : 'none';
         }
     }
+}
+
+export function showWizardStep(index: number, hideNavigation : boolean = false) : void {
+    const step = wizardSteps[index];
+    const target = getElement<HTMLElement>(step.selector);
+    
+    showResultGraphicSection(step.selector);
 
     if (!target) {
         console.warn(`Elemento não encontrado: ${step.selector}`);
@@ -203,6 +212,7 @@ export function setupWizard(): void {
     });
 
     closeButton.addEventListener('click', () => {
+        showResultGraphicSection('');
         closeWizard();
     });
 
@@ -248,6 +258,7 @@ function nextStep(): void {
 
 function closeWizard(): void {
     wizard.classList.add('wizard--hidden');
+    showResultGraphicSection('');
     currentStep = 0;
     clearHighlight();
 }

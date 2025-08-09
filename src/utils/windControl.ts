@@ -46,7 +46,7 @@ export function setWindLookup (stateSelect: HTMLSelectElement, citySelect: HTMLS
 
         citySelect.innerHTML = "<option value='' disabled selected hidden>Cidade</option>";
         standardV0.value = '';
-        cityWrapper.style.display = 'block';
+        cityWrapper.style.display = 'flex';
         speedv0Wrapper.style.display = 'none';
 
 

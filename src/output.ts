@@ -1,6 +1,6 @@
 import { getElement } from './utils/dom';
 import { formatNumber } from './utils/format';
-import { addChartPoint } from './utils/graphicControl';
+import { addChartPoint, addVcrLines } from './utils/graphicControl';
 
 const divResults = getElement<HTMLDivElement>('.result__output__criteria');
 const divSlenderness = getElement<HTMLDivElement>('.result__output__slenderness');
@@ -24,11 +24,11 @@ export function showSlendernessResult (slenderness : number) : void {
     else divSlenderness.innerHTML = '';
 }
 
-export function showCalculusResult (structureHeight: number, dimensionD0: number, slenderness: number, structureCategory: string, elevationZ: number, speedV0: number, topographicFactorS1: number, meteorologicalParameterBm: number, exponentP: number, roughnessFactorS2: number, statisticalFactorS3: number, structureFrequencyFn: number, vStructureSpeed: number, vCriticalSpeed: number, transversalDimensionL: number, strouhalNumberSt: number, resultCriteria: boolean, widthA: number, lenghtB: number): void {
+export function showCalculusResult (structureHeight: number, dimensionD0: number, slenderness: number, structureCategory: string, elevationZ: number, speedV0: number, topographicFactorS1: number, meteorologicalParameterBm: number, exponentP: number, roughnessFactorS2: number, statisticalFactorS3: number, structureFrequencyFn: number, vStructureSpeed: number, vCriticalSpeed: number, transversalDimensionL: number, strouhalNumberSt: number, resultCriteria: boolean, widthA: number, lenghtB: number, windMode: boolean): void {
     
     divResults.innerHTML = ''; //remover no final
 
-    const speedRatio = vCriticalSpeed / vStructureSpeed;
+    // const speedRatio = vCriticalSpeed / vStructureSpeed;
 
     const resultStructureSpeedBase: string = `
         <h3>Memória de Cálculo – Critério para verificação do efeito de desprendimento de vórtices</h3>
@@ -43,7 +43,7 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
         <br>
         <p>&emsp;Categoria de rugosidade do terreno ${structureCategory}</p>
         <p>&emsp;Elevação da edificação (Z) = ${formatNumber(elevationZ, 2)} m</p>
-        <p>&emsp;Velocidade básica (V0) = ${formatNumber(speedV0, 2)} m/s</p>
+        <p>&emsp;Velocidade básica de vento (V0) = ${formatNumber(speedV0, 2)} m/s</p>
         <p>&emsp;Fator topográfico S1 = ${formatNumber(topographicFactorS1, 2)}</p> 
         <p>&emsp;Fator S2 = ${formatNumber(roughnessFactorS2, 2)}</p>
             <p>&emsp;&emsp;&emsp;Parâmetro metereológico bm = ${formatNumber(meteorologicalParameterBm)}</p>
@@ -52,12 +52,16 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
         <p>&emsp;Fator estatístico S3 = ${formatNumber(statisticalFactorS3)}</p>
         
         <br><p><b>&emsp;Vest = ${formatNumber(vStructureSpeed, 2)} m/s</b></p>
-        <br><hr>
+    `;
+
+    const windString: string = `       
+        <br><p>&emsp;Obs.: Valor de velocidade básica de vento (V0) adotada a partir das lista de isopletas fornecida pela Elgin.</p>
     `;
 
     const resultStInput: string = `
+        <br><hr>
         <br><h4>2. Cálculo da velocidade crítica do vento (Vcr)</h4>
-        <br><p>&emsp;Frequência natural da estrutura (Fn) = ${formatNumber(structureFrequencyFn, 2)} Hz</p>
+        <br><p>&emsp;Frequência natural da estrutura (fn) = ${formatNumber(structureFrequencyFn, 2)} Hz</p>
         <p>&emsp;Dimensão característica da seção transversal (L) = ${formatNumber(transversalDimensionL, 2)} m</p>
         <p>&emsp;Número de Strouhal (St) = ${formatNumber(strouhalNumberSt, 2)}</p>
         <br><p><b>&emsp;Vcr = ${formatNumber(vCriticalSpeed, 2)} m/s</b></p>
@@ -72,7 +76,7 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
 
     const resultStStandard: string = `
         <br><h4>2. Cálculo da velocidade crítica do vento (Vcr)</h4>
-        <br><p>&emsp;Frequência natural da estrutura (Fn) = ${formatNumber(structureFrequencyFn, 2)} Hz</p>
+        <br><p>&emsp;Frequência natural da estrutura (fn) = ${formatNumber(structureFrequencyFn, 2)} Hz</p>
         <p>&emsp;Dimensão característica da seção transversal (L) = ${formatNumber(transversalDimensionL, 2)} m</p>
         <p>&emsp;Número de Strouhal (St) = ${formatNumber(strouhalNumberSt, 2)}</p>
             <p>&emsp;&emsp;&emsp;Dimensão a = ${formatNumber(widthA, 2)} m</p>
@@ -92,14 +96,16 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
     }
     else {
         divResults.innerHTML = resultStructureSpeedBase;
+        resultAlreadyShown = true;
+        if(windMode === true) divResults.innerHTML += windString;
         if(widthA !== 0 && lenghtB !== 0) {
             divResults.innerHTML += resultStStandard;
         }
         else divResults.innerHTML += resultStInput;
         divResults.style.border = '1px solid var(--text-color-input)';
-        addChartPoint(structureFrequencyFn, speedRatio);
+        addVcrLines(vCriticalSpeed);
+        addChartPoint(vStructureSpeed, elevationZ);
         printButton.style.display = 'block';
-        resultAlreadyShown = true;
     }
 }
 

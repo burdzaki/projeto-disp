@@ -218,8 +218,15 @@ body {
     align-items: flex-end;
   }
 
-  .input__row label {
+  /* .input__row label {
     margin-right: 77px;
+  } */
+
+  .input__row {
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
   }
 
   .input__container-list::after {
@@ -530,18 +537,26 @@ body {
     background: none;
   }
 
-  .wizard__help-button {
+  .wizard__help-button, .wizard__readme-button {
     height: 19px;
     width: 19px;
     font-family: var(--text-font-Inter);
-    font-size: 14.5px;
     font-weight: 400;
     text-decoration: none;
-    color: var(--text-color-logobzk);
     border-style: solid;
     border-radius: 15px;
     border-color: var(--background-color);
     background-color: var(--background-color);
+  }
+
+  .wizard__help-button {
+    font-size: 14.5px;
+    color: var(--text-color-logobzk);
+  }
+
+  .wizard__readme-button {
+    font-size: 17.5px;
+    color: red;
   }
 
   .wizard__help-wrap {

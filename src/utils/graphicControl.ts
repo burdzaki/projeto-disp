@@ -1,8 +1,9 @@
 import { showWizardHelpStep } from '../wizard';
 import { getElement } from './dom';
 import { Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip } from 'chart.js';
+import annotationPlugin, { AnnotationOptions } from 'chartjs-plugin-annotation';
 
-Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip);
+Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, annotationPlugin);
 
 const undoChart = getElement<HTMLButtonElement>('#result__graphic__button--undo');
 const redoChart = getElement<HTMLButtonElement>('#result__graphic__button--redo');
@@ -40,8 +41,9 @@ const dataChart = {
         borderColor: '#32A28C',
         pointHoverBackgroundColor: '#1D4C4C',
         pointHoverBorderColor: '#1D4C4C',
-        borderWidth: 2,
-        tension: 0.1
+        borderWidth: 2.5,
+        pointRadius: 1.25,
+        tension: 0.25
     }]
 };
 
@@ -67,19 +69,80 @@ const dataStrouhal = {
     }]
 };
 
+
+export function addVcrLines(vcr: number): void {
+    let VcrAnnotation: number = 0; 
+    let VcrAnnotationReduced: number = 0;
+    VcrAnnotation = vcr;
+    VcrAnnotationReduced = vcr / 1.25;
+
+    if (!graphicWind.options.plugins?.annotation?.annotations) return;
+
+    const annotationConfig = graphicWind.options.plugins.annotation.annotations as Record<string, AnnotationOptions>;
+    
+    annotationConfig['vcrLine'] = {
+            type: 'line',
+            xMin: VcrAnnotation,
+            xMax: VcrAnnotation,
+            borderColor: '#641212ff',
+            borderWidth: 2,
+            label: {
+                display: true,
+                content: 'Vcr',
+                position: 'start',
+                rotation: 270,
+                xAdjust: -10,
+                color: '#fff',
+                font: {
+                    family: 'Inter',
+                    size: 12,
+                }
+            },
+    }
+    annotationConfig['vcrLineReduced'] = {
+            type: 'line',
+            xMin: VcrAnnotationReduced,
+            xMax: VcrAnnotationReduced,
+            borderColor: '#5B5959',
+            borderWidth: 2,
+            label: {
+                display: true,
+                content: '0,8.Vcr',
+                position: 'start',
+                rotation: 270,
+                xAdjust: -10,
+                color: '#fff',
+                font: {
+                    family: 'Inter',
+                    size: 12,
+                }
+            },
+    };
+    annotationConfig['redBox'] = {
+    type: 'box',
+        xMin: VcrAnnotation,
+        backgroundColor: 'rgba(255, 99, 132, 0.25)'
+    }
+
+    graphicWind.update;
+}
+
 let mainStock: {x: number, y: number }[] = [];
 let redoStock: {x: number, y: number }[] = [];
 
-const graphicChart = new Chart (ctx, {
+const graphicWind = new Chart (ctx, {
     type: 'line',
     data: dataChart,
     options: {
         responsive: true,
         plugins: {
+            annotation: {
+                annotations: {} as Record<string, AnnotationOptions>
+            },
             title: {
                 display: true,
                 align: 'center',
-                text: 'Frequência Natural x Velocidade Crítica/Velocidade na Estrutura',
+                text: 'Velocidade do Vento na Estrutura x Elevação Z',
                 font: {
                     family: 'Montserrat',
                     size: 20,
@@ -92,7 +155,7 @@ const graphicChart = new Chart (ctx, {
                 min: 0,
                 title: {
                     display: true,
-                    text: 'Fn (Hz)',
+                    text: 'Vest (m/s)',
                     font: {
                         family: 'Inter',
                         size: 15,
@@ -103,7 +166,7 @@ const graphicChart = new Chart (ctx, {
                 min: 0,
                 title: {
                     display: true,
-                    text: 'Vcr / Vest',
+                    text: 'Elevação Z (m)',
                     font: {
                         family: 'Inter',
                         size: 15,
@@ -116,7 +179,7 @@ const graphicChart = new Chart (ctx, {
 
 export let graphicStrouhal: Chart<'line'>;
 
-export function initializeStrouhalChart() {
+export function initializeStrouhalChart(): void {
     const ctx = getElement<HTMLCanvasElement>('#result__graphic-strouhal')
     if (graphicStrouhal) {
         graphicStrouhal.destroy(); // <-- ISSO É ESSENCIAL
@@ -169,7 +232,7 @@ export function initializeStrouhalChart() {
     });
 }
 
-export function highlightStrouhalPoint(strouhalRatio: number, st: number) {
+export function highlightStrouhalPoint(strouhalRatio: number, st: number): void {
   // Remove o ponto anterior (índice 1 se for sempre o destaque)
   if (graphicStrouhal.data.datasets.length > 1) {
     graphicStrouhal.data.datasets.pop(); // ou .splice(1, 1);
@@ -190,7 +253,7 @@ export function highlightStrouhalPoint(strouhalRatio: number, st: number) {
 }
 
 export function initializeChart() : void {
-    mainStock = [ { x: 0, y: 0 }];
+    mainStock = [ { x: 0, y: 0 } ];
     redoStock = [...mainStock];
     updateChart();
 }
@@ -204,7 +267,7 @@ export function addChartPoint(x: number, y: number): void {
 }
 
 function cleanChartPoints() : void {
-    mainStock = [];
+    mainStock = [ { x: 0, y: 0 } ];
     updateChart();
 }
 
@@ -240,5 +303,5 @@ function updateChart(): void {
   redoChart.disabled = redoStock.length <= 1;
 
   dataChart.datasets[0].data = validPoints;
-  graphicChart.update();
+  graphicWind.update();
 }
