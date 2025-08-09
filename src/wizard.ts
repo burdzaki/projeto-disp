@@ -1,5 +1,6 @@
 import { getElement } from "./utils/dom";
 import { wasResultAlreadyShown } from "./output";
+import { debounce } from "./utils/validation";
 
 const wizard = getElement<HTMLElement>('#wizard');
 const wizardContainer = getElement<HTMLElement>('.wizard__container');
@@ -126,82 +127,87 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
 
     wizardTitle.textContent = step.title;
     wizardText.innerHTML = step.text;
+    
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
 
-    const rect = target.getBoundingClientRect();
+            const rect = target.getBoundingClientRect();
 
-    wizardContainer.style.position = 'absolute';
-
-    if (currentStep === 0) {
-        wizardContainer.style.top = `20%`;
-        
-        if (window.innerWidth < 480) {
-            wizardContainer.style.left = `5%`;
-            wizardContainer.style.right = `5%`;
-            wizardContainer.style.maxWidth = `90vw`;
-            wizardContainer.style.transform = 'none';
-            wizardContainer.style.top = '30px';
-        } else {
-            wizardContainer.style.left = `35%`;
-        }
-    }
-
-    else {
-        const isSmallScreen = window.innerWidth < 768;
-        const targetTop = rect.top + window.scrollY;
-        const targetLeft = rect.left + window.scrollX;
-
-        // Reset styles
-        wizardContainer.style.top = '';
-        wizardContainer.style.left = '';
-        wizardContainer.style.right = '';
-        wizardContainer.style.bottom = '';
-        wizardContainer.style.transform = '';
-        wizardContainer.style.position = '';
-
-        // Se tela for pequena OU o elemento estiver muito fora da tela visível, centraliza o wizard
-        if (isSmallScreen || targetTop > window.innerHeight * 0.7) {
-            wizardContainer.style.position = 'fixed';
-            wizardContainer.style.bottom = '20px';
-            wizardContainer.style.left = '50%';
-            wizardContainer.style.transform = 'translateX(-50%)';
-        } else {
             wizardContainer.style.position = 'absolute';
-            wizardContainer.style.top = `${targetTop + 40}px`;
-            wizardContainer.style.left = `${targetLeft}px`;
 
-            if (step.selector === '.result__graphic') {
-                wizardContainer.style.left = `${targetLeft + 400}px`;
+            if (currentStep === 0) {
+                wizardContainer.style.top = `20%`;
+                
+                if (window.innerWidth < 1000) {
+                    wizardContainer.style.left = `5%`;
+                    wizardContainer.style.right = `5%`;
+                    wizardContainer.style.maxWidth = `90vw`;
+                    wizardContainer.style.transform = 'none';
+                    wizardContainer.style.top = '30px';
+                } else {
+                    wizardContainer.style.right = `center`;
+                }
             }
-        }
-    }
 
-    clearHighlight();
-    target.classList.add('wizard-highlight');
+            else {
+                const isSmallScreen = window.innerWidth < 900;
+                const targetTop = rect.top + window.scrollY;
+                const targetLeft = rect.left + window.scrollX;
 
-    if (hideNavigation) {
-        backButton.style.display = 'none';
-        nextButton.style.display = 'none';
-    }
-    else {
-        if (index === 0) {
-            backButton.disabled = index === 0;
-            backButton.style.display = 'none';
-            nextButton.style.display = 'flex';
-        }
-        else if (index === wizardMaxIndex) {
-            nextButton.disabled = true;
-            backButton.disabled = false;
-            backButton.style.display = 'flex';
-            nextButton.style.display = 'none';
-        }
-        else {
-            backButton.disabled = false;
-            nextButton.disabled = false;
-            backButton.style.display = 'flex';
-            nextButton.style.display = 'flex';
-        }
-    }
+                // Reset styles
+                wizardContainer.style.top = '';
+                wizardContainer.style.left = '';
+                wizardContainer.style.right = '';
+                wizardContainer.style.bottom = '';
+                wizardContainer.style.transform = '';
+                wizardContainer.style.position = '';
 
+                // Se tela for pequena OU o elemento estiver muito fora da tela visível, centraliza o wizard
+                if (isSmallScreen || targetTop > window.innerHeight * 0.7) {
+                    wizardContainer.style.position = 'fixed';
+                    wizardContainer.style.bottom = '20px';
+                    wizardContainer.style.left = '50%';
+                    wizardContainer.style.transform = 'translateX(-50%)';
+                } else {
+                    wizardContainer.style.position = 'absolute';
+                    wizardContainer.style.top = `${targetTop + 40}px`;
+                    wizardContainer.style.left = `${targetLeft}px`;
+
+                    if (step.selector === '.result__graphic') {
+                        wizardContainer.style.left = `${targetLeft + 400}px`;
+                    }
+                }
+            }
+
+            clearHighlight();
+            target.classList.add('wizard-highlight');
+
+            if (hideNavigation) {
+                backButton.style.display = 'none';
+                nextButton.style.display = 'none';
+            }
+            else {
+                if (index === 0) {
+                    backButton.disabled = index === 0;
+                    backButton.style.display = 'none';
+                    nextButton.style.display = 'flex';
+                }
+                else if (index === wizardMaxIndex) {
+                    nextButton.disabled = true;
+                    backButton.disabled = false;
+                    backButton.style.display = 'flex';
+                    nextButton.style.display = 'none';
+                }
+                else {
+                    backButton.disabled = false;
+                    nextButton.disabled = false;
+                    backButton.style.display = 'flex';
+                    nextButton.style.display = 'flex';
+                }
+            }
+
+        });
+    });
 
 }
 
@@ -233,10 +239,16 @@ export function setupWizard(): void {
 
         if (event.key === 'Escape') closeWizard();
     });
+
+    const relayout = () => showWizardStep(currentStep);
+    const relayoutDebounced = debounce(relayout);
+
+    window.addEventListener('resize', relayoutDebounced);
+    window.addEventListener('orientationchange', () => setTimeout(relayout, 0));
 }
 
 
-function clearHighlight(): void {
+export function clearHighlight(): void {
     document.querySelectorAll('.wizard-highlight').forEach(element => {
         element.classList.remove('wizard-highlight');
     });

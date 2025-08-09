@@ -1,4 +1,5 @@
 import { getElement } from "./dom";
+import { clearHighlight } from "../wizard";
 
 const closeButton = getElement<HTMLButtonElement>('.footer__terms--close');
 const hideTerms = getElement<HTMLElement>('#footer-terms');
@@ -64,6 +65,7 @@ export function showLicense(): void {
 
     closeButton.addEventListener('click', () => {
         hideTerms?.classList.add("footer__terms--hidden");
+        clearHighlight();
     });
 
     document.addEventListener('keydown', (event) => {

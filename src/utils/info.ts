@@ -1,4 +1,5 @@
 import { getElement } from "./dom";
+import { clearHighlight } from "../wizard";
 
 const closeButton = getElement<HTMLButtonElement>('.about__modal--close');
 const hideInfo = getElement<HTMLElement>('#about__modal');
@@ -33,6 +34,7 @@ export function showInfo(): void {
 
     closeButton.addEventListener('click', () => {
         hideInfo?.classList.add("about__modal--hidden");
+        clearHighlight();
     });
 
     document.addEventListener('keydown', (event) => {

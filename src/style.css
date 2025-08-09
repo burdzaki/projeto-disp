@@ -424,12 +424,12 @@ body {
     display: none;
   }
 
-
 /* FOOTER */
   footer {
     display: flex;
     margin-bottom: 0;
     height: 100px;
+    width: 100%;
     background-color: var(--footer-color);
     flex-direction: column;
     justify-content: center;
@@ -488,6 +488,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 999;
+    box-sizing: border-box;
   }
 
   .wizard--hidden {
@@ -597,12 +598,46 @@ body {
   }
 
 /* SMALL SCREEN */
-  @media (max-width: 900px) {
+  img, canvas { max-width: 100%; height: auto; }
+  
+  @media (max-width: 600px) {
+    header { margin: 16px; }
+    .header__links { margin-right: 0; gap: 12px; }
+    .logo__text { font-size: 28px; }
+    .main__title { margin: 16px; font-size: 22px; }
+    .logo__main { display: none; } /* remove imagem fantasma no mobile */
+    /* button, .input__field, .input__field-list { min-height: 35px; } */
+
+    .dropdown__container-option { width: 100%; }
+    .dropdown__container-option img { width: 72px !important; }
+
+    .input__title { font-size: 16px; }
+    label, .input__field, .input__field-list { font-size: 16px; }
+
+    .about__modal__container,
+    .footer__terms__container,
     .wizard__container {
-      max-width: 95vw;
-      width: auto;
-      margin: 0 16px;
+      max-height: 90vh;
+    }
+    .about__modal--close,
+    .footer__terms--close,
+    .wizard__button--close { top: 12px; right: 12px; }
+  }
+
+  @media (max-width: 768px) {
+    .input__calculate-wrap { align-items: center; }
+    .input__calculate--button { width: 100%; max-width: 280px; margin-left: 0; }
+    .input__calculate__warning { width: auto; }
+  }
+
+  @media (max-width: 1500px) {
+    .wizard__container, .footer__terms__container, .about__modal__container {
+      width: 90%;
+      height: auto;
+      margin: 5% 5% 5% 5%;
       box-sizing: border-box;
+      overflow-y: auto;                 /* habilita scroll interno */
+      -webkit-overflow-scrolling: touch;
     }
 
     .wizard__text {
@@ -612,7 +647,16 @@ body {
     .wizard__title {
       font-size: 19px;
     }
+
+    .result { flex-direction: column; }
+    .result__output { width: 100%; margin-right: 0; left: 0; }
+    .result__graphic { max-width: 100%; margin: 24px 16px 0; }
+    .result__graphic-button-wrap {
+      width: 100%; flex-wrap: wrap; gap: 8px; margin-left: 0;
+    }
+    .result__output-print { margin: 12px 0 0 auto; }
   }
+  
 
 /* PRINTING CONFIGURATIONS */
   @media print {
