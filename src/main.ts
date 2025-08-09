@@ -40,7 +40,7 @@ const standardV0 = getElement<HTMLInputElement>('#speed-V0-standard-value');
 
 const printButton = getElement<HTMLButtonElement>('.result__output-print');
 const termsButton = getElement<HTMLElement>('.footer__terms__trigger');
-const infoButton = getElement<HTMLElement>('.header__link-about');
+const infoButton = getElement<HTMLElement>('.header__link__about');
 
 const divResults = getElement<HTMLDivElement>('.result__output__criteria');
 const divGraphic = getElement<HTMLElement>('.result__graphic');

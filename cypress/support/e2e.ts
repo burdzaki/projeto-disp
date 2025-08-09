@@ -15,3 +15,13 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import 'cypress-axe';
+import 'cypress-plugin-tab';
+import 'cypress-real-events/support';
+
+// spec
+it('a11y: página inicial sem violações críticas', () => {
+  cy.visit('http://localhost:5173/');
+  cy.injectAxe();
+  cy.checkA11y(undefined, { includedImpacts: ['critical','serious'] });
+});

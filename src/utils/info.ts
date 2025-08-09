@@ -1,7 +1,7 @@
 import { getElement } from "./dom";
 
-const closeButton = getElement<HTMLButtonElement>('.about-modal__close');
-const hideInfo = getElement<HTMLElement>('#about-modal');
+const closeButton = getElement<HTMLButtonElement>('.about__modal--close');
+const hideInfo = getElement<HTMLElement>('#about__modal');
 
 export function showInfo(): void {
     const infoText = `
@@ -22,19 +22,21 @@ export function showInfo(): void {
     <br><p>Elgin (2022). <a href="https://content.elgin.com.br/assets/arquivos/lista_de_isopletas_por_regi%C3%A3o_elgin.pdf" target="_blank" rel="noopener noreferrer">Lista de Isopletas por Região.</a></p>
     `;
 
-    const infoTextContainer = getElement<HTMLElement>('#about-modal-text');
+    const infoTextContainer = getElement<HTMLElement>('#about__modal__text');
     if (infoTextContainer) {
         infoTextContainer.innerHTML = infoText;
     }
 
-    getElement<HTMLElement>('.about-modal__container')
-        hideInfo?.classList.remove("about-modal--hidden");
+    getElement<HTMLElement>('.about__modal__container')
+        hideInfo?.classList.remove("about__modal--hidden");
+
 
     closeButton.addEventListener('click', () => {
-        hideInfo?.classList.add("about-modal--hidden");
+        hideInfo?.classList.add("about__modal--hidden");
     });
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') hideInfo?.classList.add("about-modal--hidden");
+        if (event.key === 'Escape') hideInfo?.classList.add("about__modal--hidden");
     });
+    
 }

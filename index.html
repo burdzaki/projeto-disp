@@ -14,14 +14,14 @@
       <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
     </div>
     <div class="header__links" data-print="no">
-      <span class="header__link-help" id="header-link-help">Ajuda</span>
-      <span class="header__link-about" id="header-link-about-trigger">Sobre</span>
+      <button class="header__link-help" id="header-link-help">Ajuda</button>
 
-      <div class="about-modal about-modal--hidden" id="about-modal">
-        <div class="about-modal__container">
-          <button class="about-modal__close" id="about-modal-close" aria-label="Fechar Sobre">✖</button>
-          <h2 class="about-modal__title">Sobre o DISP</h2>
-          <p class="about-modal__text" id="about-modal-text"></p>
+      <button class="header__link__about">Sobre</button>
+      <div class="about__modal about__modal--hidden" id="about__modal">
+        <div class="about__modal__container">
+          <button class="about__modal--close" id="about__modal--close" aria-label="Fechar Sobre">✖</button>
+          <h2 class="about__modal__title">Sobre o DISP</h2>
+          <p class="about__modal__text" id="about__modal__text"></p>
         </div>
       </div>
     </div>
@@ -324,7 +324,7 @@
   </main>
 
   <footer data-print="no">
-    <span class="footer__terms__trigger">Termos e Condições</span>
+    <button class="footer__terms__trigger">Termos e Condições</button>
     <div class="footer__terms footer__terms--hidden" id="footer-terms">
       <div class="footer__terms__container">
         <button class="footer__terms--close" id="footer__terms--close" aria-label="Fechar Termos e Condições">✖</button>

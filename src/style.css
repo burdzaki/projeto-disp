@@ -78,14 +78,23 @@ header {
   justify-content: flex-end;
   margin-right: 80px;
   gap: 25px;
-  cursor: pointer;
+  cursor: default;
+  text-decoration: none;
+  border-style: solid;
+  border-color: var(--background-color);
+  background-color: var(--background-color);
 }
 
-.header__link-help, .header__link-about {
+.header__link-help, .header__link__about {
   font-family: var(--text-font-Inter);
   font-size: 20px;
   font-weight: 500;
   color: var(--text-color-logoDisp);
+  cursor: pointer;
+  text-decoration: none;
+  border-style: solid;
+  border-color: var(--background-color);
+  background-color: var(--background-color);
 }
 
 /* BODY */
@@ -434,9 +443,13 @@ body {
     font-weight: 400;
     color: var(--text-color-logoDisp);
     cursor: pointer;
+    text-decoration: none;
+    border-style: solid;
+    border-color: var(--footer-color);
+    background-color: var(--footer-color);
   }
 
-  .footer__terms, .about-modal {
+  .footer__terms, .about__modal {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background-color: var(--wizard-color); /* mesma cor escura do wizard */
@@ -446,11 +459,11 @@ body {
     z-index: 999;
   }
 
-  .footer__terms--hidden, .about-modal--hidden {
+  .footer__terms--hidden, .about__modal--hidden {
     display: none;
   }
 
-  .footer__terms__container, .about-modal__container {
+  .footer__terms__container, .about__modal__container {
     position: relative;
     background: var(--background-color); /* fundo claro, como o wizard__container */
     padding: 15px;
@@ -481,7 +494,7 @@ body {
     display: none;
   }
 
-  .wizard__title, .footer__terms__title, .about-modal__title {
+  .wizard__title, .footer__terms__title, .about__modal__title {
     margin-top: 10px;
     font-family: var(--text-font-Montserrat);
     font-size: 21px;
@@ -489,7 +502,7 @@ body {
     color: var(--text-color-logoDisp)
   }
 
-  .wizard__text, .footer__terms__text, .about-modal__text {
+  .wizard__text, .footer__terms__text, .about__modal__text {
     margin-top: 8px;
     margin-bottom: 8px;
     font-family: var(--text-font-Inter);
@@ -517,7 +530,7 @@ body {
     align-items: center;
   }
 
-  .wizard__button--close, .footer__terms--close, .about-modal__close {
+  .wizard__button--close, .footer__terms--close, .about__modal--close {
     color: var(--text-color-input);
     position: absolute;
     top: 1rem;
@@ -544,7 +557,6 @@ body {
     font-weight: 400;
     text-decoration: none;
     border-style: solid;
-    border-radius: 15px;
     border-color: var(--background-color);
     background-color: var(--background-color);
   }
