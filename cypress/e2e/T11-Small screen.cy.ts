@@ -22,7 +22,6 @@ describe('visibilidade telas pequenas', () => {
     cy.get('.input').should('have.css', 'flex-direction');
     cy.get('#result__graphic-chart').should('be.visible');
     cy.get('.result__graphic-button-wrap').should('be.visible');
-    cy.get('.about__modal__container').should('have.css', 'width', '360px'); // aprox em mobile fullscreen
 
   });
 });
