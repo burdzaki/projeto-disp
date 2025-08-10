@@ -431,17 +431,17 @@ body.modal-open {
 /* FOOTER */
   footer {
     display: flex;
-    margin-bottom: 0;
-    height: 100px;
-    width: 100%;
-    background-color: var(--footer-color);
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    align-items: center;
-    font-family: var(--text-font-Inter);
-  }
-
+        margin-bottom: 0;
+            height: 100px;
+                width: 100%;
+                    background-color: var(--footer-color);
+                        flex-direction: column;
+                            justify-content: center;
+                                gap: 5px;
+                                    align-items: center;
+                                        font-family: var(--text-font-Inter);
+                                          }
+                                          
   .footer__terms__trigger {
     font-size: 18px;
     font-weight: 400;

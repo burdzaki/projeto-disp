@@ -150,7 +150,7 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
                     wizardContainer.style.transform = 'none';
                     wizardContainer.style.top = '30px';
                 } else {
-                    wizardContainer.style.right = `center`;
+                    wizardContainer.style.left = `30%`;
                 }
             }
 
@@ -279,11 +279,11 @@ function nextStep(): void {
 }
 
 function closeWizard(): void {
+    currentStep = 0;
     wizard.classList.add('wizard--hidden');
     // ALTERADO: REMOVIDO MODAL-OPEN
     document.body.classList.remove('modal-open');
     showResultGraphicSection('');
-    currentStep = 0;
     clearHighlight();
 }
 

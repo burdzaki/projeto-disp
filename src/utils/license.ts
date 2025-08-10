@@ -6,33 +6,7 @@ const hideTerms = getElement<HTMLElement>('#footer-terms');
 
 export function showLicense(): void {
     const licenseText = `
-    <h4>Licença MIT</h4>
-
-    <br><p>Copyright (c) 2025 Alana Burdzaki</p>
-
-    <br><p>Por meio deste, é concedida permissão, gratuita, a qualquer pessoa que obtenha uma cópia
-    deste software e dos arquivos de documentação associados (o "Software"), para lidar
-    com o Software sem restrições, incluindo, sem limitação, os direitos
-    de usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender
-    cópias do Software, e permitir que as pessoas a quem o Software for fornecido
-    o façam, sujeitas às seguintes condições:</p>
-
-    <br><p>O aviso de copyright acima e este aviso de permissão deverão ser incluídos em todas
-    as cópias ou partes substanciais do Software.</p>
-
-    <br><p>O SOFTWARE É FORNECIDO "NO ESTADO EM QUE SE ENCONTRA", SEM GARANTIA DE QUALQUER TIPO,
-    EXPRESSA OU IMPLÍCITA, INCLUINDO, MAS NÃO SE LIMITANDO ÀS GARANTIAS DE COMERCIALIZAÇÃO,
-    ADEQUAÇÃO A UMA FINALIDADE ESPECÍFICA E NÃO INFRAÇÃO. EM NENHUMA HIPÓTESE OS AUTORES
-    OU DETENTORES DOS DIREITOS AUTORAIS SERÃO RESPONSÁVEIS POR QUALQUER RECLAMAÇÃO, DANO
-    OU OUTRA RESPONSABILIDADE, SEJA EM UMA AÇÃO DE CONTRATO, DELITO OU DE OUTRA FORMA,
-    DECORRENTE DE, FORA DE OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES
-    NO SOFTWARE.</p>
-    
-    <br><p>Tradução não oficial da Licença MIT, apresentada para fins informativos.</p>
-
-    <br><hr><hr>
-
-    <br><h4>MIT License (official version)</h4>
+    <h4>MIT License (official version)</h4>
 
     <br><p>Copyright (c) 2025 Alana Burdzaki</p>
 
@@ -71,6 +45,9 @@ export function showLicense(): void {
     });
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') hideTerms?.classList.add("footer__terms--hidden");
+        if (event.key === 'Escape') {
+            hideTerms?.classList.add("about__modal--hidden");
+            document.body.classList.remove('modal-open');
+        }
     });
 }

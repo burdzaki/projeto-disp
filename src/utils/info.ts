@@ -41,6 +41,7 @@ export function showInfo(): void {
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') hideInfo?.classList.add("about__modal--hidden");
+        document.body.classList.remove('modal-open');
     });
     
 }
