@@ -145,7 +145,7 @@ const graphicWind = new Chart (ctx, {
                 text: 'Velocidade do Vento na Estrutura x Elevação Z',
                 font: {
                     family: 'Montserrat',
-                    size: 20,
+                    size: 15,
                 }
             }
         },

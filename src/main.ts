@@ -62,10 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   termsButton.addEventListener('click', () => {
+    // ALTERADO: INCLUÍDO MODAL-OPEN
+    document.body.classList.add('modal-open');
     showLicense();
   });
 
   infoButton.addEventListener('click', () => {
+    // ALTERADO: INCLUÍDO MODAL-OPEN
+    document.body.classList.add('modal-open');
     showInfo();
   });
 });

@@ -34,6 +34,8 @@ export function showInfo(): void {
 
     closeButton.addEventListener('click', () => {
         hideInfo?.classList.add("about__modal--hidden");
+        // ALTERADO: REMOVIDO MODAL-OPEN
+        document.body.classList.remove('modal-open');
         clearHighlight();
     });
 

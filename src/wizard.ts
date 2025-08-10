@@ -137,8 +137,13 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
 
             if (currentStep === 0) {
                 wizardContainer.style.top = `20%`;
+                wizardContainer.style.bottom = '';
+                wizardContainer.style.height = '';
+                wizardContainer.style.maxHeight = '';
+                wizardContainer.style.overflow = '';
+                wizardContainer.style.position = 'absolute';
                 
-                if (window.innerWidth < 1000) {
+                if (window.innerWidth < 900) {
                     wizardContainer.style.left = `5%`;
                     wizardContainer.style.right = `5%`;
                     wizardContainer.style.maxWidth = `90vw`;
@@ -152,6 +157,7 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
             else {
                 const isSmallScreen = window.innerWidth < 900;
                 const targetTop = rect.top + window.scrollY;
+                const targetBottom = rect.bottom + window.scrollY;
                 const targetLeft = rect.left + window.scrollX;
 
                 // Reset styles
@@ -163,11 +169,13 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
                 wizardContainer.style.position = '';
 
                 // Se tela for pequena OU o elemento estiver muito fora da tela visível, centraliza o wizard
-                if (isSmallScreen || targetTop > window.innerHeight * 0.7) {
-                    wizardContainer.style.position = 'fixed';
-                    wizardContainer.style.bottom = '20px';
-                    wizardContainer.style.left = '50%';
-                    wizardContainer.style.transform = 'translateX(-50%)';
+                if (window.innerHeight < 900) {
+                    if (isSmallScreen || targetBottom > window.innerHeight * 0.6) {
+                        wizardContainer.style.position = 'fixed';
+                        wizardContainer.style.bottom = '20px';
+                        wizardContainer.style.left = '50%';
+                        wizardContainer.style.transform = 'translateX(-50%)';
+                    }   
                 } else {
                     wizardContainer.style.position = 'absolute';
                     wizardContainer.style.top = `${targetTop + 40}px`;
@@ -214,6 +222,8 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
 export function setupWizard(): void {
     helpButton.addEventListener('click', () => {
         wizard.classList.remove('wizard--hidden');
+        // ALTERADO: INCLUÍDO MODAL-OPEN
+        document.body.classList.add('modal-open');
         showWizardStep(0);
     });
 
@@ -270,6 +280,8 @@ function nextStep(): void {
 
 function closeWizard(): void {
     wizard.classList.add('wizard--hidden');
+    // ALTERADO: REMOVIDO MODAL-OPEN
+    document.body.classList.remove('modal-open');
     showResultGraphicSection('');
     currentStep = 0;
     clearHighlight();
@@ -277,6 +289,8 @@ function closeWizard(): void {
 
 export function showWizardHelpStep(index: number): void {
     wizard.classList.remove('wizard--hidden');
+    // ALTERADO: INCLUÍDO MODAL-OPEN
+    document.body.classList.add('modal-open');
     currentStep = index;
     showWizardStep(index, true);
 }
