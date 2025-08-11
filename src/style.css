@@ -118,7 +118,6 @@ body.modal-open {
 
   .main__wrapper {
     display: flex;
-    align-items: flex-start;
     gap: 40px;
     padding: 0 50px;
     flex-wrap: wrap;
@@ -151,14 +150,17 @@ body.modal-open {
   }
 
   input[type=number] {
+    min-width: 0;
     appearance: textfield;
     -moz-appearance: textfield;
   }
 
-  .inputs {
+  .inputs, .input__container-select {
     display: flex;
     margin-left: 0px;
     flex-direction: column;
+    max-width: 500px;   /* adiciona */
+    width: 100%;        /* opcional mas recomendado */
   }
 
   .input__title {
@@ -175,22 +177,27 @@ body.modal-open {
     font-weight: 500;
   }
 
-  .input {
+  .input, .input__row {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     gap: 16px;
     margin-bottom: 10px;
     width: 100%;
     max-width: 450px;
   }
 
-  label {
-    flex: 1;
+  label, .input__row label {
+    width: 200px; /* ou max-width */
+    flex-shrink: 0;
     text-align: left;
     font-family: var(--text-font-Inter);
     font-size: 16px;
+  }
+
+  #speed-V0-wrapper {
+    max-width: none;
   }
 
   .input__field {
@@ -224,24 +231,26 @@ body.modal-open {
     gap: 8px;
   }
 
-  .input__container-select {
+  /* .input__container-select {
     margin-right: 58px;
     display: flex;
-    gap: 8px;
     flex-direction: column;
     align-items: flex-end;
-  }
-
-  /* .input__row label {
-    margin-right: 77px;
+    flex-wrap: nowrap;
   } */
 
+/* 
   .input__row {
     max-width: 500px;
     display: flex;
+    align-items: center;
     flex-direction: row;
-    gap: 28px;
+    gap: 0px;
   }
+
+  .input__row select, .input__row input {
+    flex: 1;
+  } */
 
   .input__container-list::after {
     content: '';
@@ -313,7 +322,7 @@ body.modal-open {
     }
 
     .dropdown__toggle {
-      margin-left: 25px;
+      margin-left: 15px;
       width: 145px;
       height: 25px;
       padding: 2.5px;
@@ -330,7 +339,7 @@ body.modal-open {
       display: none;
       position: absolute;
       top: 100%;
-      left: 190px;
+      left: 200px;
       background: var(--background-color);
       border: 1px solid #ccc;
       z-index: 20;
@@ -361,6 +370,7 @@ body.modal-open {
 /* RESULTS */
   .result {
     display: flex;
+    top: 0;
     flex-direction: row;
     flex-wrap: wrap;
   }
@@ -431,16 +441,16 @@ body.modal-open {
 /* FOOTER */
   footer {
     display: flex;
-        margin-bottom: 0;
-            height: 100px;
-                width: 100%;
-                    background-color: var(--footer-color);
-                        flex-direction: column;
-                            justify-content: center;
-                                gap: 5px;
-                                    align-items: center;
-                                        font-family: var(--text-font-Inter);
-                                          }
+    margin-bottom: 0;
+    height: 100px;
+    width: 100%;
+    background-color: var(--footer-color);
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    font-family: var(--text-font-Inter);
+  }
                                           
   .footer__terms__trigger {
     font-size: 18px;
@@ -572,6 +582,10 @@ body.modal-open {
     color: var(--text-color-logobzk);
   }
 
+  .wizard__help-placeholder {
+    width: 20px;
+  }
+
   .wizard__readme-button {
     font-size: 17.5px;
     color: red;
@@ -580,8 +594,8 @@ body.modal-open {
   .wizard__help-wrap {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     gap: 3px;
-    align-items: center;
   }
 
   .wizard__button:hover {
@@ -628,9 +642,18 @@ body.modal-open {
   }
 
   @media (max-width: 768px) {
+    label, .input__row label { width: 140px; }         /* era 200px */
+    .input__field, .input__field-list { 
+      flex: 0 0 120px; 
+      max-width: 120px;                                 /* era 145px */
+      margin-right: 0;
+    }
+    .input, .input__row { gap: 12px; }                  /* era 16px; ajuda a fechar a conta */
+
+
     .input__calculate--button { align-items: center; }
     .input__calculate--button { width: 100%; max-width: 280px; margin-left: 0; }
-    .input__calculate__warning { width: 300px; margin-left: 0px;  white-space: pre-wrap; }
+    .input__calculate__warning { width: 280px; margin-left: 0px;  white-space: pre-wrap; }
     .main__wrapper { padding: 0 20px; }
     .header__link-help, .header__link__about { font-size: 16px; }
     .dropdown__options { left: 80px; }  
@@ -654,9 +677,6 @@ body.modal-open {
       font-size: 12px;
       font-weight: 500;
     }
-    #speed-V0-wrapper {
-      margin-left: 42px;
-    }
   }
 
   @media (max-width: 1500px) {
@@ -679,14 +699,7 @@ body.modal-open {
   }
 
   /* PRINTING CONFIGURATIONS SMALL SCREEN*/
-  @media print and (max-width: 768px) {
-    .result__graphic {
-      max-width: 600px;
-      margin: 0 !important;
-      padding-top: 80px;
-      page-break-inside: always;
-    }
-  }
+
 
 /* PRINTING CONFIGURATIONS */
   @media print {
@@ -733,8 +746,20 @@ body.modal-open {
     }
 
     .result__graphic {
+      width: 600px !important;
+      max-width: none !important; /* remove o limite anterior */
       padding-top: 80px;
-      page-break-inside: always;
+      page-break-inside: avoid;
+    }
+
+    .result__graphic-button-wrap {
+      width: 600px !important;
+    }
+
+    #resultChart, #result__graphic-strouhal {
+      width: 600px !important;
+      max-width: none !important; /* remove limite horizontal */
+      max-height: none !important; /* remove limite vertical */
     }
 
     .result__output {
@@ -744,4 +769,4 @@ body.modal-open {
       text-align: left;
       font-family: var(--text-font-Montserrat);
     }
-  }
+}

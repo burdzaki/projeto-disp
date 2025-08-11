@@ -131,7 +131,7 @@ buttonCalculate.addEventListener('click', () => {
 
   if (!allValidInputs)
   {
-    warningCalculate.innerText = 'Aviso: Existem parâmetros não preenchidos corretamente';
+    warningCalculate.innerText = 'Atenção: Existem parâmetros não preenchidos corretamente';
     warningCalculate.style.display = 'flex';
     divGraphic.style.display = 'none';
     divResults.style.display = 'none';

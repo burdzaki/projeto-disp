@@ -66,7 +66,7 @@ export function setWindLookup (stateSelect: HTMLSelectElement, citySelect: HTMLS
 
         if (speedV0 !== undefined) {
             standardV0.value = speedV0.toString();
-            speedv0Wrapper.style.display = 'block';
+            speedv0Wrapper.style.display = 'flex';
         }
         else {
             standardV0.value = '';

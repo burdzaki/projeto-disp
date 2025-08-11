@@ -68,6 +68,7 @@
                 <label for="speed-V0">Velocidade básica V0:</label>
                 <button data-step="5" class="wizard__help-button">?</button>
               </div>
+
               <div class="input__container-list" id="input__speed-V0">
                 <select id="speed-V0" class="input__field">
                   <option value="" disabled selected hidden></option>
@@ -78,7 +79,10 @@
             </section>
 
             <section class="input input--selection-speed-V0-user-input" style="display: none;">
-              <label for="speed-V0-user-input">Digite o valor da velocidade (m/s):</label>
+              <div class="wizard__help-wrap">
+                <label for="speed-V0-user-input">Digite o valor da velocidade (m/s):</label>
+                <span class="wizard__help-placeholder"></span>
+              </div>
               <div class="input__container">
                 <input type="number" id="speed-V0-user-input" class="input__field" />
                 <span id="warning-speed-V0" class="input__warning">
@@ -89,28 +93,40 @@
               <div class="input__container-select">
                 
                 <div id="state-wrapper" class="input__row">
-                  <label for="speed-V0-standard-value__state-select">Estado:</label>
+                  <div class="wizard__help-wrap">
+                    <label for="speed-V0-standard-value__state-select">Estado:</label>
+                    <span class="wizard__help-placeholder"></span>
+                  </div>
                   <select id="speed-V0-standard-value__state-select" class="input__field">
                     <option value="" disabled selected hidden></option>
                   </select>
                 </div>
 
                 <div id="city-wrapper" class="input__row" style="display: none;">
-                  <label for="speed-V0-standard-value__city-select">Cidade:</label>
+                  <div class="wizard__help-wrap">
+                    <label for="speed-V0-standard-value__city-select">Cidade:</label>
+                    <span class="wizard__help-placeholder"></span>
+                  </div>
                   <select id="speed-V0-standard-value__city-select" class="input__field">
                     <option value="" disabled selected hidden></option>
                   </select>
                 </div>
 
-
                 <div id="speed-V0-wrapper" class="input__row" style="display: none;">
+                  <div class="wizard__help-wrap">
                     <label for="speed-V0-standard-value">Velocidade (m/s):</label>
                     <button data-step="15" class="wizard__readme-button">*</button>
-                  <input type="number" id="speed-V0-standard-value" class="input__field"/>
+                  </div>
+                  <div class="input__container">
+                    <input type="number" id="speed-V0-standard-value" class="input__field"/>
+                    <span  id="warning-speed-V0-standard-value" class="input__warning"></span>
+                  </div>
                 </div>
+                
               </div>
 
             </section>
+            
 
             <section class="input input--topographic-factor-S1">
               <div class="wizard__help-wrap">
@@ -208,7 +224,10 @@
               </section>
 
               <section class="input input--selection-strouhal-user-input" style="display: none;" > <!--style="display: none;"-->
-                <label for="strouhal-user-input">Digite o número de Strouhal:</label>
+                <div class="wizard__help-wrap">
+                  <label for="strouhal-user-input">Digite o número de Strouhal:</label>
+                  <span class="wizard__help-placeholder"></span>
+                </div>
                 <div class="input__container">
                   <input type="number" id="strouhal-user-input" class="input__field" />
                   <span id="warning-strouhal-user-input" class="input__warning"></span>
@@ -218,7 +237,10 @@
               <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
                 <section class="input input--structure-format">
                   <div class="dropdown">
-                    <label for="dropdown-options">Forma da Seção da Estrutura:</label>
+                    <div class="wizard__help-wrap">
+                      <label for="dropdown-options">Forma da Seção da Estrutura:</label>
+                      <span class="wizard__help-placeholder"></span>
+                    </div>
                     <div class="dropdown__options" id="dropdown-options">
                       <div class="dropdown__container-option" data-value="Circle">
                         <img src="/images/st/Circle.png" alt="Círculo"/>
@@ -263,7 +285,10 @@
                 </section>
 
                 <section class="input input--wind-direction" style="display: none;" > <!--style="display: none;"-->
-                  <label for="wind-direction">Direção do Vento:</label>
+                  <div class="wizard__help-wrap">
+                    <label for="wind-direction">Direção do Vento:</label>
+                    <span class="wizard__help-placeholder"></span>
+                  </div>
                   <div class="input__container-list">
                     <select id="wind-direction" class="input__field-list">
                       <option value="" disabled selected hidden></option>
@@ -275,7 +300,10 @@
 
                 <section class="input input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
                   <section class="input input--structure-width-A">
-                    <label for="width-A">Dimensão a (m):</label>
+                    <div class="wizard__help-wrap">
+                      <label for="width-A">Dimensão a (m):</label>
+                      <span class="wizard__help-placeholder"></span>
+                    </div>
                     <div class="input__container">
                       <input type="number" id="width-A" class="input__field" />
                       <span id="warning-width-A" class="input__warning"></span>
@@ -283,7 +311,10 @@
                   </section>
 
                   <section class="input input--structure-lenght-B">
-                    <label for="lenght-B">Dimensão b (m):</label>
+                    <div class="wizard__help-wrap">
+                      <label for="lenght-B">Dimensão b (m):</label>
+                      <span class="wizard__help-placeholder"></span>
+                    </div>
                     <div class="input__container">
                       <input type="number" id="lenght-B" class="input__field" />
                       <span id="warning-lenght-B" class="input__warning"></span>
