@@ -3,13 +3,13 @@ import { calculateSlenderness } from "../calculation";
 
 
 test("RF01, RF02: Cálculo de Esbeltez", () => {
-    const height: number = 69.75; 
-    const d0: number = 10.30; 
+    const height: number = 7000.75; 
+    const d0: number = 962.60; 
     const result = calculateSlenderness(height, d0);
 
     console.log("Esbeltez =", result);
 
-    expect(result).toBeCloseTo(6.77, 2);
+    expect(result).toBeCloseTo(7.27, 2);
 });
 
 test("RF01, RF02: Cálculo de Esbeltez inválida", () => {
@@ -28,8 +28,8 @@ describe("VortexParameters", () => {
         45,             // speedV0
         1.0,            // topographicFactorS1
         1.0,            // statisticalFactorS3
-        80,             // elevationZ
-        "IV",           // structureCategory
+        97.48,          // elevationZ
+        "I",            // structureCategory
         0.12,           // structureFrequencyFn
         13,             // transversalDimensionL
         "Rectangle",    // structureForm
@@ -45,22 +45,22 @@ describe("VortexParameters", () => {
         console.log("p =", vp.exponentP);
         console.log("S2 =", vp.roughnessFactorS2);
 
-        expect(vp.meteorologicalParameterBm["IV"]).toBe(0.71);
-        expect(vp.exponentP["IV"]).toBe(0.23);
-        expect(vp.roughnessFactorS2).toBeCloseTo(0.79, 2);
-        expect(result.bm).toBe(0.71);
-        expect(result.p).toBe(0.23);
-        expect(result.s2).toBeCloseTo(0.79, 2);
+        expect(vp.meteorologicalParameterBm["I"]).toBe(1.23);
+        expect(vp.exponentP["I"]).toBe(0.095);
+        expect(vp.roughnessFactorS2).toBeCloseTo(1.05, 2);
+        expect(result.bm).toBe(1.23);
+        expect(result.p).toBe(0.095);
+        expect(result.s2).toBeCloseTo(1.05, 2);
 
     });
 
     test("RF07: Cálculo da Vest", () => {
         const vp = new VortexParameters(
-        45,             // speedV0
-        1.0,            // topographicFactorS1
-        1.0,            // statisticalFactorS3
-        80,             // elevationZ
-        "IV",           // structureCategory
+        52,             // speedV0
+        1.06,           // topographicFactorS1
+        1.11,           // statisticalFactorS3
+        97.48,          // elevationZ
+        "I",            // structureCategory
         0.12,           // structureFrequencyFn
         13,             // transversalDimensionL
         "Rectangle",    // structureForm
@@ -68,13 +68,13 @@ describe("VortexParameters", () => {
         13,             // widthA
         22,             // lenghtB
         true,           //strouhalmode
-        0.20            //strouhalmodeInput
+        0.20            //strouhalmodeInput  
         );
     
         //vp.calculateFactorS2();
         const result = vp.calculateStructureSpeed();
 
-        expect(result).toBeCloseTo(44.46, 2);
+        expect(result).toBeCloseTo(80.58, 2);
     });
 
     test("RF08: Número de Strouhal manual (false mode)", () => {
@@ -124,24 +124,26 @@ describe("VortexParameters", () => {
 
     test("RF09: Cálculo da velocidade crítica Vcr", () => {
         const vp = new VortexParameters(
-            45,             // V0
-            1.0,            // S1
-            1.0,            // S3
-            80,             // z
-            "IV",           // categoria
-            0.2,            // fn
-            13,             // L
-            "Rectangle",    // forma
-            "Horizontal",   // direção
-            13,
-            22,
-            false,          // modo strouhal manual
-            0.20            // valor manual de St
+            52,             // speedV0
+            1.06,           // topographicFactorS1
+            1.11,           // statisticalFactorS3
+            97.48,          // elevationZ
+            "I",            // structureCategory
+            0.581,          // structureFrequencyFn
+            14.576,         // transversalDimensionL
+            "Rectangle",    // structureForm
+            "Horizontal",   // windDirection
+            13,             // widthA
+            22,             // lenghtB
+            false,          //strouhalmode
+            0.20            //strouhalmodeInput  
         );
 
         const result = vp.calculateVcrSpeed();
-        console.log("Vcr =", result);
-        expect(result).toBeCloseTo(13, 1); // 0.2 * 13 / 0.2 = 13
+        console.log("frequency =", vp.structureFrequencyFn);
+        console.log("L =", vp.transversalDimensionL);
+        console.log("St =", vp.strouhalNumberSt);
+        expect(result).toBeCloseTo(42.34, 2); // 0.2 * 13 / 0.2 = 13
     });
 
     test("RF10: Verificação de dispensa: Vcr > Vest", () => {

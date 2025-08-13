@@ -1,6 +1,7 @@
 import { getElement } from "./utils/dom";
 import { wasResultAlreadyShown } from "./output";
 import { debounce } from "./utils/validation";
+import { getWindMode } from "./utils/windControl";
 
 const wizard = getElement<HTMLElement>('#wizard');
 const wizardContainer = getElement<HTMLElement>('.wizard__container');
@@ -55,7 +56,7 @@ const wizardSteps: WizardStep[] = [
     },
     {   //step 7
         title: 'Rugosidade do terreno',
-        text:  '<p>É classificada de acordo com a NBR 6123:2023 em cinco categorias de acordo com o entorno da edificação e a cota média de topo dos obstáculos ao seu redor:<br><br><strong>• Categoria I:</strong> Superfícies lisas de grandes dimensões (cota média = 0 m) <br><strong>• Categoria II:</strong> Terrenos abertos com poucos obstáculos espaçados (cota média ≤ 1,0 m) <br><strong>• Categoria III:</strong> Terrenos planos com obstáculos baixos e edificações esparsas (cota média = 3,0 m) <br><strong>• Categoria IV:</strong> Terrenos cobertos por obstáculos numerosos e pouco espaçados (cota média = 10 m)<br><strong>• Categoria V:</strong> Terrenos cobertos por obstáculos numerosos, altos e pouco espaçados (cota média ≥ 25 m)<br><br>Selecione a Categoria que melhor corresponde aos entornos do seu edifício.</p>',
+        text:  '<p>Utilizada na determinação do parâmetro metereológico bm e o expoente de lei potencial p, é classificada de acordo com a NBR 6123:2023 em cinco categorias de acordo com o entorno da edificação e a cota média de topo dos obstáculos ao seu redor:<br><br><strong>• Categoria I:</strong> Superfícies lisas de grandes dimensões (cota média = 0 m) <br><strong>• Categoria II:</strong> Terrenos abertos com poucos obstáculos espaçados (cota média ≤ 1,0 m) <br><strong>• Categoria III:</strong> Terrenos planos com obstáculos baixos e edificações esparsas (cota média = 3,0 m) <br><strong>• Categoria IV:</strong> Terrenos cobertos por obstáculos numerosos e pouco espaçados (cota média = 10 m)<br><strong>• Categoria V:</strong> Terrenos cobertos por obstáculos numerosos, altos e pouco espaçados (cota média ≥ 25 m)<br><br>Selecione a Categoria que melhor corresponde aos entornos do seu edifício.</p>',
         selector: '#input__structure-category'
     },
     {   //step 8
@@ -80,7 +81,7 @@ const wizardSteps: WizardStep[] = [
     },
     {   //step 12
         title: 'Número de Strouhal (St)',
-        text:  '<p>Esse é um parâmetro adimensional que depende da forma da seção transversal da estrutura e do regime de escoamento. A NBR 6123:2023 fornece valores típicos por geometria, os quais você pode selecionar ou substituir por um valor calculado ou proveniente de outras fontes.</p>',
+        text:  '<p>Esse é um parâmetro adimensional utilizado para descrever o fênomeno de desprendimento de vórtices, dependende da forma da seção transversal da estrutura e do regime de escoamento. A NBR 6123:2023 fornece valores típicos por geometria, os quais você pode selecionar ou substituir por um valor calculado ou proveniente de outras fontes.</p>',
         selector: '#strouhal-input'
     },
     {   //step 13
@@ -130,6 +131,17 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
     
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
+            //ressets the screen
+            wizardContainer.style.top = '';
+            wizardContainer.style.left = '';
+            wizardContainer.style.right = '';
+            wizardContainer.style.bottom = '';
+            wizardContainer.style.height = '';
+            wizardContainer.style.maxHeight = '';
+            wizardContainer.style.overflow = '';
+            wizardContainer.style.transform = '';
+            wizardContainer.style.position = '';
+            wizardContainer.style.maxWidth = '';
 
             const rect = target.getBoundingClientRect();
 
@@ -169,13 +181,26 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
                 wizardContainer.style.position = '';
 
                 // Se tela for pequena OU o elemento estiver muito fora da tela visível, centraliza o wizard
-                if (window.innerHeight < 900) {
+                if (index === 9 && getWindMode()) {
+                    wizardContainer.style.position = 'fixed';
+                    wizardContainer.style.left = '600px';
+                    wizardContainer.style.bottom = '20px';
+                    wizardContainer.style.transform = 'translateX(-50%)';
+                    // evita cortar
+                    const vpPadding = 24;
+                    wizardContainer.style.maxHeight = `${window.innerHeight - vpPadding * 2}px`;
+                    wizardContainer.style.overflow = 'auto';
+                    wizardContainer.style.maxWidth = isSmallScreen ? '90vw' : '650px';
+                    wizardContainer.style.width = 'auto';
+                    wizardContainer.style.boxSizing = 'border-box';
+                }
+                else if (window.innerHeight < 900) {
                     if (isSmallScreen || targetBottom > window.innerHeight * 0.6) {
                         wizardContainer.style.position = 'fixed';
                         wizardContainer.style.bottom = '20px';
                         wizardContainer.style.left = '50%';
                         wizardContainer.style.transform = 'translateX(-50%)';
-                    }   
+                    }
                 } else {
                     wizardContainer.style.position = 'absolute';
                     wizardContainer.style.top = `${targetTop + 40}px`;
@@ -251,7 +276,7 @@ export function setupWizard(): void {
     });
 
     const relayout = () => showWizardStep(currentStep);
-    const relayoutDebounced = debounce(relayout);
+    const relayoutDebounced = debounce(relayout, 0.1);
 
     window.addEventListener('resize', relayoutDebounced);
     window.addEventListener('orientationchange', () => setTimeout(relayout, 0));

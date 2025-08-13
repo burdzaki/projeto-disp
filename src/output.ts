@@ -10,16 +10,15 @@ let resultAlreadyShown = false;
 
 export function showSlendernessResult (slenderness : number) : void {
     const slendernessRatio = Number(slenderness.toFixed(2));
-    const slendernessFormatedd = slenderness.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
     divSlenderness.innerHTML = ''; //remover no final
     if (isNaN(slendernessRatio) || slendernessRatio === 0) {
         divSlenderness.innerHTML = '';
     }
     else if (slendernessRatio > 0 && slendernessRatio < 6) {
-        divSlenderness.innerHTML = (`<p>A esbeltez calculada possui valor ${slendernessFormatedd}: de acordo com o Item 10.2 da NBR 6123:2023, a estrutura está dispensada da verificação dos efeitos de despredimento de vórtices.</p>`);
+        divSlenderness.innerHTML = (`<p>A esbeltez calculada possui valor ${formatNumber(slenderness, 2)}: de acordo com o Item 10.2 da NBR 6123:2023, a estrutura está dispensada da verificação dos efeitos de despredimento de vórtices.</p>`);
     }
     else if (slendernessRatio >= 6) {
-        divSlenderness.innerHTML = (`<p>A esbeltez calculada possui valor ${slendernessFormatedd}: e acordo com o Item 10.2 da NBR 6123:2023, o critério de dispensa da estrutura deve ser calculado.</p>`);
+        divSlenderness.innerHTML = (`<p>A esbeltez calculada possui valor ${formatNumber(slenderness, 2)}: e acordo com o Item 10.2 da NBR 6123:2023, o critério de dispensa da estrutura deve ser calculado.</p>`);
     }
     else divSlenderness.innerHTML = '';
 }
@@ -75,6 +74,7 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
     `;
 
     const resultStStandard: string = `
+        <br><hr>
         <br><h4>2. Cálculo da velocidade crítica do vento (Vcr)</h4>
         <br><p>&emsp;Frequência natural da estrutura (fn) = ${formatNumber(structureFrequencyFn, 2)} Hz</p>
         <p>&emsp;Dimensão característica da seção transversal (L) = ${formatNumber(transversalDimensionL, 2)} m</p>

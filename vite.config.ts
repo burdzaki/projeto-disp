@@ -7,7 +7,7 @@ export default defineConfig({
 
     // ✅ Libere o domínio do Cloudflare Tunnel
     // Se quiser permitir qualquer subdomínio do trycloudflare:
-    allowedHosts: ['characterization-bind-saddam-latina.trycloudflare.com'],
+    allowedHosts: ['prompt-rp-varies-silver.trycloudflare.com'],
     // ou, para liberar só o host que apareceu no seu terminal:
     // allowedHosts: ['renew-catherine-standings-did.trycloudflare.com'],
 

@@ -813,6 +813,9 @@ export const windSpeeds: Record<string, Record<string, number>> = {
     "Varjota": 30,
     "Várzea Alegre": 30,
     "Viçosa do Ceará": 30 
+  },
+  "Distrito Federal": {
+    "Brasília": 35,
   },   
   "Espírito Santo": {
     "Afonso Cláudio": 35,
@@ -931,7 +934,6 @@ export const windSpeeds: Record<string, Record<string, number>> = {
     "Bom Jesus de Goiás": 35,
     "Bonfinópolis": 35,
     "Bonópolis": 30,
-    "Brasília": 35,
     "Brazabrantes": 30,
     "Britânia": 30,
     "Buriti Alegre": 35,

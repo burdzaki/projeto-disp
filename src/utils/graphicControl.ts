@@ -124,7 +124,7 @@ export function addVcrLines(vcr: number): void {
         backgroundColor: 'rgba(255, 99, 132, 0.25)'
     }
 
-    graphicWind.update;
+    graphicWind.update();
 }
 
 let mainStock: {x: number, y: number }[] = [];

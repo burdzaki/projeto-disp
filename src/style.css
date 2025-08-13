@@ -578,7 +578,6 @@ body.modal-open {
   }
 
   .wizard__help-button {
-    font-size: 14.5px;
     color: var(--text-color-logobzk);
   }
 
@@ -595,6 +594,7 @@ body.modal-open {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-items: center;
     gap: 3px;
   }
 
