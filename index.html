@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disp.bzk</title>
+  <script type="module" crossorigin src="/projeto-disp/assets/index-C50Hzy4Z.js"></script>
+  <link rel="stylesheet" crossorigin href="/projeto-disp/assets/index-K9gE2Lxf.css">
+</head>
+<body>
+
+  <header>
+    <div class="header__logo">
+      <img class="logo__header" src="/projeto-disp/assets/miniLogoDisp-DeAlHCkG.png" alt="Logotipo Disp">
+      <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
+    </div>
+    <div class="header__links" data-print="no">
+      <button class="header__link-help" id="header-link-help">Ajuda</button>
+
+      <button class="header__link__about">Sobre</button>
+      <div class="about__modal about__modal--hidden" id="about__modal">
+        <div class="about__modal__container">
+          <button class="about__modal--close" id="about__modal--close" aria-label="Fechar Sobre">✖</button>
+          <h2 class="about__modal__title">Sobre o DISP</h2>
+          <p class="about__modal__text" id="about__modal__text"></p>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <h3 class="main__title" data-print="no">Verificador do Critério de Dispensa de Desprendimento de Vórtices </h3>
+    <img class="logo__main" src="/projeto-disp/assets/miniLogoDisp-DeAlHCkG.png" alt="Logotipo central">
+
+    <div class="main__wrapper">
+      <section class="inputs" data-print="no">
+
+        <section class="inputs inputs--slenderness">
+          <div class="wizard__help-wrap">
+            <p class="input__title">Verificação da Esbeltez</p>
+            <!-- <button data-step="1" class="wizard__help-button">?</button> -->
+          </div>
+            <section class="input input--structure-height">
+            <div class="wizard__help-wrap">
+              <label for="structure-height">Altura h (m):</label>
+              <button data-step="2" class="wizard__help-button">?</button>
+            </div>
+              <div class="input__container">
+                <input type="number" id="structure-height" class="input__field" />
+                <span id="warning-structure-height" class="input__warning"></span>
+              </div>
+            </section>
+            <section class="input input--dimension-d0">
+              <div class="wizard__help-wrap">
+                <label for="dimension-d0">Dimensão d0 (m):</label>
+                <button data-step="3" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container">
+                <input type="number" id="dimension-d0" class="input__field" />
+                <span id="warning-dimension-d0" class="input__warning"></span>
+              </div>
+            </section>
+        </section>
+
+        <section class="inputs inputs--parameters">
+            <p class="input__title">Parâmetros da Estrutura: Cálculo do Vento na Estrutura</p>
+            <section class="input input--selection-speed-V0">
+              <div class="wizard__help-wrap">
+                <label for="speed-V0">Velocidade básica V0:</label>
+                <button data-step="5" class="wizard__help-button">?</button>
+              </div>
+
+              <div class="input__container-list" id="input__speed-V0">
+                <select id="speed-V0" class="input__field">
+                  <option value="" disabled selected hidden></option>
+                  <option value="wind-user-input">Digite um valor</option>
+                  <option value="wind-standard-value">Pesquise a cidade</option>
+                </select>
+              </div>
+            </section>
+
+            <section class="input input--selection-speed-V0-user-input" style="display: none;">
+              <div class="wizard__help-wrap">
+                <label for="speed-V0-user-input">Digite o valor da velocidade (m/s):</label>
+                <span class="wizard__help-placeholder"></span>
+              </div>
+              <div class="input__container">
+                <input type="number" id="speed-V0-user-input" class="input__field" />
+                <span id="warning-speed-V0" class="input__warning">
+              </div>
+            </section>
+
+            <section class="input input--selection-speed-V0-standard-value" style="display: none;">
+              <div class="input__container-select">
+                
+                <div id="state-wrapper" class="input__row">
+                  <div class="wizard__help-wrap">
+                    <label for="speed-V0-standard-value__state-select">Estado:</label>
+                    <span class="wizard__help-placeholder"></span>
+                  </div>
+                  <select id="speed-V0-standard-value__state-select" class="input__field">
+                    <option value="" disabled selected hidden></option>
+                  </select>
+                </div>
+
+                <div id="city-wrapper" class="input__row" style="display: none;">
+                  <div class="wizard__help-wrap">
+                    <label for="speed-V0-standard-value__city-select">Cidade:</label>
+                    <span class="wizard__help-placeholder"></span>
+                  </div>
+                  <select id="speed-V0-standard-value__city-select" class="input__field">
+                    <option value="" disabled selected hidden></option>
+                  </select>
+                </div>
+
+                <div id="speed-V0-wrapper" class="input__row" style="display: none;">
+                  <div class="wizard__help-wrap">
+                    <label for="speed-V0-standard-value">Velocidade (m/s):</label>
+                    <button data-step="15" class="wizard__readme-button">!</button>
+                  </div>
+                  <div class="input__container">
+                    <input type="number" id="speed-V0-standard-value" class="input__field"/>
+                    <span  id="warning-speed-V0-standard-value" class="input__warning"></span>
+                  </div>
+                </div>
+                
+              </div>
+
+            </section>
+            
+
+            <section class="input input--topographic-factor-S1">
+              <div class="wizard__help-wrap">
+                <label for="topographic-factor-S1">Fator topográfico S1:</label>  
+                <button data-step="6" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container">
+                <input type="number" id="topographic-factor-S1" class="input__field" />
+                <span  id="warning-topographic-factor-S1" class="input__warning"></span>
+              </div>
+            </section>
+
+            <section class="input input--structure-category">
+              <div class="wizard__help-wrap">
+                <label for="structure-category">Rugosidade do terreno:</label>
+                <button data-step="7" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container-list" id="input__structure-category">
+                <select id="structure-category" class="input__field-list">
+                  <option value="" disabled selected hidden></option>
+                  <option value="I">Categoria I</option>
+                  <option value="II">Categoria II</option>
+                  <option value="III">Categoria III</option>
+                  <option value="IV">Categoria IV</option>
+                  <option value="V">Categoria V</option>
+                </select>
+              </div>
+            </section>
+
+            <section class="input input--elevation-Z">
+              <div class="wizard__help-wrap">
+                <label for="elevation-Z">Elevação Z (m):</label>
+                <button data-step="8" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container">
+                <input type="number" id="elevation-Z" class="input__field" />
+                <span id="warning-elevation-Z" class="input__warning"></span>
+              </div>
+            </section>
+
+            <section class="input input--statistical-factor-S3">
+              <div class="wizard__help-wrap">
+                <label for="statistical-factor-S3">Fator estatístico S3:</label>
+                <button data-step="9" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container">
+                <input type="number" id="statistical-factor-S3" name="statistical-factor-S3" list="S3-values" step="0.01" class="input__field" />
+                <datalist id="S3-values">
+                  <option value="1.11"></option>
+                  <option value="1.06"></option>
+                  <option value="1.00"></option>
+                  <option value="0.95"></option>
+                  <option value="1.83"></option>
+                </datalist>
+                <span  id="warning-statistical-factor-S3" class="input__warning"></span>
+              </div>
+            </section>
+
+            <p class="input__title">Parâmetros da Estrutura: Cálculo da Velocidade Crítica</p>
+            <section class="input input--transversal-dimension-L">
+              <div class="wizard__help-wrap">
+                <label for="transversal-dimension-L">Dimensão L (m):</label>
+                <button data-step="10" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container">
+                <input type="number" id="transversal-dimension-L" class="input__field" />
+                <span id="warning-transversal-dimension-L" class="input__warning"></span>
+              </div>
+            </section>
+
+            <section class="input input--structure-frequency-Fn">
+              <div class="wizard__help-wrap">
+                <label for="structure-frequency-Fn">Frequência Natural<br> da Estrutura fn (Hz):</label>
+                <button data-step="11" class="wizard__help-button">?</button>
+              </div>
+              <div class="input__container">
+                <input type="number" id="structure-frequency-Fn" class="input__field" />
+                <span id="warning-structure-frequency-Fn" class="input__warning"></span>
+              </div>
+            </section>
+
+            <p class="input__subtitle">Número de Strouhal (St)</p>
+              <section class="input input--selection-strouhal-calculation">
+              <div class="wizard__help-wrap">
+                <label for="strouhal-input">Entrada do valor: </label>
+                <button data-step="12" class="wizard__help-button">?</button>
+              </div>
+                <div class="input__container-list">
+                  <select id="strouhal-input" class="input__field-list">
+                    <option value="" disabled selected hidden></option>
+                    <option value="StrouhalUserInput">Digite um valor</option>
+                    <option value="StrouhalStandardValue">Valor tabelado NBR 6123 (2023)</option>
+                  </select>
+                </div>
+              </section>
+
+              <section class="input input--selection-strouhal-user-input" style="display: none;" > <!--style="display: none;"-->
+                <div class="wizard__help-wrap">
+                  <label for="strouhal-user-input">Digite o número de Strouhal:</label>
+                  <span class="wizard__help-placeholder"></span>
+                </div>
+                <div class="input__container">
+                  <input type="number" id="strouhal-user-input" class="input__field" />
+                  <span id="warning-strouhal-user-input" class="input__warning"></span>
+                </div>
+              </section>
+
+              <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
+                <section class="input input--structure-format">
+                  <div class="dropdown">
+                    <div class="wizard__help-wrap">
+                      <label for="dropdown-options">Forma da Seção da Estrutura:</label>
+                      <span class="wizard__help-placeholder"></span>
+                    </div>
+                    <div class="dropdown__options" id="dropdown-options">
+                      <div class="dropdown__container-option" data-value="Circle">
+                        <img src="/projeto-disp/images/st/Circle.png" alt="Círculo"/>
+                        Círculo
+                      </div>
+                      <div class="dropdown__container-option" data-value="Plate">
+                        <img src="/projeto-disp/images/st/Plate.png" alt="Placa"/>
+                        Placa
+                      </div>
+                      <div class="dropdown__container-option" data-value="Rectangle">
+                        <img src="/projeto-disp/images/st/Rectangle.png" alt="Retângulo"/>
+                        Retângulo
+                      </div>
+                      <div class="dropdown__container-option" data-value="HFormat">
+                        <img src="/projeto-disp/images/st/HFormat.png" alt="Forma H"/>
+                        Forma H
+                      </div>
+                      <div class="dropdown__container-option" data-value="UFormat">
+                        <img src="/projeto-disp/images/st/UFormat.png" alt="Forma U"/>
+                        Forma U
+                      </div>
+                      <div class="dropdown__container-option" data-value="TFormat">
+                        <img src="/projeto-disp/images/st/TFormat.png" alt="Forma T"/>
+                        Forma T
+                      </div>
+                      <div class="dropdown__container-option" data-value="LFormat">
+                        <img src="/projeto-disp/images/st/LFormat.png" alt="Forma L"/>
+                        Forma L
+                      </div>
+                    </div>
+                    <div class="dropdown__toggle" id="dropdown-toggle" tabindex="0">
+                      <span>Selecione</span>
+                    </div> 
+                  </div>
+                  <input type="hidden" id="structure-format"/>
+                </section>
+
+                <section class="input input--structure-image">
+                  <div class="input__image">
+                    <img class="input__format-image" id="format-image" src="" alt="" style="display: none;" > <!--style="display: none;"-->
+                  </div>
+                </section>
+
+                <section class="input input--wind-direction" style="display: none;" > <!--style="display: none;"-->
+                  <div class="wizard__help-wrap">
+                    <label for="wind-direction">Direção do Vento:</label>
+                    <span class="wizard__help-placeholder"></span>
+                  </div>
+                  <div class="input__container-list">
+                    <select id="wind-direction" class="input__field-list">
+                      <option value="" disabled selected hidden></option>
+                      <option value="Horizontal">Horizontal</option>
+                      <option value="Vertical">Vertical</option>
+                    </select>
+                  </div>
+                </section>
+
+                <section class="input input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
+                  <section class="input input--structure-width-A">
+                    <div class="wizard__help-wrap">
+                      <label for="width-A">Dimensão a (m):</label>
+                      <span class="wizard__help-placeholder"></span>
+                    </div>
+                    <div class="input__container">
+                      <input type="number" id="width-A" class="input__field" />
+                      <span id="warning-width-A" class="input__warning"></span>
+                    </div>
+                  </section>
+
+                  <section class="input input--structure-lenght-B">
+                    <div class="wizard__help-wrap">
+                      <label for="lenght-B">Dimensão b (m):</label>
+                      <span class="wizard__help-placeholder"></span>
+                    </div>
+                    <div class="input__container">
+                      <input type="number" id="lenght-B" class="input__field" />
+                      <span id="warning-lenght-B" class="input__warning"></span>
+                    </div>
+                  </section>
+                </section>
+              </section>
+        </section>
+        <div class="input__calculate-wrap">
+          <button class="input__calculate--button">Calcular</button>
+          <span id="warning-calculate--button" class="input__calculate__warning"></span>
+        </div>
+      </section>
+
+      <section class="result">
+
+        <section class="result__output">
+          <div class="result__output__slenderness" data-print="no"></div>
+          <div class="result__output__criteria"></div>
+          <button class="result__output-print" data-print="no">Imprimir</button>
+        </section>
+
+        <section class="result__graphic" style="display: none;">
+            <canvas id="result__graphic-chart" width="1300" height="1300"></canvas>
+            <div class="result__graphic-button-wrap" data-print="no">
+              <button class="result__graphic__button" id="result__graphic__button--undo">Voltar</button>
+              <button class="result__graphic__button" id="result__graphic__button--redo">Avançar</button>
+              <button class="result__graphic__button" id="result__graphic__button--clean">Limpar</button>
+              <button class="result__graphic__button" id="result__graphic__button--reset">Resetar</button>
+              <button class="wizard__help-button" id="result__graphic__button--help">?</button>
+            </div>
+          <canvas id="result__graphic-strouhal" width="100" height="100"></canvas>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer data-print="no">
+    <button class="footer__terms__trigger">Termos e Condições</button>
+    <div class="footer__terms footer__terms--hidden" id="footer-terms">
+      <div class="footer__terms__container">
+        <button class="footer__terms--close" id="footer__terms--close" aria-label="Fechar Termos e Condições">✖</button>
+        <h2 class="footer__terms__title" id="footer__terms__title">Termos e Condições de Uso</h2>
+        <p class="footer__terms__text" id="footer__terms__text"></p>
+      </div>
+    </div>
+    <h5 class="footer__contact">disp@bzk.dev.br</h5>
+  </footer>
+
+  <div id="wizard" class="wizard wizard--hidden">
+    <div class="wizard-highlight" id="wizard-highlight"></div>  
+    
+    <div class="wizard__container">
+      <button class="wizard__button--close" id="wizard__button--close" aria-label="Fechar tutorial">✖</button>
+      
+      <h2 class="wizard__title" id="wizard__title">Bem-vindo! Precisa de ajuda ao usar o verificador?</h2>
+      <p class="wizard__text" id="wizard__text">Esse guia vai auxiliar a sua utilização.</p>
+
+      <div class="wizard__navigation">
+        <button class="wizard__button wizard__button--back" id="wizard__button--back" aria-label="Voltar página">◀</button>
+        <button class="wizard__button wizard__button--next" id="wizard__button--next" aria-label="Avançar página">▶</button>
+      </div>
+  </div>
+
+  <link href="/path/to/print.css" media="print" rel="stylesheet" />
+</body>
+</html>
