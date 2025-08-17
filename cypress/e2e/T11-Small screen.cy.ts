@@ -1,7 +1,7 @@
 describe('visibilidade telas pequenas', () => {
-  it('ve se funciona', () => {
+  it('Ver se funciona', () => {
     cy.viewport(360, 780);
-    cy.visit('http://localhost:5173/');
+    cy.visit('http://localhost:4000/');
 
         // Agora gera um resultado mínimo
     cy.get('#structure-height').type('60');

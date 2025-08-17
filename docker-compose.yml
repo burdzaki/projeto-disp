@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  nginx-logger:
+    image: nginx:alpine
+    container_name: nginx-logger
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./logger.conf:/etc/nginx/conf.d/logger.conf:ro
+      - ./logs:/var/log/nginx
+    # Se estiver em Linux e "host.docker.internal" não resolver, descomente:
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    

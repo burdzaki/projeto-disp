@@ -10,6 +10,9 @@ import { setupWizard, showWizardHelpStep } from './wizard';
 import { showLicense } from './utils/license';
 import { showInfo } from './utils/info';
 
+//arrumar impressão de gráfico em telas pequenas
+//arrumar
+
 const buttonCalculate = getElement<HTMLButtonElement>('.input__calculate--button');
 const warningCalculate = getElement<HTMLElement>('#warning-calculate--button');
 const numberInputs = getAllElements<HTMLInputElement>('.input__field');

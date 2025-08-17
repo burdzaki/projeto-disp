@@ -207,7 +207,7 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
                     wizardContainer.style.left = `${targetLeft}px`;
 
                     if (step.selector === '.result__graphic') {
-                        wizardContainer.style.left = `${targetLeft + 400}px`;
+                        wizardContainer.style.left = `${targetLeft - 600}px`;
                     }
                 }
             }
