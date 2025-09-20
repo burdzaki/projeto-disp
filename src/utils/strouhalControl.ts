@@ -37,7 +37,6 @@ export function setFormatImage (dropdownContainer: HTMLElement, hiddenInput: HTM
     };
 
     //update image
-
     toggleDropdown.addEventListener('click', (event) => {
         event.stopPropagation();
         dropdownContainer.classList.toggle('open');
@@ -48,11 +47,10 @@ export function setFormatImage (dropdownContainer: HTMLElement, hiddenInput: HTM
             const selectedFormat = option.getAttribute('data-value') || '';
             hiddenInput.value = selectedFormat;
 
-            //atualiza texto do toggle
+            // update toggle text content
             const selectedText = option.querySelector('img')?.nextSibling?.textContent?.trim() || '';
             toggleDropdown.innerText = selectedText;
 
-            //fecha o dropwdown
             dropdownContainer.classList.remove('open');
 
         if (formatMap[selectedFormat]) {

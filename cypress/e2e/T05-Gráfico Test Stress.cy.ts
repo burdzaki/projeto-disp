@@ -55,10 +55,10 @@ describe('Verificador - Stress do gráfico H×Vcr', () => {
 
       // Resultado exibido (aceita qualquer uma das duas áreas de saída)
       cy.get('body').then(($b) => {
-        const hasCriteria = $b.find('.result__output__criteria').length > 0;
-        const hasSlender = $b.find('.result__output__slenderness').length > 0;
-        if (hasCriteria) cy.get('.result__output__criteria').should('be.visible');
-        else if (hasSlender) cy.get('.result__output__slenderness').should('be.visible');
+        const hasCriteria = $b.find('.result-output__criteria').length > 0;
+        const hasSlender = $b.find('.result-output__slenderness').length > 0;
+        if (hasCriteria) cy.get('.result-output__criteria').should('be.visible');
+        else if (hasSlender) cy.get('.result-output__slenderness').should('be.visible');
       });
 
       // Gráfico existe e o canvas muda entre execuções

@@ -39,14 +39,13 @@ export function showLicense(): void {
 
     closeButton.addEventListener('click', () => {
         hideTerms?.classList.add("footer__terms--hidden");
-        // ALTERADO: REMOVIDO MODAL-OPEN
         document.body.classList.remove('modal-open');
         clearHighlight();
     });
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-            hideTerms?.classList.add("about__modal--hidden");
+            hideTerms?.classList.add("about-modal--hidden");
             document.body.classList.remove('modal-open');
         }
     });

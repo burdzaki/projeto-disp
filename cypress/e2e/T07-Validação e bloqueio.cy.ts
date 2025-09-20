@@ -15,7 +15,7 @@ describe('Validações e mensagens de erro', () => {
     cy.get('.input__calculate--button').click();
 
     // Não deve aparecer resultado
-    cy.get('.result__output__criteria').should(($el) => {
+    cy.get('.result-output__criteria').should(($el) => {
       expect($el.text().trim()).to.eq('');
     });
   });

@@ -27,7 +27,7 @@ describe('Verificador - Entrada completa e cálculo Vcr/Vest', () => {
     cy.get('.input__calculate--button').click();
 
     // Resultado final esperado (pode ajustar conforme seu programa)
-    cy.get('.result__output__criteria').should(($el) => {
+    cy.get('.result-output__criteria').should(($el) => {
       const text = $el.text();
       expect(text).to.contain('dispensada');
     });

@@ -7,7 +7,6 @@ export function getParameter (idInput : string) : number {
     let parameterNumber = Number(input.value);
     let errorMessage = validateNumber(parameterNumber);
     if (!errorMessage) {
-        // console.log(`${idInput} = ${parameterNumber}`);
         return parameterNumber;
     }
     else {

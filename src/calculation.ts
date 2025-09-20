@@ -8,6 +8,7 @@ export function calculateSlenderness (structureHeight: number, dimensionD0: numb
     else return 0;
 };
 
+// Parameters values as established by the NBR 6123:2023
 export class VortexParameters {
 
     speedV0: number;
@@ -112,11 +113,4 @@ export class VortexParameters {
         }
         else return false;
     }
-
-    // showAllParameters () : void {
-    //     console.log(`NOVO CÁLCULO`);
-    //     Object.entries(this).forEach(([key, value]) => {
-    //         console.log(`${key}: ${value}`);
-    //     });
-    // }
 };

@@ -27,7 +27,7 @@ describe('Persistência dos valores após cálculo', () => {
     cy.get('.input__calculate--button').click();
 
     // Resultado apareceu
-    cy.get('.result__output__criteria').should('not.be.empty');
+    cy.get('.result-output__criteria').should('not.be.empty');
 
     // Edita só a elevação e recalcula
     cy.get('#elevation-Z').clear().type('40');
@@ -37,6 +37,6 @@ describe('Persistência dos valores após cálculo', () => {
     cy.get('#speed-V0-user-input').should('have.value', '45');
     cy.get('#structure-category').should('have.value', 'IV');
     cy.get('#strouhal-user-input').should('have.value', '0.2');
-    cy.get('.result__output__criteria').should('not.be.empty');
+    cy.get('.result-output__criteria').should('not.be.empty');
   });
 });

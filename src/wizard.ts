@@ -155,6 +155,7 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
                 wizardContainer.style.overflow = '';
                 wizardContainer.style.position = 'absolute';
                 
+                // Small screens
                 if (window.innerWidth < 900) {
                     wizardContainer.style.left = `5%`;
                     wizardContainer.style.right = `5%`;
@@ -180,13 +181,13 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
                 wizardContainer.style.transform = '';
                 wizardContainer.style.position = '';
 
-                // Se tela for pequena OU o elemento estiver muito fora da tela visível, centraliza o wizard
+                // If small screeens OR if the element is out of the screen, wizard gets centralized
                 if (index === 9 && getWindMode()) {
                     wizardContainer.style.position = 'fixed';
                     wizardContainer.style.left = '600px';
                     wizardContainer.style.bottom = '20px';
                     wizardContainer.style.transform = 'translateX(-50%)';
-                    // evita cortar
+                    // Avoid cutting the wizard
                     const vpPadding = 24;
                     wizardContainer.style.maxHeight = `${window.innerHeight - vpPadding * 2}px`;
                     wizardContainer.style.overflow = 'auto';
@@ -247,7 +248,6 @@ export function showWizardStep(index: number, hideNavigation : boolean = false) 
 export function setupWizard(): void {
     helpButton.addEventListener('click', () => {
         wizard.classList.remove('wizard--hidden');
-        // ALTERADO: INCLUÍDO MODAL-OPEN
         document.body.classList.add('modal-open');
         showWizardStep(0);
     });
@@ -306,7 +306,6 @@ function nextStep(): void {
 function closeWizard(): void {
     currentStep = 0;
     wizard.classList.add('wizard--hidden');
-    // ALTERADO: REMOVIDO MODAL-OPEN
     document.body.classList.remove('modal-open');
     showResultGraphicSection('');
     clearHighlight();
@@ -314,7 +313,6 @@ function closeWizard(): void {
 
 export function showWizardHelpStep(index: number): void {
     wizard.classList.remove('wizard--hidden');
-    // ALTERADO: INCLUÍDO MODAL-OPEN
     document.body.classList.add('modal-open');
     currentStep = index;
     showWizardStep(index, true);

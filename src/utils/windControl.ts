@@ -38,8 +38,8 @@ export function setWindLookup (stateSelect: HTMLSelectElement, citySelect: HTMLS
     const speedv0Wrapper = document.getElementById('speed-V0-wrapper');
 
     if (!cityWrapper || !speedv0Wrapper) {
-        console.error('city-wrapper ou speed-V0-wrapper não encontrados no DOM!');
-        return; // cancela execução
+        console.error('city-wrapper or speed-V0-wrapper not found!');
+        return;
     }
 
     stateSelect.addEventListener('change', () => {

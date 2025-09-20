@@ -1,5 +1,6 @@
 import { interpolateNumbers } from './interpolation';
 
+// Values based as established by the Table 33 of the NBR 6123:2023
 export function calculateST (structureForm : string, windDirection : string, widthA : number, lenghtB : number) : number {
     let dimensionFactor = lenghtB / widthA;
     let y : number = 0;

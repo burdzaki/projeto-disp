@@ -5,13 +5,13 @@ import annotationPlugin, { AnnotationOptions } from 'chartjs-plugin-annotation';
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, annotationPlugin);
 
-const undoChart = getElement<HTMLButtonElement>('#result__graphic__button--undo');
-const redoChart = getElement<HTMLButtonElement>('#result__graphic__button--redo');
-const cleanChart = getElement<HTMLButtonElement>('#result__graphic__button--clean');
-const resetChart = getElement<HTMLButtonElement>('#result__graphic__button--reset');
+const undoChart = getElement<HTMLButtonElement>('#result__graphic-button--undo');
+const redoChart = getElement<HTMLButtonElement>('#result__graphic-button--redo');
+const cleanChart = getElement<HTMLButtonElement>('#result__graphic-button--clean');
+const resetChart = getElement<HTMLButtonElement>('#result__graphic-button--reset');
 const displayGraphic = getElement<HTMLElement>('.result__graphic');
 const ctx = getElement<HTMLCanvasElement>('#result__graphic-chart');
-const helpButton = getElement<HTMLButtonElement>('#result__graphic__button--help');
+const helpButton = getElement<HTMLButtonElement>('#result__graphic-button--help');
 
 cleanChart.addEventListener('click', () => {
     cleanChartPoints();
@@ -50,6 +50,8 @@ const dataChart = {
 const dataStrouhal = {
     datasets: [{
         label: 'Número de Strouhal para Estruturas Retangulares',
+
+        // Construction of the curve based on discrete points from Table 33 of NBR 6123:2023 for rectangular section buildings
         data: [
             { x: 0 , y: 0.12 },
             { x: 1 , y: 0.12 },
@@ -74,16 +76,21 @@ export function addVcrLines(vcr: number): void {
     let VcrAnnotation: number = 0; 
     let VcrAnnotationReduced: number = 0;
     VcrAnnotation = vcr;
+    
+    // Reduction of the increase coefficient established by the NBR 6123:2023 for the analysis of the comparison criterius
     VcrAnnotationReduced = vcr / 1.25;
 
+    // Verifies the existente of the graphicWind before includes the annotations
     if (!graphicWind.options.plugins?.annotation?.annotations) return;
 
+    // Creates a local reference to the Chart.ts annotations object, enabling adding new annotation elements with proper typing
     const annotationConfig = graphicWind.options.plugins.annotation.annotations as Record<string, AnnotationOptions>;
     
     annotationConfig['vcrLine'] = {
             type: 'line',
             xMin: VcrAnnotation,
             xMax: VcrAnnotation,
+            yMin: 0,
             borderColor: '#641212ff',
             borderWidth: 2,
             label: {
@@ -103,6 +110,7 @@ export function addVcrLines(vcr: number): void {
             type: 'line',
             xMin: VcrAnnotationReduced,
             xMax: VcrAnnotationReduced,
+            yMin: 0,
             borderColor: '#5B5959',
             borderWidth: 2,
             label: {
@@ -182,7 +190,7 @@ export let graphicStrouhal: Chart<'line'>;
 export function initializeStrouhalChart(): void {
     const ctx = getElement<HTMLCanvasElement>('#result__graphic-strouhal')
     if (graphicStrouhal) {
-        graphicStrouhal.destroy(); // <-- ISSO É ESSENCIAL
+        graphicStrouhal.destroy(); // Resets the graphic
     }
 
     graphicStrouhal = new Chart (ctx, {
@@ -233,12 +241,12 @@ export function initializeStrouhalChart(): void {
 }
 
 export function highlightStrouhalPoint(strouhalRatio: number, st: number): void {
-  // Remove o ponto anterior (índice 1 se for sempre o destaque)
+  // Remove the previous point
   if (graphicStrouhal.data.datasets.length > 1) {
-    graphicStrouhal.data.datasets.pop(); // ou .splice(1, 1);
+    graphicStrouhal.data.datasets.pop();
   }
 
-  // Adiciona novo ponto
+  // Add new point
     graphicStrouhal.data.datasets.push({
     label: 'Valor calculado',
     data: [{ x: strouhalRatio, y: st }],
@@ -246,7 +254,7 @@ export function highlightStrouhalPoint(strouhalRatio: number, st: number): void 
     borderColor: '#25A18E',
     pointRadius: 6,
     borderWidth: 0,
-    showLine: false, // <- ESSENCIAL: impede que desenhe linha ligando
+    showLine: false,
     });
 
   graphicStrouhal.update();

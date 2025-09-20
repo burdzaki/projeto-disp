@@ -10,9 +10,6 @@ import { setupWizard, showWizardHelpStep } from './wizard';
 import { showLicense } from './utils/license';
 import { showInfo } from './utils/info';
 
-//arrumar impressão de gráfico em telas pequenas
-//arrumar
-
 const buttonCalculate = getElement<HTMLButtonElement>('.input__calculate--button');
 const warningCalculate = getElement<HTMLElement>('#warning-calculate--button');
 const numberInputs = getAllElements<HTMLInputElement>('.input__field');
@@ -41,11 +38,11 @@ const stateSelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__sta
 const citySelect = getElement<HTMLSelectElement>('#speed-V0-standard-value__city-select');
 const standardV0 = getElement<HTMLInputElement>('#speed-V0-standard-value');
 
-const printButton = getElement<HTMLButtonElement>('.result__output-print');
+const printButton = getElement<HTMLButtonElement>('.result-output--print');
 const termsButton = getElement<HTMLElement>('.footer__terms__trigger');
-const infoButton = getElement<HTMLElement>('.header__link__about');
+const infoButton = getElement<HTMLElement>('.header__link--about');
 
-const divResults = getElement<HTMLDivElement>('.result__output__criteria');
+const divResults = getElement<HTMLDivElement>('.result-output__criteria');
 const divGraphic = getElement<HTMLElement>('.result__graphic');
 const displayStrouhal = getElement<HTMLElement>('#result__graphic-strouhal');
 
@@ -65,13 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   termsButton.addEventListener('click', () => {
-    // ALTERADO: INCLUÍDO MODAL-OPEN
     document.body.classList.add('modal-open');
     showLicense();
   });
 
   infoButton.addEventListener('click', () => {
-    // ALTERADO: INCLUÍDO MODAL-OPEN
     document.body.classList.add('modal-open');
     showInfo();
   });
@@ -94,11 +89,11 @@ function verifySlenderness(): { h: number; d0: number; slenderness: number } {
     if (h > 0 && d0 > 0) {
         slenderness = calculateSlenderness(h, d0);
         if (!elevationZInput.value) {
-            elevationZInput.value = h.toString(); // Só preenche Z se estiver vazio
+            elevationZInput.value = h.toString();
         }
 
         if (!transversalDimensionLInput.value) {
-            transversalDimensionLInput.value = d0.toString(); // Mesmo para L
+            transversalDimensionLInput.value = d0.toString();
         }
     }
     showSlendernessResult(slenderness);
@@ -115,8 +110,6 @@ printButton.addEventListener('click', () => {
   window.print();
 })
 
-
-
 buttonCalculate.addEventListener('click', () => {
   let allValidInputs = true;
 
@@ -128,7 +121,6 @@ buttonCalculate.addEventListener('click', () => {
     const span = container ? container.querySelector<HTMLSpanElement>('.input__warning') : null;
 
     const validatedInput = validateInput(input, span);
-    // console.log(`Input ${input.id} válido?`, validatedInput);
     if (!validatedInput) allValidInputs = false;
     });
 

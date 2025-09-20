@@ -7,6 +7,6 @@ describe('Teste do Verificador de Dispensa', () => {
 
     cy.wait(350);
 
-    cy.get('.result__output__slenderness').should('contain', '6,772');
+    cy.get('.result-output__slenderness').should('contain', '6,772');
   });
 });

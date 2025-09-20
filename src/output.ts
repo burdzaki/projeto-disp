@@ -2,9 +2,9 @@ import { getElement } from './utils/dom';
 import { formatNumber } from './utils/format';
 import { addChartPoint, addVcrLines } from './utils/graphicControl';
 
-const divResults = getElement<HTMLDivElement>('.result__output__criteria');
-const divSlenderness = getElement<HTMLDivElement>('.result__output__slenderness');
-const printButton = getElement<HTMLButtonElement>('.result__output-print');
+const divResults = getElement<HTMLDivElement>('.result-output__criteria');
+const divSlenderness = getElement<HTMLDivElement>('.result-output__slenderness');
+const printButton = getElement<HTMLButtonElement>('.result-output--print');
 
 let resultAlreadyShown = false;
 
