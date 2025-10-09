@@ -728,7 +728,7 @@ body.modal-open {
       width: 600px !important;
     }
 
-    #resultChart, #result__graphic-strouhal {
+    #result__graphic-chart, #result__graphic-strouhal {
       width: 600px !important;
       max-width: none !important;
       max-height: none !important;

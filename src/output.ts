@@ -102,12 +102,16 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
             divResults.innerHTML += resultStStandard;
         }
         else divResults.innerHTML += resultStInput;
+        
         divResults.style.border = '1px solid var(--text-color-input)';
-        addVcrLines(vCriticalSpeed);
         addChartPoint(vStructureSpeed, elevationZ);
+        requestAnimationFrame(() => {
+        addVcrLines(vCriticalSpeed);
+        });
         printButton.style.display = 'block';
     }
 }
+
 
 export function wasResultAlreadyShown(): boolean {
   return resultAlreadyShown;

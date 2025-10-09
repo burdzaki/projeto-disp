@@ -5,7 +5,7 @@ import { calculateSlenderness , VortexParameters} from './calculation';
 import { setFormatImage, setStrouhalCalculus , getStrouhalMode } from './utils/strouhalControl';
 import { showSlendernessResult, showCalculusResult } from './output';
 import { setWindCalculus, getWindMode, setWindLookup } from './utils/windControl';
-import { initializeChart, initializeStrouhalChart, highlightStrouhalPoint } from './utils/graphicControl';
+import { initializeChart, initializeStrouhalChart, highlightStrouhalPoint, resizeChart } from './utils/graphicControl';
 import { setupWizard, showWizardHelpStep } from './wizard';
 import { showLicense } from './utils/license';
 import { showInfo } from './utils/info';
@@ -137,6 +137,7 @@ buttonCalculate.addEventListener('click', () => {
   warningCalculate.style.display = 'none';
   divResults.style.display = 'block';
   divGraphic.style.display = 'block';
+  resizeChart();
   printButton.style.display = 'block';
 
   let speedV0 : number = 0;
@@ -182,8 +183,7 @@ buttonCalculate.addEventListener('click', () => {
   const resultSlenderness = verifySlenderness();
 
   showCalculusResult(resultSlenderness.h, resultSlenderness.d0, resultSlenderness.slenderness, structureCategory.value, elevationZ, speedV0, topographicFactorS1, parametersS2.bm, parametersS2.p, parametersS2.s2, statisticalFactorS3, structureFrequencyFn, vStructureSpeed, vCriticalSpeed, transversalDimensionL, strouhalNumber, criteriaResult, widthA, lenghtB, windMode);
-  
-  
+    
   if (selectedFormat === 'Rectangle' && widthA !== 0 && lenghtB !==0 ) {
     const strouhalRatio = lenghtB / widthA;
     displayStrouhal.style.display = 'block';

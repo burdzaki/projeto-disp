@@ -34,8 +34,12 @@ helpButton.addEventListener('click', () => {
 });
 
 const dataChart = {
+    options: {
+        responsive: true,
+        display: true
+    },
     datasets: [{
-        label: 'Relação Fn x Vcr/Vest',
+        label: 'Velocidade do Vento na Estrutura x Elevação Z',
         data: [] as { x: number, y: number} [],
         backgroundColor: '#32A28C',
         borderColor: '#32A28C',
@@ -261,6 +265,7 @@ export function highlightStrouhalPoint(strouhalRatio: number, st: number): void 
 }
 
 export function initializeChart() : void {
+    cleanChartPoints();
     mainStock = [ { x: 0, y: 0 } ];
     redoStock = [...mainStock];
     updateChart();
@@ -279,7 +284,7 @@ function cleanChartPoints() : void {
     updateChart();
 }
 
-function resetChartPoints() : void {
+export function resetChartPoints() : void {
     if (mainStock.length < redoStock.length) mainStock = [...redoStock];
     updateChart();
 }
@@ -312,4 +317,8 @@ function updateChart(): void {
 
   dataChart.datasets[0].data = validPoints;
   graphicWind.update();
+}
+
+export function resizeChart(): void {
+  graphicWind.resize();
 }
