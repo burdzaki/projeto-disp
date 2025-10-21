@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { plugin as markdown } from 'vite-plugin-markdown';
 
 export default defineConfig({
-  // base: '/projeto-disp/',
+  /base: '/',
   server: {
     host: '0.0.0.0',
     port: 4000,
