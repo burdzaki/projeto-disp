@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Disp.bzk</title>
-  <script type="module" crossorigin src="/projeto-disp/assets/index-C50Hzy4Z.js"></script>
-  <link rel="stylesheet" crossorigin href="/projeto-disp/assets/index-K9gE2Lxf.css">
+  <script type="module" crossorigin src="/projeto-disp/assets/index-CfHi8iar.js"></script>
+  <link rel="stylesheet" crossorigin href="/projeto-disp/assets/index-B1bDLL3R.css">
 </head>
 <body>
 
   <header>
     <div class="header__logo">
-      <img class="logo__header" src="/projeto-disp/assets/miniLogoDisp-DeAlHCkG.png" alt="Logotipo Disp">
-      <h1 class="logo__text">Disp<span class="logo__bzk">.bzk</span></h1>
+      <img class="header__logo-img" src="/projeto-disp/images/miniLogoDisp.png" alt="Logotipo Disp">
+      <h1 class="header__logo-text">Disp<span class="header__logo-bzk">.bzk</span></h1>
     </div>
     <div class="header__links" data-print="no">
-      <button class="header__link-help" id="header-link-help">Ajuda</button>
+      <button class="header__link--help" id="header-link-help">Ajuda</button>
 
-      <button class="header__link__about">Sobre</button>
-      <div class="about__modal about__modal--hidden" id="about__modal">
-        <div class="about__modal__container">
-          <button class="about__modal--close" id="about__modal--close" aria-label="Fechar Sobre">✖</button>
-          <h2 class="about__modal__title">Sobre o DISP</h2>
-          <p class="about__modal__text" id="about__modal__text"></p>
+      <button class="header__link--about">Sobre</button>
+      <div class="about-modal about-modal--hidden" id="about-modal">
+        <div class="about-modal__container">
+          <button class="about-modal__close" id="about-modal__close" aria-label="Fechar Sobre">✖</button>
+          <h2 class="about-modal__title">Sobre o DISP</h2>
+          <p class="about-modal__text" id="about-modal__text"></p>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
   
   <main>
     <h3 class="main__title" data-print="no">Verificador do Critério de Dispensa de Desprendimento de Vórtices </h3>
-    <img class="logo__main" src="/projeto-disp/assets/miniLogoDisp-DeAlHCkG.png" alt="Logotipo central">
+    <img class="logo__main" src="/projeto-disp/images/miniLogoDisp.png" alt="Logotipo central">
 
     <div class="main__wrapper">
       <section class="inputs" data-print="no">
@@ -38,7 +38,6 @@
         <section class="inputs inputs--slenderness">
           <div class="wizard__help-wrap">
             <p class="input__title">Verificação da Esbeltez</p>
-            <!-- <button data-step="1" class="wizard__help-button">?</button> -->
           </div>
             <section class="input input--structure-height">
             <div class="wizard__help-wrap">
@@ -86,7 +85,7 @@
               </div>
               <div class="input__container">
                 <input type="number" id="speed-V0-user-input" class="input__field" />
-                <span id="warning-speed-V0" class="input__warning">
+                <span id="warning-speed-V0" class="input__warning"></span>
               </div>
             </section>
 
@@ -180,7 +179,7 @@
                   <option value="1.06"></option>
                   <option value="1.00"></option>
                   <option value="0.95"></option>
-                  <option value="1.83"></option>
+                  <option value="0.83"></option>
                 </datalist>
                 <span  id="warning-statistical-factor-S3" class="input__warning"></span>
               </div>
@@ -224,7 +223,7 @@
                 </div>
               </section>
 
-              <section class="input input--selection-strouhal-user-input" style="display: none;" > <!--style="display: none;"-->
+              <section class="input input--selection-strouhal-user-input" style="display: none;" >
                 <div class="wizard__help-wrap">
                   <label for="strouhal-user-input">Digite o número de Strouhal:</label>
                   <span class="wizard__help-placeholder"></span>
@@ -235,7 +234,7 @@
                 </div>
               </section>
 
-              <section class="input input--selection-strouhal-standard-value" style="display: none;" > <!--style="display: none;"-->
+              <section class="input input--selection-strouhal-standard-value" style="display: none;" >
                 <section class="input input--structure-format">
                   <div class="dropdown">
                     <div class="wizard__help-wrap">
@@ -281,11 +280,11 @@
 
                 <section class="input input--structure-image">
                   <div class="input__image">
-                    <img class="input__format-image" id="format-image" src="" alt="" style="display: none;" > <!--style="display: none;"-->
+                    <img class="input__format-image" id="format-image" src="" alt="" style="display: none;" >
                   </div>
                 </section>
 
-                <section class="input input--wind-direction" style="display: none;" > <!--style="display: none;"-->
+                <section class="input input--wind-direction" style="display: none;" >
                   <div class="wizard__help-wrap">
                     <label for="wind-direction">Direção do Vento:</label>
                     <span class="wizard__help-placeholder"></span>
@@ -299,7 +298,7 @@
                   </div>
                 </section>
 
-                <section class="input input--structure-dimensions-AB" style="display: none;" > <!--style="display: none;"-->
+                <section class="input input--structure-dimensions-AB" style="display: none;" >
                   <section class="input input--structure-width-A">
                     <div class="wizard__help-wrap">
                       <label for="width-A">Dimensão a (m):</label>
@@ -332,20 +331,20 @@
 
       <section class="result">
 
-        <section class="result__output">
-          <div class="result__output__slenderness" data-print="no"></div>
-          <div class="result__output__criteria"></div>
-          <button class="result__output-print" data-print="no">Imprimir</button>
+        <section class="result-output">
+          <div class="result-output__slenderness" data-print="no"></div>
+          <div class="result-output__criteria"></div>
+          <button class="result-output--print" data-print="no">Imprimir</button>
         </section>
 
         <section class="result__graphic" style="display: none;">
             <canvas id="result__graphic-chart" width="1300" height="1300"></canvas>
             <div class="result__graphic-button-wrap" data-print="no">
-              <button class="result__graphic__button" id="result__graphic__button--undo">Voltar</button>
-              <button class="result__graphic__button" id="result__graphic__button--redo">Avançar</button>
-              <button class="result__graphic__button" id="result__graphic__button--clean">Limpar</button>
-              <button class="result__graphic__button" id="result__graphic__button--reset">Resetar</button>
-              <button class="wizard__help-button" id="result__graphic__button--help">?</button>
+              <button class="result__graphic-button" id="result__graphic-button--undo">Voltar</button>
+              <button class="result__graphic-button" id="result__graphic-button--redo">Avançar</button>
+              <button class="result__graphic-button" id="result__graphic-button--clean">Limpar</button>
+              <button class="result__graphic-button" id="result__graphic-button--reset">Resetar</button>
+              <button class="wizard__help-button" id="result__graphic-button--help">?</button>
             </div>
           <canvas id="result__graphic-strouhal" width="100" height="100"></canvas>
         </section>
@@ -378,6 +377,7 @@
         <button class="wizard__button wizard__button--back" id="wizard__button--back" aria-label="Voltar página">◀</button>
         <button class="wizard__button wizard__button--next" id="wizard__button--next" aria-label="Avançar página">▶</button>
       </div>
+    </div>
   </div>
 
   <link href="/path/to/print.css" media="print" rel="stylesheet" />
