@@ -1,6 +1,11 @@
 import { getElement } from './utils/dom';
 import { formatNumber } from './utils/format';
 import { addChartPoint, addVcrLines } from './utils/graphicControl';
+import { marked } from 'marked';
+
+import resultStructureSpeedBaseMd from "./assets/result-structure-speed.md?raw";
+import resultStInputMd from "./assets/result-st-input.md?raw";
+import resultStStandardMd from "./assets/result-st-standard.md?raw";
 
 const divResults = getElement<HTMLDivElement>('.result-output__criteria');
 const divSlenderness = getElement<HTMLDivElement>('.result-output__slenderness');
@@ -23,73 +28,69 @@ export function showSlendernessResult (slenderness : number) : void {
     else divSlenderness.innerHTML = '';
 }
 
-export function showCalculusResult (structureHeight: number, dimensionD0: number, slenderness: number, structureCategory: string, elevationZ: number, speedV0: number, topographicFactorS1: number, meteorologicalParameterBm: number, exponentP: number, roughnessFactorS2: number, statisticalFactorS3: number, structureFrequencyFn: number, vStructureSpeed: number, vCriticalSpeed: number, transversalDimensionL: number, strouhalNumberSt: number, resultCriteria: boolean, widthA: number, lenghtB: number, windMode: boolean): void {
+export async function showCalculusResult (structureHeight: number, dimensionD0: number, slenderness: number, structureCategory: string, elevationZ: number, speedV0: number, topographicFactorS1: number, meteorologicalParameterBm: number, exponentP: number, roughnessFactorS2: number, statisticalFactorS3: number, structureFrequencyFn: number, vStructureSpeed: number, vCriticalSpeed: number, transversalDimensionL: number, strouhalNumberSt: number, resultCriteria: boolean, widthA: number, lenghtB: number, windMode: boolean): Promise<void> {
     
-    divResults.innerHTML = ''; //remover no final
+    divResults.innerHTML = '';
 
-    // const speedRatio = vCriticalSpeed / vStructureSpeed;
-
-    const resultStructureSpeedBase: string = `
-        <h3>Memória de Cálculo – Critério para verificação do efeito de desprendimento de vórtices</h3>
-        <br><p><strong>NBR 6123:2023 – Verificação de dispensa de investigação dos efeitos de desprendimento de vórtices de estruturas</strong></p>
-        <br><p>Cálculos efetuados de acordo com os Itens 10.2 e 10.3 da Norma.</p>
-        <br><hr>
-
-        <br><h4>1. Cálculo da velocidade do vento na estrutura (Vest)</h4>
-        <br><p>&emsp;Altura da edificação (h) = ${formatNumber(structureHeight, 2)} m</p>
-        <p>&emsp;Menor dimensão transversal (d0) = ${formatNumber(dimensionD0, 2)} m</p>
-        <p>&emsp;Esbeltez = ${formatNumber(slenderness, 2)}</p>
-        <br>
-        <p>&emsp;Categoria de rugosidade do terreno ${structureCategory}</p>
-        <p>&emsp;Elevação da edificação (Z) = ${formatNumber(elevationZ, 2)} m</p>
-        <p>&emsp;Velocidade básica de vento (V0) = ${formatNumber(speedV0, 2)} m/s</p>
-        <p>&emsp;Fator topográfico S1 = ${formatNumber(topographicFactorS1, 2)}</p> 
-        <p>&emsp;Fator S2 = ${formatNumber(roughnessFactorS2, 2)}</p>
-            <p>&emsp;&emsp;&emsp;Parâmetro metereológico bm = ${formatNumber(meteorologicalParameterBm)}</p>
-            <p>&emsp;&emsp;&emsp;Expoente p = ${formatNumber(exponentP)}</p>
-            <p>&emsp;&emsp;&emsp;Fator de rajada = 0,69</p>
-        <p>&emsp;Fator estatístico S3 = ${formatNumber(statisticalFactorS3)}</p>
-        
-        <br><p><b>&emsp;Vest = ${formatNumber(vStructureSpeed, 2)} m/s</b></p>
-    `;
+    const resultStructureSpeedBase = await marked.parse(
+        outputVariables(resultStructureSpeedBaseMd, {
+            
+            structureHeight: formatNumber(structureHeight, 2),
+            dimensionD0: formatNumber(dimensionD0, 2),
+            slenderness: formatNumber(slenderness, 2),
+            structureCategory,
+            elevationZ: formatNumber(elevationZ, 2),
+            speedV0: formatNumber(speedV0, 2),
+            topographicFactorS1: formatNumber(topographicFactorS1, 2),
+            roughnessFactorS2: formatNumber(roughnessFactorS2, 2),
+            meteorologicalParameterBm: formatNumber(meteorologicalParameterBm),
+            exponentP: formatNumber(exponentP),
+            statisticalFactorS3: formatNumber(statisticalFactorS3),
+            vStructureSpeed: formatNumber(vStructureSpeed, 2)
+        })
+    )
 
     const windString: string = `       
         <br><p>&emsp;Obs.: Valor de velocidade básica de vento (V0) adotada a partir das lista de isopletas fornecida pela Elgin.</p>
     `;
 
-    const resultStInput: string = `
-        <br><hr>
-        <br><h4>2. Cálculo da velocidade crítica do vento (Vcr)</h4>
-        <br><p>&emsp;Frequência natural da estrutura (fn) = ${formatNumber(structureFrequencyFn, 2)} Hz</p>
-        <p>&emsp;Dimensão característica da seção transversal (L) = ${formatNumber(transversalDimensionL, 2)} m</p>
-        <p>&emsp;Número de Strouhal (St) = ${formatNumber(strouhalNumberSt, 2)}</p>
-        <br><p><b>&emsp;Vcr = ${formatNumber(vCriticalSpeed, 2)} m/s</b></p>
-        <br><hr>
+    let resultCriteriaTextVerification : string = '';
+    let resultCriteriaTextConclusion : string = '';
 
-        <br><h4>3. Verificação Final</h4>
-        <br><p>&emsp;Critério: <strong>Vcr > Vest</strong> → ${formatNumber(vCriticalSpeed, 2)} > ${formatNumber(vStructureSpeed, 2)} → ${resultCriteria ? '<strong>Atendido</strong>' : '<strong>Não atendido</strong>'}</p>
-        <br>
-        <br><h4>4. Conclusão</h4>
-        <br><p>&emsp;A estrutura analisada ${resultCriteria ? '<strong>está dispensada</strong>' : '<strong>não está dispensada</strong>'} da verificação dos efeitos de desprendimento de vórtices.</p>
-    `;
+    if (resultCriteria) {
+        resultCriteriaTextVerification = 'Atendido';
+        resultCriteriaTextConclusion = 'está dispensada';
+    }
+    else {
+        resultCriteriaTextVerification = 'Não atendido';
+        resultCriteriaTextConclusion = 'não está dispensada';
+    }
 
-    const resultStStandard: string = `
-        <br><hr>
-        <br><h4>2. Cálculo da velocidade crítica do vento (Vcr)</h4>
-        <br><p>&emsp;Frequência natural da estrutura (fn) = ${formatNumber(structureFrequencyFn, 2)} Hz</p>
-        <p>&emsp;Dimensão característica da seção transversal (L) = ${formatNumber(transversalDimensionL, 2)} m</p>
-        <p>&emsp;Número de Strouhal (St) = ${formatNumber(strouhalNumberSt, 2)}</p>
-            <p>&emsp;&emsp;&emsp;Dimensão a = ${formatNumber(widthA, 2)} m</p>
-            <p>&emsp;&emsp;&emsp;Dimensão b = ${formatNumber(lenghtB, 2)} m</p>
-        <br><p><b>&emsp;Vcr = ${formatNumber(vCriticalSpeed, 2)} m/s</b></p>
-        <br><hr>
+    const resultStInput = await marked.parse(
+        outputVariables(resultStInputMd, {
+            structureFrequencyFn: formatNumber(structureFrequencyFn, 2),
+            transversalDimensionL: formatNumber(transversalDimensionL, 2),
+            strouhalNumberSt: formatNumber(strouhalNumberSt, 2),
+            vCriticalSpeed: formatNumber(vCriticalSpeed, 2),
+            vStructureSpeed: formatNumber(vStructureSpeed, 2),
+            resultCriteriaTextVerification,
+            resultCriteriaTextConclusion
+        })
+    )
 
-        <br><h4>3. Verificação Final</h4>
-        <br><p>&emsp;Critério: <strong>Vcr > Vest</strong> → ${formatNumber(vCriticalSpeed, 2)} > ${formatNumber(vStructureSpeed, 2)} → ${resultCriteria ? '<strong>Atendido</strong>' : '<strong>Não atendido</strong>'}</p>
-        <br>
-        <br><h4>4. Conclusão</h4>
-        <br><p>&emsp;A estrutura analisada ${resultCriteria ? '<strong>está dispensada</strong>' : '<strong>não está dispensada</strong>'} da verificação dos efeitos de desprendimento de vórtices.</p>
-    `;
+    const resultStStandard = await marked.parse(
+        outputVariables(resultStStandardMd, {
+            structureFrequencyFn: formatNumber(structureFrequencyFn, 2),
+            transversalDimensionL: formatNumber(transversalDimensionL, 2),
+            strouhalNumberSt: formatNumber(strouhalNumberSt, 2),
+            widthA: formatNumber(widthA, 2),
+            lenghtB: formatNumber(lenghtB, 2),
+            vCriticalSpeed: formatNumber(vCriticalSpeed, 2),
+            vStructureSpeed: formatNumber(vStructureSpeed, 2),
+            resultCriteriaTextVerification,
+            resultCriteriaTextConclusion
+        })
+    )
 
     if (isNaN(vCriticalSpeed) || isNaN(vStructureSpeed)) {
         divResults.innerHTML = '';
@@ -115,4 +116,11 @@ export function showCalculusResult (structureHeight: number, dimensionD0: number
 
 export function wasResultAlreadyShown(): boolean {
   return resultAlreadyShown;
+}
+
+function outputVariables (template: string, variables: Record<string, string | number>): string {
+    return template.replace(/\{\{(.*?)\}\}/g, (_, key) => {
+        const value = variables[key.trim()];
+        return value !== undefined ? String(value) : '';
+    })
 }

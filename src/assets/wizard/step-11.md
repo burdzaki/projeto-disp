@@ -1,0 +1,3 @@
+# Frequência Natural da Estrutura fn (Hz)
+
+Nesse campo deve ser preenchida a frequência natural da estrutura associada ao modo de vibração. Você pode obter esse valor por meio de softwares de análise modal estrutural ou por métodos de estimativa baseados em literatura técnica. A NBR 6123:2023 recomenda que a frequência considerada seja compatível com o modo de vibração predominante na direção do vento analisada.

@@ -1,27 +1,15 @@
 import { getElement } from "./dom";
 import { clearHighlight } from "../wizard";
+import { marked } from 'marked';
+
+import info from "../assets/info.md?raw";
 
 const closeButton = getElement<HTMLButtonElement>('.about-modal__close');
 const hideInfo = getElement<HTMLElement>('#about-modal');
 
 export function showInfo(): void {
-    const infoText = `
-    <br><p>O Verificador DISP é uma ferramenta desenvolvida para calcular a aplicabilidade do critério de dispensa de verificação dos efeitos devido ao desprendimento de vórtices em estruturas, conforme estabelece a norma NBR 6123:2023 – Forças Devidas ao Vento em Edificações.</p>
-
-    <br><p>O sistema calcula a velocidade crítica do vento da estrutura (Vcr) e compara com a velocidade básica do vento atuando na estrutura (Vest), considerando os parâmetros geométricos e regionais inseridos. Caso o critério da norma seja atendido, a verificação completa da ação dinâmica por desprendimento de vórtices pode ser dispensada.</p>
-
-    <br><p>Os dados listados de velocidade básica do vento fornecidos são baseados na tabela de isopletas da empresa Elgin.</p>
-
-    <br><p>Este projeto é open source e foi desenvolvido como parte do Trabalho de Conclusão do Curso (TCC) do MBA em Engenharia de Software da USP/Esalq, licenciado sob a Licença MIT e disponível publicamente no GitHub.</p>
-
-    <br><hr>
-
-    <br><p>Referências principais</p>
-
-    <br><p>NBR 6123 (2023) – Forças Devidas ao Vento em Edificações. Associação Brasileira de Normas Técnicas (ABNT).</p>
-
-    <br><p>Elgin (2022). <a href="https://content.elgin.com.br/assets/arquivos/lista_de_isopletas_por_regi%C3%A3o_elgin.pdf" target="_blank" rel="noopener noreferrer">Lista de Isopletas por Região.</a></p>
-    `;
+    const infoLines = info.trim().split('\n');
+    const infoText = marked.parse(infoLines.slice(0).join('\n')) as string;
 
     const infoTextContainer = getElement<HTMLElement>('#about-modal__text');
     if (infoTextContainer) {
