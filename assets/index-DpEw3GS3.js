@@ -267,7 +267,7 @@ Cálculos efetuados de acordo com os Itens 10.2 e 10.3 da Norma.\r
 \r
 &emsp;Dimensão característica da seção transversal (L) = {{transversalDimensionL}} m\r
 \r
-&emsp;Número de Strouhal (St) = {strouhalNumberSt}\r
+&emsp;Número de Strouhal (St) = {{strouhalNumberSt}}\r
 \r
 &emsp;&emsp;&emsp;Dimensão a = {{widthA}} m\r
 \r
