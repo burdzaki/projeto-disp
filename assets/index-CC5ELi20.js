@@ -298,7 +298,7 @@ Cálculos efetuados de acordo com os Itens 10.2 e 10.3 da Norma.\r
 **MIT License**\r
 <br><br>\r
 \r
-Copyright (c) 2025 Alana Burdzaki\r
+Copyright (c) 2026 Alana Burdzaki\r
 <br><br>\r
 \r
 Permission is hereby granted, free of charge, to any person obtaining a copy\r
